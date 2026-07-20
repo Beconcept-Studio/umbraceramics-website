@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "predev": "sass src/customstyle.scss src/customstyle.css",
-    "dev": "concurrently --names \"sass,tailwind,shopify\" --prefix-colors \"magenta,cyan,green\" \"sass --watch src/customstyle.scss:src/customstyle.css\" \"npx @tailwindcss/cli -i ./src/tailwind.css -o ./assets/tailwind.css --watch\" \"shopify theme dev --store=umbraceramics.myshopify.com --store-password=YOUR_PASSWORD_HERE \"",
+    "dev": "concurrently --names \"sass,tailwind,shopify\" --prefix-colors \"magenta,cyan,green\" \"sass --watch src/customstyle.scss:src/customstyle.css\" \"npx @tailwindcss/cli -i ./src/tailwind.css -o ./assets/tailwind.css --watch\" \"shopify theme dev --store=umbraceramics.myshopify.com --store-password=Beconcept \"",
     "build": "sass src/customstyle.scss src/customstyle.css && npx @tailwindcss/cli -i ./src/tailwind.css -o ./assets/tailwind.css --minify",
     "pull": "shopify theme pull --store=umbraceramics.myshopify.com",
     "push": "shopify theme push --store=umbraceramics.myshopify.com"
@@ -23,10 +23,10 @@
   },
   "homepage": "https://github.com/Beconcept-Studio/umbraceramics-website#readme",
   "devDependencies": {
-    "@tailwindcss/cli": "^4.3.0",
+    "@tailwindcss/cli": "^4.3.3",
     "concurrently": "^10.0.1",
     "sass": "^1.100.0",
-    "tailwindcss": "^4.3.0"
+    "tailwindcss": "^4.3.3"
   },
   "overrides": {
     "sass": {

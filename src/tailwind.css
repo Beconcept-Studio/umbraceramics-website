@@ -1,0 +1,12 @@
+@import "tailwindcss";
+@source "../layout/*.liquid";
+@source "../templates/**/*.liquid";
+@source "../templates/**/*.json";
+@source "../sections/**/*.liquid";
+@source "../snippets/**/*.liquid";
+@source "../assets/*.js";
+
+@theme {
+  --color-brand: #1a1a1a;
+  --font-display: "Inter", sans-serif;
+}
