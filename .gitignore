@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Compiled output (generated — do not edit)
+src/customstyle.css
+
+# Shopify CLI
+.shopify/
+
+# Environment
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/

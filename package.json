@@ -1,0 +1,36 @@
+{
+  "name": "umbraceramics-shopify",
+  "version": "1.0.0",
+  "description": "[![Build status](https://github.com/shopify/dawn/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Shopify/dawn/actions/workflows/ci.yml?query=branch%3Amain) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?color=informational)](/.github/CONTRIBUTING.md)",
+  "main": "index.js",
+  "scripts": {
+    "predev": "sass src/customstyle.scss src/customstyle.css",
+    "dev": "concurrently --names \"sass,tailwind,shopify\" --prefix-colors \"magenta,cyan,green\" \"sass --watch src/customstyle.scss:src/customstyle.css\" \"npx @tailwindcss/cli -i ./src/tailwind.css -o ./assets/tailwind.css --watch\" \"shopify theme dev --store=umbraceramics.myshopify.com --store-password=YOUR_PASSWORD_HERE \"",
+    "build": "sass src/customstyle.scss src/customstyle.css && npx @tailwindcss/cli -i ./src/tailwind.css -o ./assets/tailwind.css --minify",
+    "pull": "shopify theme pull --store=umbraceramics.myshopify.com",
+    "push": "shopify theme push --store=umbraceramics.myshopify.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Beconcept-Studio/umbraceramics-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Beconcept-Studio/umbraceramics-website/issues"
+  },
+  "homepage": "https://github.com/Beconcept-Studio/umbraceramics-website#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.0",
+    "concurrently": "^10.0.1",
+    "sass": "^1.100.0",
+    "tailwindcss": "^4.3.0"
+  },
+  "overrides": {
+    "sass": {
+      "chokidar": "^3.6.0"
+    }
+  }
+}
