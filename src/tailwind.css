@@ -24,6 +24,120 @@
   --aspect-5-4: 5 / 4;
 }
 
+/* --- Col-Span (dal 13 al 24) --- */
+@utility col-span-13 {
+  grid-column: span 13 / span 13;
+}
+@utility col-span-14 {
+  grid-column: span 14 / span 14;
+}
+@utility col-span-15 {
+  grid-column: span 15 / span 15;
+}
+@utility col-span-16 {
+  grid-column: span 16 / span 16;
+}
+@utility col-span-17 {
+  grid-column: span 17 / span 17;
+}
+@utility col-span-18 {
+  grid-column: span 18 / span 18;
+}
+@utility col-span-19 {
+  grid-column: span 19 / span 19;
+}
+@utility col-span-20 {
+  grid-column: span 20 / span 20;
+}
+@utility col-span-21 {
+  grid-column: span 21 / span 21;
+}
+@utility col-span-22 {
+  grid-column: span 22 / span 22;
+}
+@utility col-span-23 {
+  grid-column: span 23 / span 23;
+}
+@utility col-span-24 {
+  grid-column: span 24 / span 24;
+}
+
+/* --- Col-Start (dal 14 al 25) --- */
+@utility col-start-14 {
+  grid-column-start: 14;
+}
+@utility col-start-15 {
+  grid-column-start: 15;
+}
+@utility col-start-16 {
+  grid-column-start: 16;
+}
+@utility col-start-17 {
+  grid-column-start: 17;
+}
+@utility col-start-18 {
+  grid-column-start: 18;
+}
+@utility col-start-19 {
+  grid-column-start: 19;
+}
+@utility col-start-20 {
+  grid-column-start: 20;
+}
+@utility col-start-21 {
+  grid-column-start: 21;
+}
+@utility col-start-22 {
+  grid-column-start: 22;
+}
+@utility col-start-23 {
+  grid-column-start: 23;
+}
+@utility col-start-24 {
+  grid-column-start: 24;
+}
+@utility col-start-25 {
+  grid-column-start: 25;
+}
+
+/* --- Col-End (dal 14 al 25) --- */
+@utility col-end-14 {
+  grid-column-end: 14;
+}
+@utility col-end-15 {
+  grid-column-end: 15;
+}
+@utility col-end-16 {
+  grid-column-end: 16;
+}
+@utility col-end-17 {
+  grid-column-end: 17;
+}
+@utility col-end-18 {
+  grid-column-end: 18;
+}
+@utility col-end-19 {
+  grid-column-end: 19;
+}
+@utility col-end-20 {
+  grid-column-end: 20;
+}
+@utility col-end-21 {
+  grid-column-end: 21;
+}
+@utility col-end-22 {
+  grid-column-end: 22;
+}
+@utility col-end-23 {
+  grid-column-end: 23;
+}
+@utility col-end-24 {
+  grid-column-end: 24;
+}
+@utility col-end-25 {
+  grid-column-end: 25;
+}
+
 @layer components {
   .div--container {
     @apply w-full px-10;

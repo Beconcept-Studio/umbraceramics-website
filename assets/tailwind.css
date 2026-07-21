@@ -8,6 +8,7 @@
       "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-gray-50: oklch(98.5% 0.002 247.839);
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
@@ -31,6 +32,7 @@
     --font-september: "Inter", sans-serif;
     --aspect-16-9: 16 / 9;
     --aspect-9-16: 9 / 16;
+    --aspect-2-3: 2 / 3;
     --aspect-5-7: 5 / 7;
     --aspect-7-5: 7 / 5;
     --aspect-4-5: 4 / 5;
@@ -192,6 +194,9 @@
   .collapse {
     visibility: collapse;
   }
+  .invisible {
+    visibility: hidden;
+  }
   .visible {
     visibility: visible;
   }
@@ -213,8 +218,17 @@
   .top-0 {
     top: 0px;
   }
+  .top-1\/2 {
+    top: calc(1 / 2 * 100%);
+  }
   .left-0 {
     left: 0px;
+  }
+  .z-10 {
+    z-index: 10;
+  }
+  .z-\[99\] {
+    z-index: 99;
   }
   .z-\[999\] {
     z-index: 999;
@@ -279,6 +293,9 @@
   .table {
     display: table;
   }
+  .aspect-2-3 {
+    aspect-ratio: var(--aspect-2-3);
+  }
   .aspect-4-5 {
     aspect-ratio: var(--aspect-4-5);
   }
@@ -306,6 +323,12 @@
   .h-full {
     height: 100%;
   }
+  .h-screen {
+    height: 100vh;
+  }
+  .min-h-screen {
+    min-height: 100vh;
+  }
   .w-full {
     width: 100%;
   }
@@ -324,8 +347,9 @@
   .grow {
     flex-grow: 1;
   }
-  .border-collapse {
-    border-collapse: collapse;
+  .-translate-y-1\/2 {
+    --tw-translate-y: calc(calc(1 / 2 * 100%) * -1);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
   }
   .transform {
     transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
@@ -335,6 +359,9 @@
   }
   .grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .grid-cols-24 {
+    grid-template-columns: repeat(24, minmax(0, 1fr));
   }
   .flex-wrap {
     flex-wrap: wrap;
@@ -347,6 +374,9 @@
   }
   .justify-end {
     justify-content: flex-end;
+  }
+  .gap-8 {
+    gap: calc(var(--spacing) * 8);
   }
   .gap-10 {
     gap: calc(var(--spacing) * 10);
@@ -374,6 +404,12 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+  .overflow-auto {
+    overflow: auto;
+  }
+  .overflow-hidden {
+    overflow: hidden;
   }
   .rounded {
     border-radius: 0.25rem;
@@ -403,20 +439,26 @@
   .bg-black {
     background-color: var(--color-black);
   }
+  .bg-gray-50 {
+    background-color: var(--color-gray-50);
+  }
   .bg-main-bg {
     background-color: var(--color-main-bg);
   }
   .bg-transparent {
     background-color: transparent;
   }
-  .mask-repeat {
-    mask-repeat: repeat;
+  .object-cover {
+    object-fit: cover;
+  }
+  .object-center {
+    object-position: center;
+  }
+  .px-6 {
+    padding-inline: calc(var(--spacing) * 6);
   }
   .py-5 {
     padding-block: calc(var(--spacing) * 5);
-  }
-  .py-8 {
-    padding-block: calc(var(--spacing) * 8);
   }
   .text-center {
     text-align: center;
@@ -433,6 +475,9 @@
   }
   .text-wrap {
     text-wrap: wrap;
+  }
+  .text-\[\#BFBFBF\] {
+    color: #BFBFBF;
   }
   .text-dark {
     color: var(--color-dark);
@@ -460,6 +505,9 @@
   }
   .mix-blend-difference {
     mix-blend-mode: difference;
+  }
+  .mix-blend-exclusion {
+    mix-blend-mode: exclusion;
   }
   .shadow {
     --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
@@ -489,11 +537,6 @@
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
-  .transition-transform {
-    transition-property: transform, translate, scale, rotate;
-    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
-    transition-duration: var(--tw-duration, var(--default-transition-duration));
-  }
   .ease-in-out {
     --tw-ease: var(--ease-in-out);
     transition-timing-function: var(--ease-in-out);
@@ -504,6 +547,45 @@
   @media (width >= 64rem) {
     .lg\:col-span-3 {
       grid-column: span 3 / span 3;
+    }
+    .lg\:col-span-5 {
+      grid-column: span 5 / span 5;
+    }
+    .lg\:col-span-6 {
+      grid-column: span 6 / span 6;
+    }
+    .lg\:col-span-7 {
+      grid-column: span 7 / span 7;
+    }
+    .lg\:col-start-2 {
+      grid-column-start: 2;
+    }
+    .lg\:col-start-4 {
+      grid-column-start: 4;
+    }
+    .lg\:col-start-5 {
+      grid-column-start: 5;
+    }
+    .lg\:col-start-6 {
+      grid-column-start: 6;
+    }
+    .lg\:col-start-10 {
+      grid-column-start: 10;
+    }
+    .lg\:col-start-12 {
+      grid-column-start: 12;
+    }
+    .lg\:col-start-15 {
+      grid-column-start: 15;
+    }
+    .lg\:col-start-16 {
+      grid-column-start: 16;
+    }
+    .lg\:col-start-17 {
+      grid-column-start: 17;
+    }
+    .lg\:col-start-18 {
+      grid-column-start: 18;
     }
     .lg\:block {
       display: block;
@@ -818,6 +900,21 @@
     }
   }
 }
+@property --tw-translate-x {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-translate-y {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-translate-z {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
 @property --tw-rotate-x {
   syntax: "*";
   inherits: false;
@@ -1026,6 +1123,9 @@
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
+      --tw-translate-x: 0;
+      --tw-translate-y: 0;
+      --tw-translate-z: 0;
       --tw-rotate-x: initial;
       --tw-rotate-y: initial;
       --tw-rotate-z: initial;

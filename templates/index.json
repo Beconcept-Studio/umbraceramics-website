@@ -12,7 +12,12 @@
     "beconcept_homecarousel_7rzydT": {
       "type": "beconcept-homecarousel",
       "name": "Homepage Carousel",
-      "settings": {}
+      "settings": {
+        "home_carousel_text": "Ceramics for gatherings",
+        "home_carousel": "development-gallery",
+        "scroll_speed": 40,
+        "scroll_direction": "up"
+      }
     }
   },
   "order": [
