@@ -4,9 +4,8 @@
   "description": "[![Build status](https://github.com/shopify/dawn/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Shopify/dawn/actions/workflows/ci.yml?query=branch%3Amain) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?color=informational)](/.github/CONTRIBUTING.md)",
   "main": "index.js",
   "scripts": {
-    "predev": "sass src/customstyle.scss src/customstyle.css",
-    "dev": "concurrently --names \"sass,tailwind,shopify\" --prefix-colors \"magenta,cyan,green\" \"sass --watch src/customstyle.scss:src/customstyle.css\" \"npx @tailwindcss/cli -i ./src/tailwind.css -o ./assets/tailwind.css --watch\" \"shopify theme dev --store=umbraceramics.myshopify.com --store-password=Beconcept \"",
-    "build": "sass src/customstyle.scss src/customstyle.css && npx @tailwindcss/cli -i ./src/tailwind.css -o ./assets/tailwind.css --minify",
+    "dev": "concurrently --names \"tailwind,shopify\" --prefix-colors \"cyan,green\" \"npx @tailwindcss/cli -i ./src/tailwind.css -o ./assets/tailwind.css --watch\" \"shopify theme dev --store=umbraceramics.myshopify.com --store-password=Beconcept \"",
+    "build": "npx @tailwindcss/cli -i ./src/tailwind.css -o ./assets/tailwind.css --minify",
     "pull": "shopify theme pull --store=umbraceramics.myshopify.com",
     "push": "shopify theme push --store=umbraceramics.myshopify.com"
   },
@@ -25,12 +24,9 @@
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.3",
     "concurrently": "^10.0.1",
-    "sass": "^1.100.0",
     "tailwindcss": "^4.3.3"
   },
-  "overrides": {
-    "sass": {
-      "chokidar": "^3.6.0"
-    }
+  "dependencies": {
+    "gsap": "^3.15.0"
   }
 }

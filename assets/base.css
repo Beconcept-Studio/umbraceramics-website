@@ -3,13 +3,11 @@
 }
 
 body {
-  color: var(--color-foreground);
-  background: var(--color-background);
   display: flex;
   flex-direction: column;
   margin: 0;
   min-height: 100svh;
-  font-variation-settings: 'slnt' 0;
+  font-variation-settings: "slnt" 0;
 }
 
 :root {
@@ -28,7 +26,8 @@ body {
 html {
   /* Firefox */
   scrollbar-width: thin;
-  scrollbar-color: rgb(var(--color-foreground-rgb) / var(--opacity-40)) var(--color-background);
+  scrollbar-color: rgb(var(--color-foreground-rgb) / var(--opacity-40))
+    var(--color-background);
   scroll-behavior: smooth;
 }
 
@@ -49,7 +48,8 @@ html[scroll-lock] .page-wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100dvh;
-  transition: margin-right var(--animation-speed) var(--animation-timing-fade-out);
+  transition: margin-right var(--animation-speed)
+    var(--animation-timing-fade-out);
 }
 
 @media (min-width: 990px) {
@@ -58,7 +58,8 @@ html[scroll-lock] .page-wrapper {
     overflow-y: auto;
     scroll-behavior: smooth;
     scrollbar-width: thin;
-    scrollbar-color: rgb(var(--color-foreground-rgb) / var(--opacity-40)) var(--color-background);
+    scrollbar-color: rgb(var(--color-foreground-rgb) / var(--opacity-40))
+      var(--color-background);
   }
 
   .page-wrapper--drawer-open shopify-account::part(dialog) {
@@ -103,7 +104,8 @@ select {
 .predictive-search-results__card--product,
 .predictive-search-results__card {
   position: relative;
-  transition: transform var(--hover-transition-duration) var(--hover-transition-timing),
+  transition:
+    transform var(--hover-transition-duration) var(--hover-transition-timing),
     box-shadow var(--hover-transition-duration) var(--hover-transition-timing);
   z-index: var(--layer-flat);
 }
@@ -138,7 +140,8 @@ select {
   .card-hover-effect-subtle-zoom .collection-card__image,
   .card-hover-effect-subtle-zoom .product-card__image {
     overflow: hidden;
-    transition: transform var(--hover-transition-duration) var(--hover-transition-timing);
+    transition: transform var(--hover-transition-duration)
+      var(--hover-transition-timing);
   }
 
   .card-hover-effect-subtle-zoom .product-card:hover .card-gallery,
@@ -177,17 +180,6 @@ p:empty {
   display: none;
 }
 
-:first-child:is(p, h1, h2, h3, h4, h5, h6),
-:first-child:empty + :where(p, h1, h2, h3, h4, h5, h6) {
-  margin-block-start: 0;
-}
-
-/* Remove bottom margin from last text item, or previous to last if the last is empty */
-:last-child:is(p, h1, h2, h3, h4, h5, h6),
-:where(p, h1, h2, h3, h4, h5, h6):nth-child(2):has(+ :last-child:empty) {
-  margin-block-end: 0;
-}
-
 /* view transitions */
 
 /*
@@ -214,11 +206,13 @@ p:empty {
     pointer-events: none;
   }
 
-  html:active-view-transition-type(page-navigation) main[data-page-transition-enabled='true'] {
+  html:active-view-transition-type(page-navigation)
+    main[data-page-transition-enabled="true"] {
     view-transition-name: main-content;
   }
 
-  html:active-view-transition-type(page-navigation) main[data-product-transition='true'][data-template*='product'] {
+  html:active-view-transition-type(page-navigation)
+    main[data-product-transition="true"][data-template*="product"] {
     view-transition-name: none;
   }
 
@@ -231,11 +225,11 @@ p:empty {
   }
 
   html:active-view-transition-type(product-image-transition) {
-    [data-view-transition-type='product-image-transition'] {
+    [data-view-transition-type="product-image-transition"] {
       view-transition-name: product-image-transition;
     }
 
-    [data-view-transition-type='product-details'] {
+    [data-view-transition-type="product-details"] {
       view-transition-name: product-details;
     }
   }
@@ -342,18 +336,22 @@ p:empty {
     calc(100% - var(--page-margin) * 2)
   );
   --full-page-grid-margin: minmax(var(--page-margin), 1fr);
-  --full-page-grid-with-margins: var(--full-page-grid-margin) var(--full-page-grid-central-column-width)
-    var(--full-page-grid-margin);
+  --full-page-grid-with-margins: var(--full-page-grid-margin)
+    var(--full-page-grid-central-column-width) var(--full-page-grid-margin);
 
   /* Utility variable gives the grid's first column width. Provides an offset width for components like carousels */
   --util-page-margin-offset: max(
     var(--page-margin),
-    calc((100% - min(var(--page-content-width), 100% - var(--page-margin) * 2)) / 2)
+    calc(
+      (100% - min(var(--page-content-width), 100% - var(--page-margin) * 2)) / 2
+    )
   );
 
   /* Offset for full-width sections to account for the page margin,
   used for Marquee — note that --util-page-margin-offset doesn't work here */
-  --full-page-margin-inline-offset: calc(((100vw - var(--full-page-grid-central-column-width)) / 2) * -1);
+  --full-page-margin-inline-offset: calc(
+    ((100vw - var(--full-page-grid-central-column-width)) / 2) * -1
+  );
 
   width: 100%;
 
@@ -363,7 +361,7 @@ p:empty {
   /* Set up the grid */
   display: grid;
   grid-template-columns: var(--full-page-grid-with-margins);
-  min-height: var(--section-min-height, 'auto');
+  min-height: var(--section-min-height, "auto");
 }
 
 /* Place all direct children in the center column by default */
@@ -381,7 +379,7 @@ p:empty {
 }
 
 .shopify-section:not(.header-section) .section-background {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   z-index: var(--layer-section-background);
@@ -441,7 +439,9 @@ p:empty {
 }
 
 .section-content-wrapper.section-content-wrapper {
-  min-height: calc(var(--section-min-height, 'auto') - var(--section-height-offset, 0px));
+  min-height: calc(
+    var(--section-min-height, "auto") - var(--section-height-offset, 0px)
+  );
   position: relative;
   width: 100%;
   height: 100%;
@@ -496,36 +496,6 @@ p:empty {
 .flex {
   display: flex;
   gap: var(--gap-md);
-}
-
-.grid {
-  --centered-column-number: 12;
-  --full-width-column-number: 14;
-  --centered: column-1 / span var(--centered-column-number);
-  --full-width: column-0 / span var(--full-width-column-number);
-
-  display: flex;
-  flex-direction: column;
-}
-
-@media screen and (min-width: 750px) {
-  .grid {
-    display: grid;
-    gap: 0;
-    grid-template-columns: var(--margin-4xl) repeat(var(--centered-column-number), minmax(0, 1fr)) var(--margin-4xl);
-    grid-template-areas: 'column-0 column-1 column-2 column-3 column-4 column-5 column-6 column-7 column-8 column-9 column-10 column-11 column-12 column-13';
-  }
-}
-
-@media screen and (min-width: 1400px) {
-  .grid {
-    grid-template-columns:
-      1fr repeat(
-        var(--centered-column-number),
-        minmax(0, calc((var(--page-width) - var(--page-margin) * 2) / var(--centered-column-number)))
-      )
-      1fr;
-  }
 }
 
 .flex {
@@ -659,23 +629,8 @@ p:empty {
   fill: currentColor;
 }
 
-[data-placeholder='true'] * {
+[data-placeholder="true"] * {
   cursor: default;
-}
-
-/* Base text and heading styles */
-body,
-.paragraph:not(.button),
-.paragraph > *,
-.text-block.paragraph :is(h1, h2, h3, h4, h5, h6) {
-  font-family: var(--font-paragraph--family);
-  font-style: var(--font-paragraph--style);
-  font-weight: var(--font-paragraph--weight);
-  font-size: var(--font-paragraph--size);
-  line-height: var(--font-paragraph--line-height);
-  text-transform: var(--font-paragraph--case);
-  -webkit-font-smoothing: antialiased;
-  color: var(--color, var(--color-foreground));
 }
 
 /* Ensure inputs with type presets maintain minimum 16px on mobile to prevent iOS zoom */
@@ -692,156 +647,14 @@ body,
   font-size: smaller;
 }
 
-/* Typography presets */
-
-h1,
-.h1.h1,
-.text-block.h1 > *,
-.text-block.h1 :is(h1, h2, h3, h4, h5, h6) {
-  font-family: var(--font-h1--family);
-  font-style: var(--font-h1--style);
-  font-weight: var(--font-h1--weight);
-  font-size: var(--font-h1--size);
-  line-height: var(--font-h1--line-height);
-  letter-spacing: var(--font-h1--letter-spacing);
-  text-transform: var(--font-h1--case);
-  color: var(--color);
-}
-
-@media screen and (max-width: 1200px) {
-  input.h1.h1,
-  textarea.h1.h1,
-  select.h1.h1 {
-    font-size: max(1rem, var(--font-h1--size));
-  }
-}
-
-h2,
-.h2.h2,
-.text-block.h2 > *,
-.text-block.h2 :is(h1, h2, h3, h4, h5, h6) {
-  font-family: var(--font-h2--family);
-  font-style: var(--font-h2--style);
-  font-weight: var(--font-h2--weight);
-  font-size: var(--font-h2--size);
-  line-height: var(--font-h2--line-height);
-  letter-spacing: var(--font-h2--letter-spacing);
-  text-transform: var(--font-h2--case);
-  color: var(--color);
-}
-
-@media screen and (max-width: 1200px) {
-  input.h2.h2,
-  textarea.h2.h2,
-  select.h2.h2 {
-    font-size: max(1rem, var(--font-h2--size));
-  }
-}
-
-h3,
-.h3,
-.h3.h3,
-.text-block.h3 > *,
-.text-block.h3 :is(h1, h2, h3, h4, h5, h6) {
-  font-family: var(--font-h3--family);
-  font-style: var(--font-h3--style);
-  font-weight: var(--font-h3--weight);
-  font-size: var(--font-h3--size);
-  line-height: var(--font-h3--line-height);
-  letter-spacing: var(--font-h3--letter-spacing);
-  text-transform: var(--font-h3--case);
-  color: var(--color);
-}
-
-@media screen and (max-width: 1200px) {
-  input.h3,
-  textarea.h3,
-  select.h3 {
-    font-size: max(1rem, var(--font-h3--size));
-  }
-}
-
-h4,
-.h4.h4,
-.text-block.h4 > *,
-.text-block.h4 :is(h1, h2, h3, h4, h5, h6) {
-  font-family: var(--font-h4--family);
-  font-style: var(--font-h4--style);
-  font-weight: var(--font-h4--weight);
-  font-size: var(--font-h4--size);
-  line-height: var(--font-h4--line-height);
-  letter-spacing: var(--font-h4--letter-spacing);
-  text-transform: var(--font-h4--case);
-  color: var(--color);
-}
-
-@media screen and (max-width: 1200px) {
-  input.h4.h4,
-  textarea.h4.h4,
-  select.h4.h4 {
-    font-size: max(1rem, var(--font-h4--size));
-  }
-}
-
-h5,
-.h5.h5,
-.text-block.h5 > *,
-.text-block.h5 :is(h1, h2, h3, h4, h5, h6) {
-  font-family: var(--font-h5--family);
-  font-style: var(--font-h5--style);
-  font-weight: var(--font-h5--weight);
-  font-size: var(--font-h5--size);
-  line-height: var(--font-h5--line-height);
-  letter-spacing: var(--font-h5--letter-spacing);
-  text-transform: var(--font-h5--case);
-  color: var(--color);
-}
-
-@media screen and (max-width: 1200px) {
-  input.h5.h5,
-  textarea.h5.h5,
-  select.h5.h5 {
-    font-size: max(1rem, var(--font-h5--size));
-  }
-}
-
-h6,
-.h6.h6,
-.text-block.h6 > *,
-.text-block.h6 :is(h1, h2, h3, h4, h5, h6) {
-  font-family: var(--font-h6--family);
-  font-style: var(--font-h6--style);
-  font-weight: var(--font-h6--weight);
-  font-size: var(--font-h6--size);
-  line-height: var(--font-h6--line-height);
-  letter-spacing: var(--font-h6--letter-spacing);
-  text-transform: var(--font-h6--case);
-  color: var(--color);
-}
-
-@media screen and (max-width: 1200px) {
-  input.h6.h6,
-  textarea.h6.h6,
-  select.h6.h6 {
-    font-size: max(1rem, var(--font-h6--size));
-  }
-}
-
-:first-child:is(.h1, .h2, .h3, .h4, .h5, .h6) {
-  margin-block-start: 0;
-}
-
-:last-child:is(.h1, .h2, .h3, .h4, .h5, .h6) {
-  margin-block-end: 0;
-}
-
 /* Links */
 a {
   color: currentcolor;
   text-decoration-color: transparent;
   text-decoration-thickness: 0.075em;
   text-underline-offset: 0.125em;
-  transition: text-decoration-color var(--animation-speed) var(--animation-easing),
+  transition:
+    text-decoration-color var(--animation-speed) var(--animation-easing),
     color var(--animation-speed) var(--animation-easing);
 }
 
@@ -851,7 +664,9 @@ a {
 
 /* Add underline to text using our paragraph styles only. */
 p:not(.h1, .h2, .h3, .h4, .h5, .h6) a:where(:not(.button, .button-secondary)),
-.rte :is(p, ul, ol, table):not(.h1, .h2, .h3, .h4, .h5, .h6) a:where(:not(.button, .button-secondary)) {
+.rte
+  :is(p, ul, ol, table):not(.h1, .h2, .h3, .h4, .h5, .h6)
+  a:where(:not(.button, .button-secondary)) {
   text-decoration-color: currentcolor;
 
   &:hover {
@@ -884,7 +699,9 @@ summary::-webkit-details-marker {
 }
 
 /* When header is transparent, pull the first main content section up to sit under the floating header */
-body:has(.header[transparent]) .content-for-layout > .shopify-section:first-child {
+body:has(.header[transparent])
+  .content-for-layout
+  > .shopify-section:first-child {
   margin-top: calc(var(--header-group-height) * -1);
 }
 
@@ -943,16 +760,19 @@ body:has(.header[transparent]) #header-group > *:not(.header-section) {
 }
 
 .dialog-modal[open] {
-  animation: elementSlideInTop var(--animation-speed) var(--animation-easing) forwards;
+  animation: elementSlideInTop var(--animation-speed) var(--animation-easing)
+    forwards;
 
   &::backdrop {
-    animation: backdropFilter var(--animation-speed) var(--animation-easing) forwards;
+    animation: backdropFilter var(--animation-speed) var(--animation-easing)
+      forwards;
     transition: opacity var(--animation-speed) var(--animation-easing);
   }
 }
 
 .dialog-modal.dialog-closing {
-  animation: elementSlideOutTop var(--animation-speed) var(--animation-easing) forwards;
+  animation: elementSlideOutTop var(--animation-speed) var(--animation-easing)
+    forwards;
 
   &::backdrop {
     opacity: 0;
@@ -976,7 +796,8 @@ body:has(.header[transparent]) #header-group > *:not(.header-section) {
   --end-x: var(--custom-transform-to, 0px);
   --start-opacity: 1;
 
-  animation: var(--dialog-drawer-opening-animation) var(--animation-speed) var(--animation-easing) forwards;
+  animation: var(--dialog-drawer-opening-animation) var(--animation-speed)
+    var(--animation-easing) forwards;
 }
 
 .dialog-drawer[open].dialog-closing {
@@ -985,7 +806,8 @@ body:has(.header[transparent]) #header-group > *:not(.header-section) {
   --start-opacity: 1;
   --end-opacity: 1;
 
-  animation: var(--dialog-drawer-closing-animation) var(--animation-speed) var(--animation-easing);
+  animation: var(--dialog-drawer-closing-animation) var(--animation-speed)
+    var(--animation-easing);
 }
 
 .dialog-drawer--right[open] {
@@ -999,54 +821,8 @@ body:has(.header[transparent]) #header-group > *:not(.header-section) {
   --start-opacity: 1;
   --end-opacity: 1;
 
-  animation: var(--dialog-drawer-closing-animation) var(--animation-speed) var(--animation-easing);
-}
-
-/* Buttons */
-.button,
-.button-secondary,
-.button-custom,
-button.shopify-payment-button__button--unbranded {
-  --text-align: center;
-
-  display: grid;
-  align-content: center;
-  text-decoration: none;
-  text-align: var(--text-align);
-  color: var(--button-color);
-  appearance: none;
-  background-color: var(--button-background-color);
-  border: none;
-  font-family: var(--font-paragraph--family);
-  font-style: var(--font-paragraph--style);
-  font-weight: var(--font-paragraph--weight);
-  font-size: var(--font-paragraph--size);
-  line-height: var(--font-paragraph--line-height);
-  margin-block: 0;
-  transition: color var(--animation-speed) var(--animation-easing),
-    box-shadow var(--animation-speed) var(--animation-easing),
-    background-color var(--animation-speed) var(--animation-easing);
-  cursor: pointer;
-  width: fit-content;
-  box-shadow: inset 0 0 0 var(--button-border-width) var(--button-border-color);
-  padding-block: var(--button-padding-block);
-  padding-inline: var(--button-padding-inline);
-}
-
-.button {
-  font-family: var(--button-font-family-primary);
-  text-transform: var(--button-text-case-primary);
-  border-radius: var(--style-border-radius-buttons-primary);
-}
-
-.button:not(.button-secondary, .button-unstyled) {
-  outline-color: var(--button-focus-outline-color, var(--button-background-color));
-}
-
-.button-secondary {
-  font-family: var(--button-font-family-secondary);
-  text-transform: var(--button-text-case-secondary);
-  border-radius: var(--style-border-radius-buttons-secondary);
+  animation: var(--dialog-drawer-closing-animation) var(--animation-speed)
+    var(--animation-easing);
 }
 
 button.shopify-payment-button__button--unbranded {
@@ -1055,7 +831,7 @@ button.shopify-payment-button__button--unbranded {
 }
 
 textarea,
-input:not([type='checkbox'], [type='radio']) {
+input:not([type="checkbox"], [type="radio"]) {
   background-color: var(--color-input-background);
   border-color: var(--color-input-border);
 }
@@ -1071,107 +847,6 @@ input:not(:placeholder-shown)::placeholder {
 }
 
 /* The declaration above is messing with buttons that have an attribute of hidden as it overwrites the display value */
-.button[hidden] {
-  display: none;
-}
-
-.button[aria-disabled='true'],
-.button-secondary[aria-disabled='true'],
-.button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.button,
-button.shopify-payment-button__button--unbranded {
-  --button-color: var(--color-primary-button-text);
-  --button-background-color: var(--color-primary-button-background);
-  --button-border-color: var(--color-primary-button-border);
-  --button-border-width: var(--style-border-width-primary);
-  --button-focus-outline-color: var(--color-primary-button-focus-outline);
-}
-
-.button:hover,
-button.shopify-payment-button__button--unbranded:hover:not([disabled]) {
-  --button-color: var(--color-primary-button-hover-text);
-  --button-background-color: var(--color-primary-button-hover-background);
-  --button-border-color: var(--color-primary-button-hover-border);
-}
-
-.button-secondary {
-  --button-color: var(--color-secondary-button-text);
-  --button-background-color: var(--color-secondary-button-background);
-  --button-border-color: var(--color-secondary-button-border);
-  --button-border-width: var(--style-border-width-secondary);
-}
-
-.button-secondary:hover {
-  --button-color: var(--color-secondary-button-hover-text);
-  --button-background-color: var(--color-secondary-button-hover-background);
-  --button-border-color: var(--color-secondary-button-hover-border);
-}
-
-.button-custom {
-  --button-color: var(--color-primary-button-text);
-  --button-background-color: var(--color-primary-button-background);
-  --button-border-color: var(--color-primary-button-border);
-  --button-border-width: var(--style-border-width-secondary);
-  --button-focus-outline-color: var(--color-primary-button-focus-outline);
-
-  font-family: var(--button-font-family-primary);
-  text-transform: var(--button-text-case-primary);
-  border-radius: var(--style-border-radius-buttons-primary);
-  outline-color: var(--button-focus-outline-color, var(--button-background-color));
-}
-
-.button-custom:hover {
-  --button-color: var(--color-primary-button-hover-text);
-  --button-background-color: var(--color-primary-button-hover-background);
-  --button-border-color: var(--color-primary-button-hover-border);
-}
-
-/* Needed to override the default Shopify styles */
-button.shopify-payment-button__button--unbranded:hover:not([disabled]) {
-  background-color: var(--button-background-color);
-}
-
-.button-unstyled {
-  display: block;
-  padding: 0;
-  background-color: inherit;
-  color: var(--color-foreground);
-  border: 0;
-  border-radius: 0;
-  overflow: hidden;
-  box-shadow: none;
-  font-family: var(--font-paragraph--family);
-  font-style: var(--font-paragraph--style);
-  font-size: var(--font-paragraph--size);
-}
-
-.button-unstyled:hover {
-  background-color: inherit;
-}
-
-/* Default hover dim for link-style buttons, scoped via :where() so component-specific
-   hover rules (.facets__clear-all-link, .header-actions__action, etc.) still win. */
-:where(.button-unstyled):hover {
-  --hover-color-rgb: var(--color-foreground-rgb);
-
-  color: rgb(var(--hover-color-rgb) / var(--opacity-70));
-}
-
-.button-unstyled--with-icon {
-  color: var(--color-foreground);
-  display: flex;
-  gap: var(--gap-2xs);
-  align-items: center;
-}
-
-.button-unstyled--transparent {
-  background-color: transparent;
-  box-shadow: none;
-}
 
 /* Collapsible row */
 
@@ -1254,7 +929,7 @@ details[open] > summary .icon-plus .vertical {
   }
 
   .close-button:focus-visible::after {
-    content: '';
+    content: "";
     position: absolute;
     inset: calc(-1 * var(--focus-outline-offset));
     border: var(--focus-outline-width) solid currentColor;
@@ -1264,7 +939,8 @@ details[open] > summary .icon-plus .vertical {
 }
 
 .dialog--closed .close-button {
-  animation: elementSlideOutBottom calc(var(--animation-speed) * 0.5) var(--animation-easing) forwards;
+  animation: elementSlideOutBottom calc(var(--animation-speed) * 0.5)
+    var(--animation-easing) forwards;
 }
 
 .close-button:hover {
@@ -1307,13 +983,17 @@ details[open] > summary .icon-plus .vertical {
 .unit-price {
   display: block;
   font-size: min(0.85em, var(--font-paragraph--size));
-  color: rgb(var(--color-rgb, var(--color-foreground-rgb)) / var(--opacity-subdued-text));
+  color: rgb(
+    var(--color-rgb, var(--color-foreground-rgb)) / var(--opacity-subdued-text)
+  );
 }
 
 .tax-note.tax-note.tax-note {
   font-size: min(0.85em, var(--font-paragraph--size));
   font-weight: var(--font-paragraph--weight);
-  color: rgb(var(--color-rgb, var(--color-foreground-rgb)) / var(--opacity-subdued-text));
+  color: rgb(
+    var(--color-rgb, var(--color-foreground-rgb)) / var(--opacity-subdued-text)
+  );
 }
 
 .tax-note:empty {
@@ -1334,14 +1014,20 @@ product-price.text-block:is(.h1, .h2, .h3, .h4, .h5, .h6) .volume-pricing-note {
   line-height: normal;
   letter-spacing: normal;
   text-transform: none;
-  color: rgb(var(--color-rgb, var(--color-foreground-rgb)) / var(--opacity-subdued-text));
+  color: rgb(
+    var(--color-rgb, var(--color-foreground-rgb)) / var(--opacity-subdued-text)
+  );
 }
 
 .compare-at-price {
-  color: rgb(var(--color-rgb, var(--color-foreground-rgb)) / var(--opacity-subdued-text));
+  color: rgb(
+    var(--color-rgb, var(--color-foreground-rgb)) / var(--opacity-subdued-text)
+  );
   text-decoration-line: line-through;
   text-decoration-thickness: 1.5px;
-  text-decoration-color: rgb(var(--color-rgb, var(--color-foreground-rgb)) / var(--opacity-30));
+  text-decoration-color: rgb(
+    var(--color-rgb, var(--color-foreground-rgb)) / var(--opacity-30)
+  );
 }
 
 .price-item__group {
@@ -1374,7 +1060,10 @@ product-price.text-block:is(.h1, .h2, .h3, .h4, .h5, .h6) .volume-pricing-note {
 
 .spacing-style,
 .inherit-spacing {
-  padding-block: calc(var(--padding-block-start) + var(--section-top-offset, 0px)) var(--padding-block-end);
+  padding-block: calc(
+      var(--padding-block-start) + var(--section-top-offset, 0px)
+    )
+    var(--padding-block-end);
   padding-inline: var(--padding-inline-start) var(--padding-inline-end);
   margin-block: var(--margin-block-start) var(--margin-block-end);
   margin-inline: var(--margin-inline-start) var(--margin-inline-end);
@@ -1496,7 +1185,9 @@ product-price.text-block:is(.h1, .h2, .h3, .h4, .h5, .h6) .volume-pricing-note {
     }
 
     > .group-block--height-fill {
-      height: calc(var(--section-min-height, auto) - var(--section-height-offset, 0px));
+      height: calc(
+        var(--section-min-height, auto) - var(--section-height-offset, 0px)
+      );
     }
   }
 }
@@ -1519,7 +1210,9 @@ product-price.text-block:is(.h1, .h2, .h3, .h4, .h5, .h6) .volume-pricing-note {
   flex-grow: 1;
   text-align: left;
   border-radius: var(--style-border-radius-inputs);
-  transition: box-shadow var(--animation-speed) ease, background-color var(--animation-speed) ease;
+  transition:
+    box-shadow var(--animation-speed) ease,
+    background-color var(--animation-speed) ease;
   padding: var(--input-padding);
   box-shadow: var(--input-box-shadow);
   background-color: var(--color-input-background);
@@ -1555,7 +1248,9 @@ product-price.text-block:is(.h1, .h2, .h3, .h4, .h5, .h6) .volume-pricing-note {
   margin-bottom: 0;
   pointer-events: none;
   position: absolute;
-  transition: top var(--animation-speed) ease, font-size var(--animation-speed) ease;
+  transition:
+    top var(--animation-speed) ease,
+    font-size var(--animation-speed) ease;
 }
 
 /* RTE styles */
@@ -1585,7 +1280,8 @@ product-price.text-block:is(.h1, .h2, .h3, .h4, .h5, .h6) .volume-pricing-note {
     margin-inline: 1.5em 2.3em;
     margin-block: 3.8em;
     padding-inline-start: 0.8em;
-    border-inline-start: 1.5px solid rgb(var(--color-foreground-rgb) / var(--opacity-25));
+    border-inline-start: 1.5px solid
+      rgb(var(--color-foreground-rgb) / var(--opacity-25));
     font-style: italic;
     font-weight: 500;
   }
@@ -1608,7 +1304,8 @@ product-price.text-block:is(.h1, .h2, .h3, .h4, .h5, .h6) .volume-pricing-note {
   }
 
   tr:has(td) {
-    border-bottom: 1px solid rgb(var(--color-foreground-rgb) / var(--opacity-10));
+    border-bottom: 1px solid
+      rgb(var(--color-foreground-rgb) / var(--opacity-10));
   }
 
   th,
@@ -1624,8 +1321,8 @@ product-price.text-block:is(.h1, .h2, .h3, .h4, .h5, .h6) .volume-pricing-note {
 }
 
 /* Radio buttons and checkboxes - shared base styles */
-:where(input[type='radio']),
-:where(input[type='checkbox']) {
+:where(input[type="radio"]),
+:where(input[type="checkbox"]) {
   width: var(--checkbox-size);
   height: var(--checkbox-size);
   aspect-ratio: 1;
@@ -1641,19 +1338,21 @@ product-price.text-block:is(.h1, .h2, .h3, .h4, .h5, .h6) .volume-pricing-note {
 }
 
 /* Radio buttons */
-input[type='radio'] {
+input[type="radio"] {
   border-radius: var(--style-border-radius-50);
   background: transparent;
-  transition: border-color 0.2s ease, background-color 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
 }
 
-:where(input[type='radio']):checked {
+:where(input[type="radio"]):checked {
   border-color: var(--color-foreground);
   background: var(--color-background);
 }
 
-:where(input[type='radio']):checked::after {
-  content: '';
+:where(input[type="radio"]):checked::after {
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1665,44 +1364,46 @@ input[type='radio'] {
   transition: background 0.2s ease;
 }
 
-:where(input[type='radio']):disabled {
+:where(input[type="radio"]):disabled {
   border-color: var(--input-disabled-border-color);
   background-color: var(--input-disabled-background-color);
   cursor: not-allowed;
 }
 
-:where(input[type='radio']):disabled:checked::after {
+:where(input[type="radio"]):disabled:checked::after {
   background: var(--input-disabled-background-color);
 }
 
-:where(input[type='radio']):not(:disabled):hover {
+:where(input[type="radio"]):not(:disabled):hover {
   border-color: rgb(var(--color-foreground-rgb) / var(--opacity-40-60));
   background-color: rgb(var(--color-foreground-rgb) / var(--opacity-5));
 }
 
-:where(input[type='radio']):not(:disabled):hover:checked {
+:where(input[type="radio"]):not(:disabled):hover:checked {
   border-color: var(--color-foreground);
   background-color: var(--color-background);
 }
 
-:where(input[type='radio']):not(:disabled):hover:checked::after {
+:where(input[type="radio"]):not(:disabled):hover:checked::after {
   background: rgb(var(--color-foreground-rgb) / var(--opacity-85));
 }
 
 /* Checkboxes */
-:where(input[type='checkbox']) {
+:where(input[type="checkbox"]) {
   border-radius: var(--checkbox-border-radius);
   background-color: var(--color-background);
-  transition: border-color 0.2s ease, background-color 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
 }
 
-:where(input[type='checkbox']):checked {
+:where(input[type="checkbox"]):checked {
   background-color: var(--color-foreground);
   border-color: var(--color-foreground);
 }
 
-:where(input[type='checkbox']):checked::after {
-  content: '';
+:where(input[type="checkbox"]):checked::after {
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1716,51 +1417,51 @@ input[type='radio'] {
   mask-position: center;
 }
 
-:where(input[type='checkbox']):not(:disabled):hover {
+:where(input[type="checkbox"]):not(:disabled):hover {
   border-color: rgb(var(--color-foreground-rgb) / var(--opacity-40-60));
   background-color: rgb(var(--color-foreground-rgb) / var(--opacity-5));
 }
 
-:where(input[type='checkbox']):not(:disabled):hover:checked {
+:where(input[type="checkbox"]):not(:disabled):hover:checked {
   border-color: var(--color-foreground);
   background-color: rgb(var(--color-foreground-rgb) / var(--opacity-85));
 }
 
-:where(input[type='checkbox']):disabled {
+:where(input[type="checkbox"]):disabled {
   background-color: var(--input-disabled-background-color);
   border-color: var(--input-disabled-border-color);
   cursor: not-allowed;
 }
 
-:where(input[type='checkbox']):disabled:checked::after {
+:where(input[type="checkbox"]):disabled:checked::after {
   background-color: var(--input-disabled-text-color);
 }
 
 /* Shared styles for radio buttons and checkboxes */
-:where(input[type='radio']) + label,
-:where(input[type='checkbox']) + label {
+:where(input[type="radio"]) + label,
+:where(input[type="checkbox"]) + label {
   display: inline;
   vertical-align: middle;
   cursor: pointer;
 }
 
-:where(input[type='radio']):disabled + label,
-:where(input[type='checkbox']):disabled + label {
+:where(input[type="radio"]):disabled + label,
+:where(input[type="checkbox"]):disabled + label {
   color: var(--input-disabled-text-color);
   cursor: not-allowed;
 }
 
 /* Flexbox for labels wrapping radio buttons or checkboxes */
-label:has(input[type='radio']),
-label:has(input[type='checkbox']) {
+label:has(input[type="radio"]),
+label:has(input[type="checkbox"]) {
   display: inline-flex;
   align-items: center;
   gap: var(--padding-2xs);
   cursor: pointer;
 }
 
-label:has(input[type='radio']:disabled),
-label:has(input[type='checkbox']:disabled) {
+label:has(input[type="radio"]:disabled),
+label:has(input[type="checkbox"]:disabled) {
   cursor: not-allowed;
 }
 
@@ -2003,11 +1704,14 @@ label:has(input[type='checkbox']:disabled) {
 /* Slideshow Arrow Hover Animation - must stay in base.css for proper CSS cascade */
 
 :not(.media-gallery--carousel)
-  > :is(slideshow-component:hover, slideshow-component:focus-within):not(:has(slideshow-controls:hover))
+  > :is(slideshow-component:hover, slideshow-component:focus-within):not(
+    :has(slideshow-controls:hover)
+  )
   > slideshow-container
   > slideshow-arrows
   .slideshow-control {
-  animation: arrowsSlideIn var(--animation-speed) var(--animation-easing) forwards;
+  animation: arrowsSlideIn var(--animation-speed) var(--animation-easing)
+    forwards;
 }
 
 @keyframes arrowsSlideIn {
@@ -2043,8 +1747,12 @@ label:has(input[type='checkbox']:disabled) {
   display: none;
 }
 
-:where(.section-resource-list.section--full-width) product-card[data-product-transition] > .group-block,
-:where(.section-carousel.section--full-width) product-card[data-product-transition] > .group-block {
+:where(.section-resource-list.section--full-width)
+  product-card[data-product-transition]
+  > .group-block,
+:where(.section-carousel.section--full-width)
+  product-card[data-product-transition]
+  > .group-block {
   @media screen and (max-width: 749px) {
     padding-inline: max(var(--padding-xs), var(--padding-inline-start))
       max(var(--padding-xs), var(--padding-inline-end));
@@ -2068,7 +1776,8 @@ label:has(input[type='checkbox']:disabled) {
 }
 
 /* Container styles */
-.section-content-wrapper.section-content-wrapper:where(.layout-panel-flex) .group-block--fill {
+.section-content-wrapper.section-content-wrapper:where(.layout-panel-flex)
+  .group-block--fill {
   flex: 1;
 }
 
@@ -2114,11 +1823,13 @@ label:has(input[type='checkbox']:disabled) {
 }
 
 .transition-transform {
-  transition: transform var(--animation-speed-medium) var(--animation-timing-bounce);
+  transition: transform var(--animation-speed-medium)
+    var(--animation-timing-bounce);
 }
 
 .transition-border-color {
-  transition: border-color var(--animation-speed-medium) var(--animation-timing-hover);
+  transition: border-color var(--animation-speed-medium)
+    var(--animation-timing-hover);
 }
 
 /* Global scrollbar styles */
@@ -2156,7 +1867,8 @@ label:has(input[type='checkbox']:disabled) {
 .predictive-search-results__card:hover {
   position: relative;
   z-index: var(--layer-raised);
-  transition: transform var(--hover-transition-duration) var(--hover-transition-timing),
+  transition:
+    transform var(--hover-transition-duration) var(--hover-transition-timing),
     box-shadow var(--hover-transition-duration) var(--hover-transition-timing);
 }
 
@@ -2197,7 +1909,9 @@ label:has(input[type='checkbox']:disabled) {
 main > .shopify-section:first-child .section:not(.disable-section-top-offset) {
   &.spacing-style,
   .spacing-style {
-    --section-top-offset: calc(var(--header-height) * var(--transparent-header-offset-boolean));
+    --section-top-offset: calc(
+      var(--header-height) * var(--transparent-header-offset-boolean)
+    );
 
     /* Any nested sections should not be offset */
     :is(.spacing-style, .inherit-spacing) {
@@ -2207,6 +1921,8 @@ main > .shopify-section:first-child .section:not(.disable-section-top-offset) {
 
   /* Make sticky content immediately stick to the top of the page */
   .sticky-content {
-    margin-top: calc(var(--header-height) * var(--transparent-header-offset-boolean) * -1);
+    margin-top: calc(
+      var(--header-height) * var(--transparent-header-offset-boolean) * -1
+    );
   }
 }

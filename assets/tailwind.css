@@ -10,6 +10,10 @@
       "Courier New", monospace;
     --color-black: #000;
     --color-white: #fff;
+    --spacing: 0.25rem;
+    --text-base: 1rem;
+    --text-base--line-height: calc(1.5 / 1);
+    --font-weight-light: 300;
     --font-weight-normal: 400;
     --font-weight-medium: 500;
     --font-weight-semibold: 600;
@@ -19,7 +23,17 @@
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
-    --font-display: "Inter", sans-serif;
+    --color-main-bg: #f2f0e6;
+    --font-ivar: "Inter", sans-serif;
+    --font-satoshi: "Inter", sans-serif;
+    --font-redhat: "Inter", sans-serif;
+    --font-september: "Inter", sans-serif;
+    --aspect-16-9: 16 / 9;
+    --aspect-9-16: 9 / 16;
+    --aspect-5-7: 5 / 7;
+    --aspect-7-5: 7 / 5;
+    --aspect-4-5: 4 / 5;
+    --aspect-5-4: 5 / 4;
   }
 }
 @layer base {
@@ -195,6 +209,12 @@
   .sticky {
     position: sticky;
   }
+  .col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+  .col-span-12 {
+    grid-column: span 12 / span 12;
+  }
   .row-1 {
     grid-row: 1;
   }
@@ -243,6 +263,30 @@
   .table {
     display: table;
   }
+  .aspect-4-5 {
+    aspect-ratio: var(--aspect-4-5);
+  }
+  .aspect-5-4 {
+    aspect-ratio: var(--aspect-5-4);
+  }
+  .aspect-5-7 {
+    aspect-ratio: var(--aspect-5-7);
+  }
+  .aspect-7-5 {
+    aspect-ratio: var(--aspect-7-5);
+  }
+  .aspect-9-16 {
+    aspect-ratio: var(--aspect-9-16);
+  }
+  .aspect-16-9 {
+    aspect-ratio: var(--aspect-16-9);
+  }
+  .aspect-square {
+    aspect-ratio: 1 / 1;
+  }
+  .w-full {
+    width: 100%;
+  }
   .flex-shrink {
     flex-shrink: 1;
   }
@@ -261,8 +305,30 @@
   .resize {
     resize: both;
   }
+  .grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   .flex-wrap {
     flex-wrap: wrap;
+  }
+  .items-center {
+    align-items: center;
+  }
+  .justify-center {
+    justify-content: center;
+  }
+  .gap-20 {
+    gap: calc(var(--spacing) * 20);
+  }
+  :where(.space-y-4 > :not(:last-child)) {
+    --tw-space-y-reverse: 0;
+    margin-block-start: calc(calc(var(--spacing) * 4) * var(--tw-space-y-reverse));
+    margin-block-end: calc(calc(var(--spacing) * 4) * calc(1 - var(--tw-space-y-reverse)));
+  }
+  :where(.space-y-10 > :not(:last-child)) {
+    --tw-space-y-reverse: 0;
+    margin-block-start: calc(calc(var(--spacing) * 10) * var(--tw-space-y-reverse));
+    margin-block-end: calc(calc(var(--spacing) * 10) * calc(1 - var(--tw-space-y-reverse)));
   }
   .truncate {
     overflow: hidden;
@@ -276,6 +342,12 @@
     border-style: var(--tw-border-style);
     border-width: 1px;
   }
+  .bg-black {
+    background-color: var(--color-black);
+  }
+  .bg-main-bg {
+    background-color: var(--color-main-bg);
+  }
   .text-center {
     text-align: center;
   }
@@ -285,14 +357,18 @@
   .text-right {
     text-align: right;
   }
-  .font-display {
-    font-family: var(--font-display);
+  .text-base {
+    font-size: var(--text-base);
+    line-height: var(--tw-leading, var(--text-base--line-height));
   }
   .text-wrap {
     text-wrap: wrap;
   }
   .text-inherit {
     color: inherit;
+  }
+  .text-white {
+    color: var(--color-white);
   }
   .capitalize {
     text-transform: capitalize;
@@ -341,6 +417,319 @@
     --tw-ease: var(--ease-in-out);
     transition-timing-function: var(--ease-in-out);
   }
+  @media (width >= 64rem) {
+    .lg\:col-span-3 {
+      grid-column: span 3 / span 3;
+    }
+  }
+}
+@layer components {
+  .div--container {
+    width: 100%;
+    padding-inline: calc(var(--spacing) * 10);
+  }
+  .common--grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: calc(var(--spacing) * 4);
+  }
+  .space-top {
+    padding-top: 120px;
+  }
+  .space-bottom {
+    padding-bottom: 120px;
+  }
+  .headline-l {
+    font-family: var(--font-ivar);
+    font-size: 20px;
+    --tw-leading: 120%;
+    line-height: 120%;
+    --tw-font-weight: var(--font-weight-normal);
+    font-weight: var(--font-weight-normal);
+    --tw-tracking: 0.2px;
+    letter-spacing: 0.2px;
+    @media (width >= 48rem) {
+      font-size: 24px;
+    }
+    @media (width >= 48rem) {
+      --tw-tracking: 0.24px;
+      letter-spacing: 0.24px;
+    }
+    @media (width >= 64rem) {
+      font-size: 28px;
+    }
+    @media (width >= 64rem) {
+      --tw-tracking: 0.28px;
+      letter-spacing: 0.28px;
+    }
+  }
+  .headline-m {
+    font-family: var(--font-ivar);
+    font-size: 15px;
+    --tw-leading: 140%;
+    line-height: 140%;
+    --tw-font-weight: var(--font-weight-normal);
+    font-weight: var(--font-weight-normal);
+    --tw-tracking: 0.75px;
+    letter-spacing: 0.75px;
+    @media (width >= 48rem) {
+      font-size: 16px;
+    }
+    @media (width >= 48rem) {
+      --tw-tracking: 0.8px;
+      letter-spacing: 0.8px;
+    }
+    @media (width >= 64rem) {
+      font-size: 16px;
+    }
+    @media (width >= 64rem) {
+      --tw-tracking: 0.8px;
+      letter-spacing: 0.8px;
+    }
+  }
+  .headline-s {
+    font-family: var(--font-ivar);
+    font-size: 15px;
+    --tw-leading: 140%;
+    line-height: 140%;
+    --tw-font-weight: var(--font-weight-normal);
+    font-weight: var(--font-weight-normal);
+    --tw-tracking: 0px;
+    letter-spacing: 0px;
+    @media (width >= 48rem) {
+      font-size: 15px;
+    }
+    @media (width >= 48rem) {
+      --tw-tracking: 0px;
+      letter-spacing: 0px;
+    }
+    @media (width >= 64rem) {
+      font-size: 15px;
+    }
+    @media (width >= 64rem) {
+      --tw-tracking: 0px;
+      letter-spacing: 0px;
+    }
+  }
+  .body-l {
+    font-family: var(--font-satoshi);
+    font-size: 14px;
+    --tw-leading: 140%;
+    line-height: 140%;
+    --tw-font-weight: var(--font-weight-normal);
+    font-weight: var(--font-weight-normal);
+    --tw-tracking: 0px;
+    letter-spacing: 0px;
+    @media (width >= 48rem) {
+      font-size: 14px;
+    }
+    @media (width >= 48rem) {
+      --tw-tracking: 0px;
+      letter-spacing: 0px;
+    }
+    @media (width >= 64rem) {
+      font-size: 13px;
+    }
+    @media (width >= 64rem) {
+      --tw-tracking: 0px;
+      letter-spacing: 0px;
+    }
+  }
+  .body-s {
+    font-family: var(--font-satoshi);
+    font-size: 13px;
+    --tw-leading: 140%;
+    line-height: 140%;
+    --tw-font-weight: var(--font-weight-normal);
+    font-weight: var(--font-weight-normal);
+    --tw-tracking: 0px;
+    letter-spacing: 0px;
+    @media (width >= 48rem) {
+      font-size: 13px;
+    }
+    @media (width >= 48rem) {
+      --tw-tracking: 0px;
+      letter-spacing: 0px;
+    }
+    @media (width >= 64rem) {
+      font-size: 11px;
+    }
+    @media (width >= 64rem) {
+      --tw-tracking: 0px;
+      letter-spacing: 0px;
+    }
+  }
+  .label-l {
+    font-family: var(--font-satoshi);
+    font-size: 10px;
+    --tw-leading: 140%;
+    line-height: 140%;
+    --tw-font-weight: var(--font-weight-normal);
+    font-weight: var(--font-weight-normal);
+    --tw-tracking: 0px;
+    letter-spacing: 0px;
+    text-transform: uppercase;
+    @media (width >= 48rem) {
+      font-size: 10px;
+    }
+    @media (width >= 48rem) {
+      --tw-tracking: 0px;
+      letter-spacing: 0px;
+    }
+    @media (width >= 64rem) {
+      font-size: 10px;
+    }
+    @media (width >= 64rem) {
+      --tw-tracking: 0px;
+      letter-spacing: 0px;
+    }
+  }
+  .label-s {
+    font-family: var(--font-satoshi);
+    font-size: 8px;
+    --tw-leading: 140%;
+    line-height: 140%;
+    --tw-font-weight: var(--font-weight-normal);
+    font-weight: var(--font-weight-normal);
+    --tw-tracking: 0px;
+    letter-spacing: 0px;
+    text-transform: uppercase;
+    @media (width >= 48rem) {
+      font-size: 8px;
+    }
+    @media (width >= 48rem) {
+      --tw-tracking: 0px;
+      letter-spacing: 0px;
+    }
+    @media (width >= 64rem) {
+      font-size: 8px;
+    }
+    @media (width >= 64rem) {
+      --tw-tracking: 0px;
+      letter-spacing: 0px;
+    }
+  }
+  .price-l {
+    font-family: var(--font-redhat);
+    font-size: 16px;
+    --tw-leading: 140%;
+    line-height: 140%;
+    --tw-font-weight: var(--font-weight-light);
+    font-weight: var(--font-weight-light);
+    --tw-tracking: 0.32px;
+    letter-spacing: 0.32px;
+    @media (width >= 48rem) {
+      font-size: 18px;
+    }
+    @media (width >= 48rem) {
+      --tw-tracking: 0.36px;
+      letter-spacing: 0.36px;
+    }
+    @media (width >= 64rem) {
+      font-size: 18px;
+    }
+    @media (width >= 64rem) {
+      --tw-tracking: 0.36px;
+      letter-spacing: 0.36px;
+    }
+  }
+  .price-label-s {
+    font-family: var(--font-redhat);
+    font-size: 12px;
+    --tw-leading: 140%;
+    line-height: 140%;
+    --tw-font-weight: var(--font-weight-light);
+    font-weight: var(--font-weight-light);
+    --tw-tracking: 0.24px;
+    letter-spacing: 0.24px;
+    @media (width >= 48rem) {
+      font-size: 13px;
+    }
+    @media (width >= 48rem) {
+      --tw-tracking: 0.26px;
+      letter-spacing: 0.26px;
+    }
+    @media (width >= 64rem) {
+      font-size: 13px;
+    }
+    @media (width >= 64rem) {
+      --tw-tracking: 0.26px;
+      letter-spacing: 0.26px;
+    }
+  }
+  .note {
+    font-family: var(--font-september);
+    font-size: 30px;
+    --tw-leading: 100%;
+    line-height: 100%;
+    --tw-font-weight: var(--font-weight-normal);
+    font-weight: var(--font-weight-normal);
+    --tw-tracking: 0px;
+    letter-spacing: 0px;
+    @media (width >= 48rem) {
+      font-size: 30px;
+    }
+    @media (width >= 48rem) {
+      --tw-tracking: 0px;
+      letter-spacing: 0px;
+    }
+    @media (width >= 64rem) {
+      font-size: 30px;
+    }
+    @media (width >= 64rem) {
+      --tw-tracking: 0px;
+      letter-spacing: 0px;
+    }
+  }
+  .button {
+    font-family: var(--font-ivar);
+    font-size: 15px;
+    --tw-leading: 100%;
+    line-height: 100%;
+    --tw-font-weight: var(--font-weight-normal);
+    font-weight: var(--font-weight-normal);
+    --tw-tracking: 0px;
+    letter-spacing: 0px;
+    @media (width >= 48rem) {
+      font-size: 15px;
+    }
+    @media (width >= 48rem) {
+      --tw-tracking: 0px;
+      letter-spacing: 0px;
+    }
+    @media (width >= 64rem) {
+      font-size: 15px;
+    }
+    @media (width >= 64rem) {
+      --tw-tracking: 0px;
+      letter-spacing: 0px;
+    }
+  }
+  .caption {
+    font-family: var(--font-redhat);
+    font-size: 10px;
+    --tw-leading: 140%;
+    line-height: 140%;
+    --tw-font-weight: var(--font-weight-light);
+    font-weight: var(--font-weight-light);
+    --tw-tracking: 0px;
+    letter-spacing: 0px;
+    text-transform: uppercase;
+    @media (width >= 48rem) {
+      font-size: 9px;
+    }
+    @media (width >= 48rem) {
+      --tw-tracking: 0px;
+      letter-spacing: 0px;
+    }
+    @media (width >= 64rem) {
+      font-size: 9px;
+    }
+    @media (width >= 64rem) {
+      --tw-tracking: 0px;
+      letter-spacing: 0px;
+    }
+  }
 }
 @property --tw-rotate-x {
   syntax: "*";
@@ -361,6 +750,11 @@
 @property --tw-skew-y {
   syntax: "*";
   inherits: false;
+}
+@property --tw-space-y-reverse {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
 }
 @property --tw-border-style {
   syntax: "*";
@@ -530,6 +924,18 @@
   syntax: "*";
   inherits: false;
 }
+@property --tw-leading {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-font-weight {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-tracking {
+  syntax: "*";
+  inherits: false;
+}
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
@@ -538,6 +944,7 @@
       --tw-rotate-z: initial;
       --tw-skew-x: initial;
       --tw-skew-y: initial;
+      --tw-space-y-reverse: 0;
       --tw-border-style: solid;
       --tw-shadow: 0 0 #0000;
       --tw-shadow-color: initial;
@@ -577,6 +984,9 @@
       --tw-backdrop-saturate: initial;
       --tw-backdrop-sepia: initial;
       --tw-ease: initial;
+      --tw-leading: initial;
+      --tw-font-weight: initial;
+      --tw-tracking: initial;
     }
   }
 }

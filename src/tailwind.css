@@ -7,6 +7,92 @@
 @source "../assets/*.js";
 
 @theme {
+  --color-main-bg: #f2f0e6;
   --color-brand: #1a1a1a;
-  --font-display: "Inter", sans-serif;
+  --font-ivar: "Inter", sans-serif;
+  --font-satoshi: "Inter", sans-serif;
+  --font-redhat: "Inter", sans-serif;
+  --font-september: "Inter", sans-serif;
+  --aspect-16-9: 16 / 9;
+  --aspect-9-16: 9 / 16;
+  --aspect-2-3: 2 / 3;
+  --aspect-3-2: 3 / 2;
+  --aspect-5-7: 5 / 7;
+  --aspect-7-5: 7 / 5;
+  --aspect-4-5: 4 / 5;
+  --aspect-5-4: 5 / 4;
+}
+
+@layer components {
+  .div--container {
+    @apply w-full px-10;
+  }
+  .common--grid {
+    @apply grid grid-cols-12 gap-4;
+  }
+  .space-top {
+    @apply pt-[120px];
+  }
+  .space-bottom {
+    @apply pb-[120px];
+  }
+  /* Headline L — Ivar Headline, Regular, LH 120%, Track 1% */
+  .headline-l {
+    @apply font-ivar lg:text-[28px] md:text-[24px] text-[20px] font-normal leading-[120%] lg:tracking-[0.28px] md:tracking-[0.24px] tracking-[0.2px];
+  }
+
+  /* Headline M — Ivar Headline, Regular, LH 140%, Track 5% */
+  .headline-m {
+    @apply font-ivar lg:text-[16px] md:text-[16px] text-[15px] font-normal leading-[140%] lg:tracking-[0.8px] md:tracking-[0.8px] tracking-[0.75px];
+  }
+
+  /* Headline S — Ivar Headline, Regular, LH 140%, Track 0% */
+  .headline-s {
+    @apply font-ivar lg:text-[15px] md:text-[15px] text-[15px] font-normal leading-[140%] lg:tracking-[0px] md:tracking-[0px] tracking-[0px];
+  }
+
+  /* Body L — Satoshi, Regular, LH 140%, Track 0% */
+  .body-l {
+    @apply font-satoshi lg:text-[13px] md:text-[14px] text-[14px] font-normal leading-[140%] lg:tracking-[0px] md:tracking-[0px] tracking-[0px];
+  }
+
+  /* Body S — Satoshi, Regular, LH 140%, Track 0% */
+  .body-s {
+    @apply font-satoshi lg:text-[11px] md:text-[13px] text-[13px] font-normal leading-[140%] lg:tracking-[0px] md:tracking-[0px] tracking-[0px];
+  }
+
+  /* Label L — Satoshi, Regular, LH 140%, Track 0%, Uppercase */
+  .label-l {
+    @apply font-satoshi lg:text-[10px] md:text-[10px] text-[10px] font-normal leading-[140%] uppercase lg:tracking-[0px] md:tracking-[0px] tracking-[0px];
+  }
+
+  /* Label S — Satoshi, Regular, LH 140%, Track 0%, Uppercase */
+  .label-s {
+    @apply font-satoshi lg:text-[8px] md:text-[8px] text-[8px] font-normal leading-[140%] uppercase lg:tracking-[0px] md:tracking-[0px] tracking-[0px];
+  }
+
+  /* Price L — Red Hat Mono, Light, LH 140%, Track 2% */
+  .price-l {
+    @apply font-redhat lg:text-[18px] md:text-[18px] text-[16px] font-light leading-[140%] lg:tracking-[0.36px] md:tracking-[0.36px] tracking-[0.32px];
+  }
+
+  /* Price Label S — Red Hat Mono, Light, LH 140%, Track 2% */
+  .price-label-s {
+    @apply font-redhat lg:text-[13px] md:text-[13px] text-[12px] font-light leading-[140%] lg:tracking-[0.26px] md:tracking-[0.26px] tracking-[0.24px];
+  }
+
+  /* Note — September Spirit, Regular, LH 100%, Track 0% */
+  .note {
+    @apply font-september lg:text-[30px] md:text-[30px] text-[30px] font-normal leading-[100%] lg:tracking-[0px] md:tracking-[0px] tracking-[0px];
+  }
+
+  /* Button — Ivar Headline, Regular, LH 100%, Track 0% */
+  .button {
+    @apply font-ivar lg:text-[15px] md:text-[15px] text-[15px] font-normal leading-[100%] lg:tracking-[0px] md:tracking-[0px] tracking-[0px];
+  }
+
+  /* Caption — Red Hat Mono, Light, LH 140%, Track 0%, Uppercase */
+  .caption {
+    @apply font-redhat lg:text-[9px] md:text-[9px] text-[10px] font-light leading-[140%] uppercase lg:tracking-[0px] md:tracking-[0px] tracking-[0px];
+  }
 }

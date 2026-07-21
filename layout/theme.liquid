@@ -51,7 +51,7 @@
     {{ 'tailwind.css' | asset_url | stylesheet_tag }}
   </head>
 
-  <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
+  <body class="bg-main-bg">
     {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}
 
     {% render 'chat-drawer' %}
@@ -153,5 +153,6 @@
     {% if settings.quick_add or settings.mobile_quick_add %}
       {% render 'quick-add-modal' %}
     {% endif %}
+    <script src="{{ 'gsapanimations.js' | asset_url }}" defer="defer"></script>
   </body>
 </html>
