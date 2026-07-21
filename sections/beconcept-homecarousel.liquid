@@ -1,7 +1,161 @@
+<script
+  src="{{ 'beconcept-homecarousel.js' | asset_url }}"
+  type="module"
+  fetchpriority="low"
+></script>
+
+<beconcept-homecarousel-component
+  class="min-h-screen h-screen overflow-auto relative"
+  data-speed="{{ section.settings.scroll_speed }}"
+  data-direction="{{ section.settings.scroll_direction }}"
+  data-autoplay="{{ section.settings.enable_autoplay }}"
+  data-hover-slowdown="{{ section.settings.enable_hover_slowdown }}"
+>
+  {% if section.settings.home_carousel_text %}
+    <div class="fixed z-[99] w-full div--container top-1/2 -translate-y-1/2 text-center label-l text-[#BFBFBF] mix-blend-exclusion">
+      {{ section.settings.home_carousel_text }}
+    </div>
+  {% endif %}
+  <div class="w-full relative z-10 px-6">
+    {%- assign gallery_images = section.settings.home_carousel.image_gallery.value -%}
+    {%- if gallery_images != blank -%}
+      <div ref="track">
+        <div ref="content">
+          {%- for image in gallery_images -%}
+            {%- assign mod_index = forloop.index0 | modulo: 12 -%}
+            {%- case mod_index -%}
+              {%- when 0 -%}
+                {%- assign custom_classes = 'lg:col-start-17 lg:col-span-5 aspect-2-3' -%}
+                {%- assign gridmargintop = '' -%}
+              {%- when 1 -%}
+                {%- assign custom_classes = 'lg:col-start-2 lg:col-span-7 aspect-4-5' -%}
+                {%- assign gridmargintop = '' -%}
+              {%- when 2 -%}
+                {%- assign custom_classes = 'lg:col-start-15 lg:col-span-5 aspect-4-5' -%}
+                {%- assign gridmargintop = '' -%}
+              {%- when 3 -%}
+                {%- assign custom_classes = 'lg:col-start-6 lg:col-span-5 aspect-4-5' -%}
+                {%- assign gridmargintop = '' -%}
+              {%- when 4 -%}
+                {%- assign custom_classes = 'lg:col-start-16 lg:col-span-6 aspect-2-3' -%}
+                {%- assign gridmargintop = '' -%}
+              {%- when 5 -%}
+                {%- assign custom_classes = 'lg:col-start-4 lg:col-span-7 aspect-4-5' -%}
+                {%- assign gridmargintop = '' -%}
+              {%- when 6 -%}
+                {%- assign custom_classes = 'lg:col-start-18 lg:col-span-7 aspect-4-5' -%}
+                {%- assign gridmargintop = '' -%}
+              {%- when 7 -%}
+                {%- assign custom_classes = 'lg:col-start-10 lg:col-span-6 aspect-4-5' -%}
+                {%- assign gridmargintop = '' -%}
+              {%- when 8 -%}
+                {%- assign custom_classes = 'lg:col-start-16 lg:col-span-5 aspect-4-5' -%}
+                {%- assign gridmargintop = '' -%}
+              {%- when 9 -%}
+                {%- assign custom_classes = 'lg:col-start-4 lg:col-span-5 aspect-2-3' -%}
+                {%- assign gridmargintop = '' -%}
+              {%- when 10 -%}
+                {%- assign custom_classes = 'lg:col-start-12 lg:col-span-7 aspect-4-5' -%}
+                {%- assign gridmargintop = '' -%}
+              {%- when 11 -%}
+                {%- assign custom_classes = 'lg:col-start-5 lg:col-span-5 aspect-4-5' -%}
+                {%- assign gridmargintop = '' -%}
+            {%- endcase -%}
+            <div
+              data-element="{{ mod_index }}"
+              class="grid grid-cols-24 gap-8 relative {{ gridmargintop }}"
+            >
+              <div
+                ref="items[]"
+                on:pointerenter="/onItemEnter"
+                on:pointerleave="/onItemLeave"
+                class="{{ custom_classes }} overflow-hidden bg-gray-50 relative group"
+              >
+                {{
+                  image
+                  | image_url: width: 800
+                  | image_tag: loading: 'lazy', class: 'w-full h-full object-cover object-center', alt: image.alt
+                  | default: section.settings.home_carousel.id_gallery
+                }}
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</beconcept-homecarousel-component>
+
+{% stylesheet %}
+  beconcept-homecarousel-component {
+    display: block;
+  }
+
+  beconcept-homecarousel-component[data-loop-active] {
+    overflow: hidden;
+  }
+
+  footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+  }
+{% endstylesheet %}
+
 {% schema %}
 {
   "name": "Homepage Carousel",
   "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "home_carousel_text",
+      "label": "Text in overlay",
+      "default": "Ceramics for gatherings"
+    },
+    {
+      "type": "metaobject",
+      "id": "home_carousel",
+      "label": "Select gallery to show",
+      "metaobject_type": "homepage_carousel"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_autoplay",
+      "label": "Enable autoplay",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_hover_slowdown",
+      "label": "Slow down on hover",
+      "default": true,
+      "visible_if": "{{ section.settings.enable_autoplay == true }}"
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "label": "Scroll speed (px per second)",
+      "min": 10,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 40,
+      "visible_if": "{{ section.settings.enable_autoplay == true }}"
+    },
+    {
+      "type": "select",
+      "id": "scroll_direction",
+      "label": "Scroll direction",
+      "options": [
+        { "value": "up", "label": "Bottom to top" },
+        { "value": "down", "label": "Top to bottom" }
+      ],
+      "default": "up",
+      "visible_if": "{{ section.settings.enable_autoplay == true }}"
+    }
+  ],
   "presets": [
     {
       "name": "Homepage Carousel",
