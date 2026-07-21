@@ -8,6 +8,7 @@
 
 @theme {
   --color-main-bg: #f2f0e6;
+  --color-dark: #151617;
   --color-brand: #1a1a1a;
   --font-ivar: "Inter", sans-serif;
   --font-satoshi: "Inter", sans-serif;

@@ -24,6 +24,7 @@
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
     --color-main-bg: #f2f0e6;
+    --color-dark: #151617;
     --font-ivar: "Inter", sans-serif;
     --font-satoshi: "Inter", sans-serif;
     --font-redhat: "Inter", sans-serif;
@@ -209,8 +210,20 @@
   .sticky {
     position: sticky;
   }
+  .top-0 {
+    top: 0px;
+  }
+  .left-0 {
+    left: 0px;
+  }
+  .z-\[999\] {
+    z-index: 999;
+  }
   .col-span-2 {
     grid-column: span 2 / span 2;
+  }
+  .col-span-5 {
+    grid-column: span 5 / span 5;
   }
   .col-span-12 {
     grid-column: span 12 / span 12;
@@ -241,6 +254,9 @@
     @media (width >= 96rem) {
       max-width: 96rem;
     }
+  }
+  .mx-auto {
+    margin-inline: auto;
   }
   .block {
     display: block;
@@ -284,8 +300,17 @@
   .aspect-square {
     aspect-ratio: 1 / 1;
   }
+  .h-\[72px\] {
+    height: 72px;
+  }
+  .h-full {
+    height: 100%;
+  }
   .w-full {
     width: 100%;
+  }
+  .max-w-\[130px\] {
+    max-width: 130px;
   }
   .flex-shrink {
     flex-shrink: 1;
@@ -317,6 +342,12 @@
   .justify-center {
     justify-content: center;
   }
+  .justify-end {
+    justify-content: flex-end;
+  }
+  .gap-10 {
+    gap: calc(var(--spacing) * 10);
+  }
   .gap-20 {
     gap: calc(var(--spacing) * 20);
   }
@@ -330,6 +361,9 @@
     margin-block-start: calc(calc(var(--spacing) * 10) * var(--tw-space-y-reverse));
     margin-block-end: calc(calc(var(--spacing) * 10) * calc(1 - var(--tw-space-y-reverse)));
   }
+  .self-center {
+    align-self: center;
+  }
   .truncate {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -342,11 +376,28 @@
     border-style: var(--tw-border-style);
     border-width: 1px;
   }
+  .border-b {
+    border-bottom-style: var(--tw-border-style);
+    border-bottom-width: 1px;
+  }
+  .border-solid {
+    --tw-border-style: solid;
+    border-style: solid;
+  }
+  .border-dark\/15 {
+    border-color: color-mix(in srgb, #151617 15%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      border-color: color-mix(in oklab, var(--color-dark) 15%, transparent);
+    }
+  }
   .bg-black {
     background-color: var(--color-black);
   }
   .bg-main-bg {
     background-color: var(--color-main-bg);
+  }
+  .bg-transparent {
+    background-color: transparent;
   }
   .text-center {
     text-align: center;
@@ -384,6 +435,9 @@
   }
   .underline {
     text-decoration-line: underline;
+  }
+  .mix-blend-difference {
+    mix-blend-mode: difference;
   }
   .shadow {
     --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));

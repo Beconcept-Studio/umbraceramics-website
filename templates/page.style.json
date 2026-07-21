@@ -11,8 +11,11 @@
   "sections": {
     "main_style_rdhXDp": {
       "type": "main-style",
-      "name": "Main Style"
+      "name": "Main Style",
+      "settings": {}
     }
   },
-  "order": ["main_style_rdhXDp"]
+  "order": [
+    "main_style_rdhXDp"
+  ]
 }
