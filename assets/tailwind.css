@@ -1226,18 +1226,6 @@ body .shopify-pc__banner__dialog button, body .shopify-pc__banner__dialog button
     font-size: 15px;
   }
 }
-beconcept-homecarousel-component {
-  display: block;
-}
-beconcept-homecarousel-component[data-loop-active] {
-  overflow: hidden;
-}
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 999;
-}
 @property --tw-translate-x {
   syntax: "*";
   inherits: false;

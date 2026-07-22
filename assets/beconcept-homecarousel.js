@@ -1,5 +1,5 @@
 import { Component } from '@theme/component';
-import { debounce, ResizeNotifier } from '@theme/utilities';
+import { debounce, ResizeNotifier, mediaQueryLarge } from '@theme/utilities';
 import gsap from 'gsap';
 import { createInfiniteLoop, setHoverTimeScale } from '@theme/gsap-animations';
 
@@ -43,6 +43,9 @@ class BeconceptHomeCarouselComponent extends Component {
   connectedCallback() {
     super.connectedCallback();
 
+    this.#lockMobileHeight();
+    mediaQueryLarge.addEventListener('change', this.#lockMobileHeight);
+
     if (!this.#autoplayEnabled) return;
 
     this.#mm = gsap.matchMedia();
@@ -61,9 +64,26 @@ class BeconceptHomeCarouselComponent extends Component {
 
   disconnectedCallback() {
     super.disconnectedCallback();
+    mediaQueryLarge.removeEventListener('change', this.#lockMobileHeight);
     this.#mm?.revert();
     this.#mm = null;
   }
+
+  /**
+   * On mobile/tablet, `100vh`/`h-screen` jumps around as the browser chrome
+   * shows/hides on scroll. Lock the section to the viewport height measured
+   * once at load instead. Desktop keeps the CSS `h-screen` sizing.
+   */
+  #lockMobileHeight = () => {
+    if (mediaQueryLarge.matches) {
+      this.style.removeProperty('height');
+      this.style.removeProperty('min-height');
+      return;
+    }
+    const height = `${window.innerHeight}px`;
+    this.style.height = height;
+    this.style.minHeight = height;
+  };
 
   onItemEnter() {
     if (!this.#tween || !this.#hoverSlowdownEnabled) return;

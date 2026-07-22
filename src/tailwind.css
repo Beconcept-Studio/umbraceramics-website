@@ -274,19 +274,3 @@ body .shopify-pc__banner__dialog button.shopify-pc__banner__btn-decline,
 body .shopify-pc__banner__dialog button.shopify-pc__banner__btn-manage-prefs {
   @apply px-5 py-2 font-ivar lg:text-[15px] bg-transparent no-underline border border-solid border-dark/16 rounded-none md:text-[15px] text-[15px] font-normal leading-[100%] tracking-[0em] min-h-10 basis-auto hover:opacity-40 transition-all duration-300;
 }
-
-/* --- Homepage Carousel --- */
-beconcept-homecarousel-component {
-  display: block;
-}
-
-beconcept-homecarousel-component[data-loop-active] {
-  overflow: hidden;
-}
-
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 999;
-}
