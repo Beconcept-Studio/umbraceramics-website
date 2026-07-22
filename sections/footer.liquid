@@ -1,10 +1,10 @@
-<footer class="bg-transparent w-full hidden lg:block border-t border-solid border-dark/15">
+<footer class="bg-transparent w-full hidden lg:block border-t border-solid border-dark/8">
   <div class="div--container py-5">
     {% if section.settings.footer_menu %}
       {% assign footermenu = section.settings.footer_menu %}
       <div class="flex items-center gap-[3px] justify-center">
         {% for link in footermenu.links -%}
-          <a href="{{ link.url }}" class="body-s flex items-center gap-[3px] text-dark group"
+          <a href="{{ link.url }}" class="body-s flex items-center gap-[3px] text-blend group"
             ><span>{{ link.title }}</span><span class="group-last:hidden">•</span></a
           >
         {%- endfor %}
