@@ -8,11 +8,16 @@ import {
   isTouchDevice,
 } from "@theme/utilities";
 import gsap from "gsap";
-import { createInfiniteLoop, setHoverTimeScale } from "@theme/gsap-animations";
+import {
+  createInfiniteLoop,
+  setHoverTimeScale,
+  wrapLoopY,
+} from "@theme/gsap-animations";
 
 const DEFAULT_SPEED = 40;
 const HOVER_TIME_SCALE = 0.08;
 const HOVER_TRANSITION_DURATION = 0.3;
+const MANUAL_PAN_RESUME_DELAY = 500;
 
 /**
  * A custom element that scrolls a duplicated image stack in an infinite, seamless loop.
@@ -44,6 +49,21 @@ class BeconceptHomeCarouselComponent extends Component {
 
   /** @type {number} */
   #manualHeight = 0;
+
+  /** @type {number} */
+  #loopHeight = 0;
+
+  /** @type {number} */
+  #loopSpeed = DEFAULT_SPEED;
+
+  /** @type {'up' | 'down'} */
+  #loopDirection = "up";
+
+  /** @type {number} */
+  #touchY = 0;
+
+  /** @type {ReturnType<typeof setTimeout> | null} */
+  #resumeTimer = null;
 
   get #autoplayEnabled() {
     return this.dataset.autoplay === "true";
@@ -142,24 +162,104 @@ class BeconceptHomeCarouselComponent extends Component {
     this.#clone = this.#cloneContent();
     track.appendChild(this.#clone);
 
-    const speed = Number(this.dataset.speed) || DEFAULT_SPEED;
-    const direction = this.dataset.direction === "down" ? "down" : "up";
+    this.#loopHeight = height;
+    this.#loopSpeed = Number(this.dataset.speed) || DEFAULT_SPEED;
+    this.#loopDirection = this.dataset.direction === "down" ? "down" : "up";
 
-    this.#tween = createInfiniteLoop(track, { height, speed, direction });
+    this.#startTween();
 
     this.setAttribute("data-loop-active", "");
+
+    this.addEventListener("wheel", this.#handleWheel, { passive: false });
+    this.addEventListener("touchstart", this.#handleTouchStart, {
+      passive: true,
+    });
+    this.addEventListener("touchmove", this.#handleTouchMove, {
+      passive: false,
+    });
+  }
+
+  #startTween() {
+    this.#tween = createInfiniteLoop(this.refs.track, {
+      height: this.#loopHeight,
+      speed: this.#loopSpeed,
+      direction: this.#loopDirection,
+    });
   }
 
   #teardownLoop() {
     this.removeAttribute("data-loop-active");
+
+    this.removeEventListener("wheel", this.#handleWheel);
+    this.removeEventListener("touchstart", this.#handleTouchStart);
+    this.removeEventListener("touchmove", this.#handleTouchMove);
+    if (this.#resumeTimer) clearTimeout(this.#resumeTimer);
+    this.#resumeTimer = null;
 
     this.#tween?.kill();
     this.#tween = null;
 
     this.#clone?.remove();
     this.#clone = null;
+    this.#loopHeight = 0;
 
     gsap.set(this.refs.track, { y: 0 });
+  }
+
+  /**
+   * Lets the user pan the loop with mouse wheel/trackpad scroll while
+   * autoplay is running — pausing the tween and moving `track` directly,
+   * then resuming autoplay from that position after a short idle delay.
+   */
+  /** @param {WheelEvent} event */
+  #handleWheel = (event) => {
+    if (!this.#loopHeight) return;
+    event.preventDefault();
+    this.#panBy(event.deltaY);
+  };
+
+  /** @param {TouchEvent} event */
+  #handleTouchStart = (event) => {
+    const touch = event.touches[0];
+    if (touch) this.#touchY = touch.clientY;
+  };
+
+  /**
+   * Same idea as `#handleWheel`, for touch drag on mobile.
+   * @param {TouchEvent} event
+   */
+  #handleTouchMove = (event) => {
+    if (!this.#loopHeight) return;
+    const touch = event.touches[0];
+    if (!touch) return;
+    const delta = this.#touchY - touch.clientY;
+    this.#touchY = touch.clientY;
+    event.preventDefault();
+    this.#panBy(delta);
+  };
+
+  /** @param {number} delta */
+  #panBy(delta) {
+    if (this.#tween) {
+      this.#tween.kill();
+      this.#tween = null;
+    }
+
+    const sign = this.#loopDirection === "down" ? 1 : -1;
+    const track = this.refs.track;
+    const current = Number(gsap.getProperty(track, "y")) || 0;
+    const next = wrapLoopY(
+      current + sign * delta,
+      this.#loopHeight,
+      this.#loopDirection,
+    );
+    gsap.set(track, { y: next });
+
+    if (this.#resumeTimer) clearTimeout(this.#resumeTimer);
+    this.#resumeTimer = setTimeout(() => {
+      this.#resumeTimer = null;
+      this.#startTween();
+    }, MANUAL_PAN_RESUME_DELAY);
   }
 
   /**

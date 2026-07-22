@@ -1,0 +1,43 @@
+<beconcept-product-list class="relative">
+  <div class="grid md:grid-cols-3 grid-cols-2">
+    {% for product in collection.products %}
+      <div class="product-item-wrapper border border-solid border-[#E0DFD5] -ml-[1px] -mb-[1px] col-span-1 ">
+        {% render 'beconcept-prodcard' with product as product %}
+      </div>
+    {% endfor %}
+
+    {% assign remainder_mobile = collection.products.size | modulo: 2 %}
+    {% if remainder_mobile > 0 %}
+      {% assign empty_mobile = 2 | minus: remainder_mobile %}
+      {% for i in (1..empty_mobile) %}
+        <!-- md:hidden nasconde questo box sugli schermi più grandi -->
+        <div
+          class="product-item-wrapper border border-solid border-[#E0DFD5] -ml-[1px] -mb-[1px] col-span-1 block md:hidden"
+        ></div>
+      {% endfor %}
+    {% endif %}
+
+    {% assign remainder_desktop = collection.products.size | modulo: 3 %}
+    {% if remainder_desktop > 0 %}
+      {% assign empty_desktop = 3 | minus: remainder_desktop %}
+      {% for i in (1..empty_desktop) %}
+        <!-- hidden md:flex nasconde questo box su mobile e lo mostra su desktop -->
+        <div
+          class="product-item-wrapper  border border-solid border-[#E0DFD5] -ml-[1px] -mb-[1px] col-span-1 hidden md:block"
+        ></div>
+      {% endfor %}
+    {% endif %}
+  </div>
+</beconcept-product-list>
+{% schema %}
+{
+  "name": "Product List",
+  "class": "section-wrapper",
+  "presets": [
+    {
+      "name": "Product List",
+      "category": "Beconcept"
+    }
+  ]
+}
+{% endschema %}

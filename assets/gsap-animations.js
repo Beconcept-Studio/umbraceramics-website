@@ -35,3 +35,19 @@ export function createInfiniteLoop(track, { height, speed, direction }) {
 export function setHoverTimeScale(tween, timeScale, duration) {
   gsap.to(tween, { timeScale, duration, overwrite: true });
 }
+
+/**
+ * Wraps a `y` value into the same bounds `createInfiniteLoop` uses, so manual
+ * panning (e.g. wheel/touch input) stays within the seamless loop range.
+ *
+ * @param {number} y
+ * @param {number} height
+ * @param {'up' | 'down'} direction
+ * @returns {number}
+ */
+export function wrapLoopY(y, height, direction) {
+  const isUp = direction !== 'down';
+  const wrapMin = isUp ? -height : 0;
+  const wrapMax = isUp ? 0 : height;
+  return gsap.utils.wrap(wrapMin, wrapMax)(y);
+}

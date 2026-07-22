@@ -35,7 +35,7 @@
     <div class="lg:col-span-2 col-span-4 col-start-5 self-center isolate mix-blend-normal">
       {% if section.settings.mainlogo %}
         <a
-          href="{{ shop.url }}"
+          href="{{ routes.root_url }}"
           class="block w-full lg:max-w-[130px] md:max-w-[146px] mx-auto hover:opacity-40 transition-all duration-300"
         >
           <img
@@ -152,7 +152,7 @@
           >
             {{ cart_icon }}
           </a>
-          <div class="mx-auto mt-16 max-w-[28px]">
+          <div class="mx-auto md:mt-16 mt-6 max-w-[28px]">
             <img
               class="w-full mx-auto"
               src="{{ 'umbragif.gif' | asset_url }}"
@@ -207,7 +207,6 @@
     {% endif %}
   </div>
 </menu-drawer>
-
 <script
   src="{{ 'header.js' | asset_url }}"
   type="module"

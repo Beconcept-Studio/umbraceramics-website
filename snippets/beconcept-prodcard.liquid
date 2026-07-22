@@ -1,0 +1,50 @@
+{% liquid
+  assign featured_image = product.featured_image
+  if featured_image != blank
+    assign featured_media_url = featured_image | image_url: width: 500
+  endif
+
+  assign selected_variant = product.selected_or_first_available_variant
+  assign price = selected_variant.price | money
+  assign compare_at_price = selected_variant.compare_at_price
+
+  assign show_compare_price = false
+  if compare_at_price > selected_variant.price
+    assign show_compare_price = true
+    assign compare_at_price = compare_at_price | money
+  endif
+%}
+
+<beconcept-product-card
+  data-product-id="{{ product.id }}"
+  class="block relative hover:opacity-80 transition-opacity duration-300"
+>
+  <a class="block md:py-[120px] py-[40px]" href="{{ product.url }}">
+    <div class="space-y-6 lg:max-w-[60%] max-w-[70%] mx-auto">
+      <div class="aspect-[9/11.25] overflow-hidden">
+        {% if featured_media_url %}
+          <img
+            src="{{ featured_media_url }}"
+            alt="{{ featured_image.alt | escape }}"
+            width="{{ featured_image.width }}"
+            height="{{ featured_image.height }}"
+            loading="lazy"
+            class="object-center object-cover w-full h-full"
+          >
+        {% endif %}
+      </div>
+      <div class="md:px-4 space-y-1">
+        <div class="headline-s">{{ product.title }}</div>
+        <div class="flex items-center gap-3 price-label-s">
+          <div class="opacity-60">{{ price }}</div>
+          {% if show_compare_price %}
+            <div class="opacity-30 line-through">{{ compare_at_price }}</div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </a>
+  {% if product.available == false %}
+    <div class="absolute left-1/2 md:bottom-[40px] bottom-0 -translate-x-1/2 label-s opacity-60">Sold out</div>
+  {% endif %}
+</beconcept-product-card>
