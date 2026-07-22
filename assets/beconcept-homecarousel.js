@@ -17,7 +17,7 @@ import {
 const DEFAULT_SPEED = 40;
 const HOVER_TIME_SCALE = 0.08;
 const HOVER_TRANSITION_DURATION = 0.3;
-const MANUAL_PAN_RESUME_DELAY = 50;
+const MANUAL_PAN_RESUME_DELAY = 150;
 
 /**
  * A custom element that scrolls a duplicated image stack in an infinite, seamless loop.

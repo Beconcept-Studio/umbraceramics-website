@@ -13,9 +13,15 @@
       "type": "beconcept-product-list",
       "name": "Product List",
       "settings": {}
+    },
+    "beconcept_final_gif_QLMDA7": {
+      "type": "beconcept-final-gif",
+      "name": "Page Gif Separator",
+      "settings": {}
     }
   },
   "order": [
-    "beconcept_product_list_BTiYL4"
+    "beconcept_product_list_BTiYL4",
+    "beconcept_final_gif_QLMDA7"
   ]
 }

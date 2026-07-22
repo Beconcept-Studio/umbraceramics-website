@@ -1,5 +1,6 @@
-import gsap from 'gsap';
-
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 /**
  * Builds an infinite, seamless vertical loop tween on `track`. Expects `track` to already
  * contain the original content plus a cloned copy appended after it (so the loop can wrap
@@ -10,14 +11,13 @@ import gsap from 'gsap';
  * @returns {gsap.core.Tween}
  */
 export function createInfiniteLoop(track, { height, speed, direction }) {
-  const isUp = direction !== 'down';
+  const isUp = direction !== "down";
   const wrapMin = isUp ? -height : 0;
   const wrapMax = isUp ? 0 : height;
-
   return gsap.to(track, {
     y: isUp ? `-=${height}` : `+=${height}`,
     duration: height / speed,
-    ease: 'none',
+    ease: "none",
     repeat: -1,
     modifiers: {
       y: gsap.utils.unitize(gsap.utils.wrap(wrapMin, wrapMax)),
@@ -46,7 +46,7 @@ export function setHoverTimeScale(tween, timeScale, duration) {
  * @returns {number}
  */
 export function wrapLoopY(y, height, direction) {
-  const isUp = direction !== 'down';
+  const isUp = direction !== "down";
   const wrapMin = isUp ? -height : 0;
   const wrapMax = isUp ? 0 : height;
   return gsap.utils.wrap(wrapMin, wrapMax)(y);
