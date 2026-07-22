@@ -6,6 +6,11 @@
   lang="{{ request.locale.iso_code }}"
 >
   <head>
+    {% if request.path == '/collections/all' %}
+      <script type="text/javascript">
+        window.location.href = '/collections/shop';
+      </script>
+    {% endif %}
     {%- if settings.favicon != blank -%}
       <link
         rel="icon"
