@@ -6,7 +6,7 @@
 
 {% capture cart_icon %}
   <cart-icon
-    class="label-l flex items-center gap-[6px] cursor-pointer"
+    class="lg:label-l headline-m justify-center flex items-center gap-[6px] cursor-pointer"
     data-testid="cart-icon"
   >
     <span class="">
@@ -15,14 +15,19 @@
     {% render 'cart-bubble', limit: 100 %}
   </cart-icon>
 {% endcapture %}
-<header class="mix-blend-exclusion text-blend-typo absolute top-0 left-0 w-full lg:h-[72px] md:h-[64px] z-[999]">
+<header class="mix-blend-exclusion text-blend-typo absolute top-0 left-0 w-full lg:h-[72px] md:h-[64px] h-[48px] z-[999]">
   <div class="div--container common--grid h-full">
     <div class="col-span-5 self-center hidden lg:block">
       {% if section.settings.main_menu %}
         {% assign mainmenu = section.settings.main_menu %}
         <div class="flex items-center gap-10">
           {% for link in mainmenu.links -%}
-            <a href="{{ link.url }}" class="label-l hover:opacity-40 transition-all duration-300">{{ link.title }}</a>
+            <a
+              href="{{ link.url }}"
+              class="label-l hover:opacity-40 transition-all duration-300{% if link.current %} current{% endif %}{% if link.active %} active{% endif %}"
+            >
+              {{- link.title -}}
+            </a>
           {%- endfor %}
         </div>
       {% endif %}
@@ -33,16 +38,26 @@
           href="{{ shop.url }}"
           class="block w-full lg:max-w-[130px] md:max-w-[146px] mx-auto hover:opacity-40 transition-all duration-300"
         >
-          <img class="w-full mx-auto" src="{{ section.settings.mainlogo | image_url: width: 450 }}" />
+          <img
+            class="w-full mx-auto"
+            src="{{ section.settings.mainlogo | image_url: width: 450 }}"
+            width="{{ section.settings.mainlogo.width }}"
+            height="{{ section.settings.mainlogo.height }}"
+          />
         </a>
       {% endif %}
     </div>
     <div class="col-span-5 self-center items-center justify-end hidden lg:flex">
-      <div class="flex items-center gap-10">
+      <nav class="flex items-center gap-10">
         {% if section.settings.customer_account_menu %}
           {% assign rightmenu = section.settings.customer_account_menu %}
           {% for link in rightmenu.links -%}
-            <a href="{{ link.url }}" class="label-l hover:opacity-40 transition-all duration-300">{{ link.title }}</a>
+            <a
+              href="{{ link.url }}"
+              class="label-l hover:opacity-40 transition-all duration-300{% if link.current %} current{% endif %}{% if link.active %} active{% endif %}"
+            >
+              {{- link.title -}}
+            </a>
           {%- endfor %}
         {% endif %}
         <button
@@ -57,18 +72,141 @@
         >
           {{ cart_icon }}
         </button>
-      </div>
+      </nav>
     </div>
     <div class="col-span-3 col-start-10 self-center items-center justify-end lg:hidden flex">
-      <div class="w-6 h-6 aspect-square">
+      <button
+        class="w-6 h-6 aspect-square button-unstyled"
+        on:click="#menu-drawer/toggle"
+        aria-haspopup="dialog"
+        aria-expanded="false"
+        aria-controls="menu-drawer"
+        aria-label="{{ 'accessibility.menu' | t }}"
+      >
         <span class="w-full text-blend-typo">
           {{- 'ic-hamburger.svg' | inline_asset_content -}}
         </span>
-      </div>
+      </button>
     </div>
   </div>
 </header>
 <div class="h-[1px] bg-dark/8 w-full absolute bottom-0 left-0 z-[999]"></div>
+
+<menu-drawer
+  id="menu-drawer"
+  class="bg-main-bg/95 h-[100dvh] fixed inset-0 z-[1000] flex flex-col opacity-0 invisible pointer-events-none transition-[opacity,visibility] duration-300 open:opacity-100 open:visible open:pointer-events-auto"
+>
+  <div class="div--container common--grid border-b border-solid border-dark/8 md:h-[64px] h-[48px] shrink-0">
+    <div class="lg:col-span-2 col-span-4 col-start-5 self-center isolate">
+      {% if section.settings.altlogo %}
+        <a
+          href="{{ shop.url }}"
+          class="block w-full lg:max-w-[130px] md:max-w-[146px] mx-auto hover:opacity-40 transition-all duration-300"
+        >
+          <img
+            class="w-full mx-auto"
+            src="{{ section.settings.altlogo | image_url: width: 450 }}"
+            width="{{ section.settings.altlogo.width }}"
+            height="{{ section.settings.altlogo.height }}"
+          />
+        </a>
+      {% endif %}
+    </div>
+    <div class="col-span-3 col-start-10 self-center items-center justify-end flex">
+      <button
+        class="w-6 h-6 aspect-square button-unstyled"
+        on:click="#menu-drawer/toggle"
+        aria-label="{{ 'actions.close' | t }}"
+      >
+        <span class="w-full text-dark">
+          {{- 'ic-cross.svg' | inline_asset_content -}}
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <div class="h-full flex flex-col">
+    {% if section.settings.main_menu %}
+      <div class="div--container my-auto flex flex-col items-center justify-center">
+        <nav class="flex flex-col items-center justify-center">
+          {% assign mobile = section.settings.main_mobile_menu %}
+          <div class="flex flex-col items-center justify-center">
+            {% for link in mobile.links -%}
+              <a
+                href="{{ link.url }}"
+                class="headline-m py-[10px] text-center{% if link.current %} current{% endif %}{% if link.active %} active{% endif %}"
+              >
+                {{- link.title -}}
+              </a>
+            {%- endfor %}
+          </div>
+          <a
+            class="header-actions__action button-unstyled py-[10px]"
+            href="{{ routes.cart_url }}"
+            aria-haspopup="dialog"
+            aria-expanded="false"
+            aria-controls="cart-drawer"
+            aria-label="{{ 'accessibility.cart' | t }}"
+            aria-describedby="cart-bubble-text"
+            data-testid="cart-drawer-trigger"
+          >
+            {{ cart_icon }}
+          </a>
+          <div class="mx-auto mt-16 max-w-[28px]">
+            <img
+              class="w-full mx-auto"
+              src="{{ 'umbragif.gif' | asset_url }}"
+              width="40"
+              height="40"
+              alt=""
+              loading="lazy"
+            />
+          </div>
+        </nav>
+      </div>
+    {% endif %}
+    {% if section.settings.footer_mobile_menu %}
+      <div class="mt-auto divide-y divide-dark/10 flex flex-col relative">
+        {% assign footermenu = section.settings.footer_mobile_menu %}
+        {% for link in footermenu.links -%}
+          <a
+            href="{{ link.url }}"
+            class="first:border-t first:border-solid first:border-dark/10 px-4 py-[10px] text-center text-dark/60 body-s block hover:opacity-40 transition-opacity duration-300{% if link.current %} current{% endif %}{% if link.active %} active{% endif %}"
+          >
+            {{- link.title -}}
+          </a>
+        {%- endfor %}
+
+        <div
+          id="colophonwrapper"
+          class="absolute z-20 transition-all duration-300 invisible opacity-0 bottom-0 h-full flex flex-col justify-end bg-main-bg/60 w-full"
+        >
+          <div
+            id="colophoncontent"
+            class="translate-y-full bg-main-bg flex flex-wrap border-t border-solid border border-dark/10 transition-all duration-300"
+          >
+            <div class="w-full px-4 py-[10px] text-center text-dark/60 body-s block">© Umbra, 2026</div>
+
+            <div class="flex flex-wrap w-full border-y border-solid divide-x divide-dark/10 border-dark/10">
+              <div class="w-1/2 px-4 py-[10px] text-center text-dark/60 body-s block">
+                <span class="block">Designed by</span>
+                <a class="block underline" href="#">Lorenzo Appiani</a>
+              </div>
+              <div class="w-1/2 px-4 py-[10px] text-center text-dark/60 body-s block">
+                <span class="block">Developed body</span>
+                <a class="underline block" href="">Beconcept</a>
+              </div>
+            </div>
+
+            <div id="hidecolophon" class="w-full px-4 py-[10px] text-center text-dark/60 body-s block">
+              Hide Colophon
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</menu-drawer>
 
 <script
   src="{{ 'header.js' | asset_url }}"
@@ -88,7 +226,12 @@
     {
       "type": "image_picker",
       "id": "mainlogo",
-      "label": "Logo Desktop"
+      "label": "Main Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "altlogo",
+      "label": "Alternative Logo"
     },
     {
       "type": "link_list",
@@ -99,6 +242,16 @@
       "type": "link_list",
       "id": "customer_account_menu",
       "label": "Customer Menu"
+    },
+    {
+      "type": "link_list",
+      "id": "main_mobile_menu",
+      "label": "Main Mobile Menu"
+    },
+    {
+      "type": "link_list",
+      "id": "footer_mobile_menu",
+      "label": "Footer Mobile Menu"
     }
   ],
   "presets": []
