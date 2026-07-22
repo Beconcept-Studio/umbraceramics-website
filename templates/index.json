@@ -16,7 +16,7 @@
         "home_carousel_text": "Ceramics for gatherings",
         "home_carousel": "development-gallery",
         "enable_autoplay": true,
-        "enable_hover_slowdown": true,
+        "enable_hover_slowdown": false,
         "scroll_speed": 60,
         "scroll_direction": "up"
       }

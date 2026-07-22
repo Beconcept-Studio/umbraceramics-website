@@ -1,0 +1,49 @@
+<beconcept-page-loader
+  class="fixed bg-main-bg h-screen flex items-center justify-center w-screen pointer-events-none z-[999999] transition-opacity duration-500"
+  data-loader-time="{{ section.settings.loader_time }}"
+>
+  <div class="mx-auto max-w-[40px] mix-blend-multiply">
+    <img
+      class="w-full mx-auto"
+      src="{{ 'umbragif.gif' | asset_url }}"
+      width="60"
+      height="60"
+      alt=""
+      loading="lazy"
+    />
+  </div>
+</beconcept-page-loader>
+<script>
+  if (sessionStorage.getItem('beconcept:loader-shown')) {
+    document.currentScript.previousElementSibling.style.display = 'none';
+  }
+</script>
+<script src="{{ 'beconcept-loader.js' | asset_url }}" type="module" fetchpriority="low"></script>
+{% schema %}
+{
+  "name": "Page Loader",
+  "class": "section-wrapper",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "range",
+      "id": "loader_time",
+      "min": 0.5,
+      "max": 5,
+      "step": 0.5,
+      "unit": "s",
+      "label": "Loader duration",
+      "default": 3
+    }
+  ],
+  "presets": [
+    {
+      "name": "Page Loader",
+      "category": "Beconcept"
+    }
+  ],
+  "enabled_on": {
+    "groups": ["header"]
+  }
+}
+{% endschema %}

@@ -21,9 +21,15 @@
         "main_mobile_menu": "main-mobile-menu",
         "footer_mobile_menu": "footer-menu"
       }
+    },
+    "beconcept_loader_hN7WE3": {
+      "type": "beconcept-loader",
+      "name": "Page Loader",
+      "settings": {}
     }
   },
   "order": [
-    "header_section"
+    "header_section",
+    "beconcept_loader_hN7WE3"
   ]
 }

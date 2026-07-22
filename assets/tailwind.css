@@ -256,6 +256,9 @@
   .z-\[1000\] {
     z-index: 1000;
   }
+  .z-\[999999\] {
+    z-index: 999999;
+  }
   .col-span-1 {
     grid-column: span 1 / span 1;
   }
@@ -432,6 +435,9 @@
   }
   .w-full {
     width: 100%;
+  }
+  .w-screen {
+    width: 100vw;
   }
   .max-w-\[28px\] {
     max-width: 28px;
@@ -753,6 +759,9 @@
   .mix-blend-exclusion {
     mix-blend-mode: exclusion;
   }
+  .mix-blend-multiply {
+    mix-blend-mode: multiply;
+  }
   .mix-blend-normal {
     mix-blend-mode: normal;
   }
@@ -802,6 +811,10 @@
   .duration-300 {
     --tw-duration: 300ms;
     transition-duration: 300ms;
+  }
+  .duration-500 {
+    --tw-duration: 500ms;
+    transition-duration: 500ms;
   }
   .ease-in-out {
     --tw-ease: var(--ease-in-out);
