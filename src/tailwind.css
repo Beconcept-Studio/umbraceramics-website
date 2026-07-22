@@ -141,6 +141,9 @@
 }
 
 @layer components {
+  a {
+    @apply outline-none focus:outline-none;
+  }
   .div--container {
     @apply w-full md:px-10 px-4;
   }
@@ -160,7 +163,7 @@
 
   /* Headline M — Ivar Headline, Regular, LH 140%, Track 5% */
   .headline-m {
-    @apply font-ivar lg:text-[16px] md:text-[16px] text-[15px] font-normal leading-[140%] tracking-[0.05em];
+    @apply font-ivar lg:text-[16px] md:text-[16px] text-[15px] font-normal leading-[140%] uppercase tracking-[0.05em];
   }
 
   /* Headline S — Ivar Headline, Regular, LH 140%, Track 0% */
@@ -216,7 +219,23 @@
 
 /* HEADER */
 .header-section {
-  @apply lg:h-[72px] md:h-[64px] absolute w-full inset-0;
+  @apply lg:h-[72px] md:h-[64px] h-[48px] absolute w-full inset-0;
+}
+nav a {
+  @apply relative;
+}
+nav a.current:after {
+  content: "";
+  background-image: var(--nav-current-indicator);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  @apply absolute left-1/2 -translate-x-1/2 bottom-1 w-[51px] h-[2px];
+}
+.colophon-open {
+  @apply visible opacity-100 transition-all duration-300;
+}
+.colophon-slided {
+  @apply translate-y-0 transition-all duration-300;
 }
 
 /* COOKIE BANNER */
