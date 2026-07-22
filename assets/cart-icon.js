@@ -1,7 +1,7 @@
-import { Component } from '@theme/component';
-import { onAnimationEnd } from '@theme/utilities';
-import { ThemeEvents } from '@theme/events';
-import { StandardEvents, CartLinesUpdateEvent } from '@shopify/events';
+import { Component } from "@theme/component";
+import { onAnimationEnd } from "@theme/utilities";
+import { ThemeEvents } from "@theme/events";
+import { StandardEvents, CartLinesUpdateEvent } from "@shopify/events";
 
 /**
  * A custom element that displays a cart icon.
@@ -14,30 +14,36 @@ import { StandardEvents, CartLinesUpdateEvent } from '@shopify/events';
  * @extends {Component<Refs>}
  */
 class CartIcon extends Component {
-  requiredRefs = ['cartBubble', 'cartBubbleText', 'cartBubbleCount'];
+  requiredRefs = ["cartBubble", "cartBubbleText", "cartBubbleCount"];
 
   /** @type {number} */
   get currentCartCount() {
-    return parseInt(this.refs.cartBubbleCount.textContent ?? '0', 10);
+    return parseInt(this.refs.cartBubbleCount.textContent ?? "0", 10);
   }
 
   set currentCartCount(value) {
-    this.refs.cartBubbleCount.textContent = value < 100 ? String(value) : '';
+    this.refs.cartBubbleCount.textContent = value < 100 ? String(value) : "";
   }
 
   connectedCallback() {
     super.connectedCallback();
 
-    document.addEventListener(StandardEvents.cartLinesUpdate, this.onCartUpdate);
-    window.addEventListener('pageshow', this.onPageShow);
+    document.addEventListener(
+      StandardEvents.cartLinesUpdate,
+      this.onCartUpdate,
+    );
+    window.addEventListener("pageshow", this.onPageShow);
     this.ensureCartBubbleIsCorrect();
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
 
-    document.removeEventListener(StandardEvents.cartLinesUpdate, this.onCartUpdate);
-    window.removeEventListener('pageshow', this.onPageShow);
+    document.removeEventListener(
+      StandardEvents.cartLinesUpdate,
+      this.onCartUpdate,
+    );
+    window.removeEventListener("pageshow", this.onPageShow);
   }
 
   /**
@@ -62,7 +68,8 @@ class CartIcon extends Component {
         this.renderCartBubble(itemCount);
       })
       .catch((error) => {
-        if (error?.name !== 'AbortError') console.warn('[cart-icon] Event promise rejected:', error);
+        if (error?.name !== "AbortError")
+          console.warn("[cart-icon] Event promise rejected:", error);
       });
   };
 
@@ -72,19 +79,16 @@ class CartIcon extends Component {
    * @param {boolean} [animate=true] - Whether to animate the bubble.
    */
   renderCartBubble = async (itemCount, animate = true) => {
-    this.refs.cartBubbleCount.classList.toggle('hidden', itemCount === 0);
-    this.refs.cartBubble.classList.toggle('visually-hidden', itemCount === 0);
-
     this.currentCartCount = itemCount;
 
-    this.classList.toggle('header-actions__cart-icon--has-cart', itemCount > 0);
+    this.classList.toggle("header-actions__cart-icon--has-cart", itemCount > 0);
 
     sessionStorage.setItem(
-      'cart-count',
+      "cart-count",
       JSON.stringify({
         value: String(this.currentCartCount),
         timestamp: Date.now(),
-      })
+      }),
     );
 
     if (!animate || itemCount === 0) return;
@@ -93,10 +97,10 @@ class CartIcon extends Component {
     // Use requestAnimationFrame to ensure the browser sees the state change
     await new Promise((resolve) => requestAnimationFrame(resolve));
 
-    this.refs.cartBubble.classList.add('cart-bubble--animating');
+    this.refs.cartBubble.classList.add("cart-bubble--animating");
     await onAnimationEnd(this.refs.cartBubbleText);
 
-    this.refs.cartBubble.classList.remove('cart-bubble--animating');
+    this.refs.cartBubble.classList.remove("cart-bubble--animating");
   };
 
   /**
@@ -106,7 +110,7 @@ class CartIcon extends Component {
     // Ensure refs are available
     if (!this.refs.cartBubbleCount) return;
 
-    const sessionStorageCount = sessionStorage.getItem('cart-count');
+    const sessionStorageCount = sessionStorage.getItem("cart-count");
 
     // If no session storage data, nothing to check
     if (sessionStorageCount === null) return;
@@ -133,6 +137,6 @@ class CartIcon extends Component {
   };
 }
 
-if (!customElements.get('cart-icon')) {
-  customElements.define('cart-icon', CartIcon);
+if (!customElements.get("cart-icon")) {
+  customElements.define("cart-icon", CartIcon);
 }
