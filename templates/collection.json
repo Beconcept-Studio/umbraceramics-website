@@ -12,15 +12,16 @@
     "beconcept_product_list_BTiYL4": {
       "type": "beconcept-product-list",
       "name": "Product List",
-      "settings": {
-        "home_carousel_text": "Ceramics for gatherings",
-        "home_carousel": "",
-        "enable_autoplay": true,
-        "enable_hover_slowdown": true,
-        "scroll_speed": 40,
-        "scroll_direction": "up"
-      }
+      "settings": {}
+    },
+    "beconcept_final_gif_QLMDA7": {
+      "type": "beconcept-final-gif",
+      "name": "Page Gif Separator",
+      "settings": {}
     }
   },
-  "order": ["beconcept_product_list_BTiYL4"]
+  "order": [
+    "beconcept_product_list_BTiYL4",
+    "beconcept_final_gif_QLMDA7"
+  ]
 }

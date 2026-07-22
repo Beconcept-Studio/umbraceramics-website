@@ -8,7 +8,6 @@
       "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-amber-200: oklch(92.4% 0.12 95.746);
     --color-gray-50: oklch(98.5% 0.002 247.839);
     --color-black: #000;
     --color-white: #fff;
@@ -233,21 +232,6 @@
   .bottom-0 {
     bottom: 0px;
   }
-  .bottom-\[0px\] {
-    bottom: 0px;
-  }
-  .bottom-\[10px\] {
-    bottom: 10px;
-  }
-  .bottom-\[20px\] {
-    bottom: 20px;
-  }
-  .bottom-\[40px\] {
-    bottom: 40px;
-  }
-  .bottom-\[60px\] {
-    bottom: 60px;
-  }
   .left-0 {
     left: 0px;
   }
@@ -386,6 +370,9 @@
   .inline {
     display: inline;
   }
+  .inline-block {
+    display: inline-block;
+  }
   .table {
     display: table;
   }
@@ -412,9 +399,6 @@
   }
   .aspect-\[9\/11\.25\] {
     aspect-ratio: 9/11.25;
-  }
-  .aspect-\[9\/11\.348\] {
-    aspect-ratio: 9/11.348;
   }
   .aspect-square {
     aspect-ratio: 1 / 1;
@@ -454,9 +438,6 @@
   }
   .max-w-\[40px\] {
     max-width: 40px;
-  }
-  .max-w-\[60\%\] {
-    max-width: 60%;
   }
   .max-w-\[70\%\] {
     max-width: 70%;
@@ -633,9 +614,6 @@
       border-color: color-mix(in oklab, var(--color-dark) 10%, transparent);
     }
   }
-  .bg-amber-200 {
-    background-color: var(--color-amber-200);
-  }
   .bg-black {
     background-color: var(--color-black);
   }
@@ -686,9 +664,6 @@
   }
   .py-\[40px\] {
     padding-block: 40px;
-  }
-  .py-\[120px\] {
-    padding-block: 120px;
   }
   .text-center {
     text-align: center;
@@ -869,9 +844,6 @@
   @media (width >= 48rem) {
     .md\:bottom-\[40px\] {
       bottom: 40px;
-    }
-    .md\:bottom-\[60px\] {
-      bottom: 60px;
     }
     .md\:col-span-3 {
       grid-column: span 3 / span 3;

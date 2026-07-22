@@ -17,7 +17,7 @@ import {
 const DEFAULT_SPEED = 40;
 const HOVER_TIME_SCALE = 0.08;
 const HOVER_TRANSITION_DURATION = 0.3;
-const MANUAL_PAN_RESUME_DELAY = 500;
+const MANUAL_PAN_RESUME_DELAY = 150;
 
 /**
  * A custom element that scrolls a duplicated image stack in an infinite, seamless loop.
@@ -146,7 +146,9 @@ class BeconceptHomeCarouselComponent extends Component {
 
   /** @returns {HTMLElement} a copy of `content` stripped of `ref` attributes, marked decorative. */
   #cloneContent() {
-    const clone = /** @type {HTMLElement} */ (this.refs.content.cloneNode(true));
+    const clone = /** @type {HTMLElement} */ (
+      this.refs.content.cloneNode(true)
+    );
     clone.setAttribute("aria-hidden", "true");
     clone.removeAttribute("ref");
     for (const el of clone.querySelectorAll("[ref]")) el.removeAttribute("ref");

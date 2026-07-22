@@ -37,7 +37,8 @@
       "@theme/scroll-container": "{{ 'scroll-container.js' | asset_url }}",
       "@theme/theme-drawer": "{{ 'theme-drawer.js' | asset_url }}",
       "@theme/gsap-animations": "{{ 'gsap-animations.js' | asset_url }}",
-      "gsap": "{{ 'gsap.js' | asset_url }}"
+      "gsap": "{{ 'gsap.js' | asset_url }}",
+      "gsap/ScrollTrigger": "{{ 'ScrollTrigger.js' | asset_url }}"
     }
   }
 </script>
@@ -279,6 +280,12 @@
     RecentlyViewed.addProduct('{{ product.id }}');
   </script>
 {% endif %}
+
+<script
+  src="{{ 'gsap-animations.js' | asset_url }}"
+  type="module"
+  fetchpriority="low"
+></script>
 
 <script
   src="{{ 'auto-close-details.js' | asset_url }}"
