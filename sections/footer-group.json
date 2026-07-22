@@ -14,7 +14,9 @@
     "footer_MAkxrV": {
       "type": "footer",
       "name": "Footer Block",
-      "settings": {}
+      "settings": {
+        "footer_menu": "footer-menu"
+      }
     }
   },
   "order": [

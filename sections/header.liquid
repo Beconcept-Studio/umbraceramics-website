@@ -15,14 +15,14 @@
     {% render 'cart-bubble', limit: 100 %}
   </cart-icon>
 {% endcapture %}
-<header class="w-full h-[72px] z-[999] border-b border-solid border-dark/8 mix-blend-exclusion text-blend-typo absolute top-0 left-0">
+<header class="mix-blend-exclusion text-blend-typo absolute top-0 left-0 w-full h-[72px] z-[999]">
   <div class="div--container common--grid h-full">
     <div class="col-span-5 self-center">
       {% if section.settings.main_menu %}
         {% assign mainmenu = section.settings.main_menu %}
         <div class="flex items-center gap-10">
           {% for link in mainmenu.links -%}
-            <a href="{{ link.url }}" class="label-l">{{ link.title }}</a>
+            <a href="{{ link.url }}" class="label-l hover:opacity-40 transition-all duration-300">{{ link.title }}</a>
           {%- endfor %}
         </div>
       {% endif %}
@@ -31,7 +31,7 @@
       {% if section.settings.mainlogo %}
         <a
           href="{{ shop.url }}"
-          class="block w-full max-w-[130px] mx-auto hover:opacity-40 transition-all duration-500"
+          class="block w-full max-w-[130px] mx-auto hover:opacity-40 transition-all duration-300"
         >
           <img src="{{ section.settings.mainlogo | image_url: width: 450 }}" />
         </a>
@@ -42,7 +42,7 @@
         {% if section.settings.customer_account_menu %}
           {% assign rightmenu = section.settings.customer_account_menu %}
           {% for link in rightmenu.links -%}
-            <a href="{{ link.url }}" class="label-l">{{ link.title }}</a>
+            <a href="{{ link.url }}" class="label-l hover:opacity-40 transition-all duration-300">{{ link.title }}</a>
           {%- endfor %}
         {% endif %}
         <button
@@ -61,6 +61,7 @@
     </div>
   </div>
 </header>
+<div class="h-[1px] bg-dark/8 w-full absolute bottom-0 left-0 z-[999]"></div>
 
 <script
   src="{{ 'header.js' | asset_url }}"
@@ -71,7 +72,7 @@
 {
   "name": "t:names.header",
   "tag": "header",
-  "class": "header-section",
+  "class": "header-section relative",
   "settings": [
     {
       "type": "header",

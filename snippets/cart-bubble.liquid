@@ -25,7 +25,7 @@
     ref="cartBubbleText"
     id="cart-bubble-text"
     class="cart-bubble__text"
-  >
+    >(
     <span
       class=""
       ref="cartBubbleCount"
@@ -33,11 +33,10 @@
       data-testid="cart-bubble"
     >
       {%- if limit == blank or cart.item_count < limit %}
-        (
         {{- cart.item_count -}}
-        )
       {%- endif -%}
     </span>
+    )
   </span>
 </div>
 

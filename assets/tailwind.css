@@ -8,8 +8,6 @@
       "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-red-500: oklch(63.7% 0.237 25.331);
-    --color-green-500: oklch(72.3% 0.219 149.579);
     --color-gray-50: oklch(98.5% 0.002 247.839);
     --color-black: #000;
     --color-white: #fff;
@@ -225,6 +223,9 @@
   .top-1\/2 {
     top: calc(1 / 2 * 100%);
   }
+  .bottom-0 {
+    bottom: 0px;
+  }
   .left-0 {
     left: 0px;
   }
@@ -323,6 +324,9 @@
   }
   .aspect-square {
     aspect-ratio: 1 / 1;
+  }
+  .h-\[1px\] {
+    height: 1px;
   }
   .h-\[72px\] {
     height: 72px;
@@ -435,10 +439,6 @@
     border-top-style: var(--tw-border-style);
     border-top-width: 1px;
   }
-  .border-b {
-    border-bottom-style: var(--tw-border-style);
-    border-bottom-width: 1px;
-  }
   .border-solid {
     --tw-border-style: solid;
     border-style: solid;
@@ -451,6 +451,12 @@
   }
   .bg-black {
     background-color: var(--color-black);
+  }
+  .bg-dark\/8 {
+    background-color: color-mix(in srgb, #151617 8%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-dark) 8%, transparent);
+    }
   }
   .bg-gray-50 {
     background-color: var(--color-gray-50);
@@ -558,9 +564,9 @@
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
-  .duration-500 {
-    --tw-duration: 500ms;
-    transition-duration: 500ms;
+  .duration-300 {
+    --tw-duration: 300ms;
+    transition-duration: 300ms;
   }
   .ease-in-out {
     --tw-ease: var(--ease-in-out);
@@ -832,6 +838,94 @@
     @media (width >= 64rem) {
       font-size: 9px;
     }
+  }
+}
+.header-section {
+  height: 72px;
+  position: absolute;
+  width: 100%;
+  inset: 0;
+}
+body .shopify-pc__banner__dialog {
+  position: fixed;
+  z-index: 2000000;
+  box-shadow: 0;
+  max-height: 90%;
+  box-sizing: border-box;
+  opacity: 1;
+  padding: 16px 24px;
+  background-color: var(--color-main-bg);
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  border: none;
+  text-align: left;
+  bottom: 0%;
+  width: 100%;
+}
+body .shopify-pc__banner__dialog .shopify-pc__banner__body {
+  font-family: var(--font-satoshi);
+  font-size: 13px;
+  --tw-leading: 140%;
+  line-height: 140%;
+  --tw-font-weight: var(--font-weight-normal);
+  font-weight: var(--font-weight-normal);
+  --tw-tracking: 0.01em;
+  letter-spacing: 0.01em;
+  @media (width >= 48rem) {
+    font-size: 13px;
+  }
+  @media (width >= 64rem) {
+    font-size: 11px;
+  }
+}
+body .shopify-pc__banner__btns {
+  justify-content: flex-end;
+}
+@media only screen and (max-width: 1280px) {
+  body .shopify-pc__banner__btns {
+    justify-content: start;
+  }
+}
+body .shopify-pc__banner__dialog button, body .shopify-pc__banner__dialog button.shopify-pc__banner__btn-accept, body .shopify-pc__banner__dialog button.shopify-pc__banner__btn-decline, body .shopify-pc__banner__dialog button.shopify-pc__banner__btn-manage-prefs {
+  min-height: calc(var(--spacing) * 10);
+  flex-basis: auto;
+  border-radius: 0;
+  border-style: var(--tw-border-style);
+  border-width: 1px;
+  --tw-border-style: solid;
+  border-style: solid;
+  border-color: color-mix(in srgb, #151617 16%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    border-color: color-mix(in oklab, var(--color-dark) 16%, transparent);
+  }
+  background-color: transparent;
+  padding-inline: calc(var(--spacing) * 5);
+  padding-block: calc(var(--spacing) * 2);
+  font-family: var(--font-ivar);
+  font-size: 15px;
+  --tw-leading: 100%;
+  line-height: 100%;
+  --tw-font-weight: var(--font-weight-normal);
+  font-weight: var(--font-weight-normal);
+  --tw-tracking: 0em;
+  letter-spacing: 0em;
+  text-decoration-line: none;
+  transition-property: all;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+  --tw-duration: 300ms;
+  transition-duration: 300ms;
+  &:hover {
+    @media (hover: hover) {
+      opacity: 40%;
+    }
+  }
+  @media (width >= 48rem) {
+    font-size: 15px;
+  }
+  @media (width >= 64rem) {
+    font-size: 15px;
   }
 }
 beconcept-homecarousel-component {

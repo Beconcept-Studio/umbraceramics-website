@@ -214,6 +214,51 @@
   }
 }
 
+/* HEADER */
+.header-section {
+  height: 72px;
+  position: absolute;
+  width: 100%;
+  inset: 0;
+}
+
+/* COOKIE BANNER */
+body .shopify-pc__banner__dialog {
+  position: fixed;
+  z-index: 2000000;
+  box-shadow: 0;
+  max-height: 90%;
+  box-sizing: border-box;
+  opacity: 1;
+  padding: 16px 24px;
+  background-color: var(--color-main-bg);
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  border: none;
+  text-align: left;
+  bottom: 0%;
+  width: 100%;
+}
+
+body .shopify-pc__banner__dialog .shopify-pc__banner__body {
+  @apply font-satoshi lg:text-[11px] md:text-[13px] text-[13px] font-normal leading-[140%] tracking-[0.01em];
+}
+body .shopify-pc__banner__btns {
+  @apply justify-end;
+}
+@media only screen and (max-width: 1280px) {
+  body .shopify-pc__banner__btns {
+    justify-content: start;
+  }
+}
+body .shopify-pc__banner__dialog button,
+body .shopify-pc__banner__dialog button.shopify-pc__banner__btn-accept,
+body .shopify-pc__banner__dialog button.shopify-pc__banner__btn-decline,
+body .shopify-pc__banner__dialog button.shopify-pc__banner__btn-manage-prefs {
+  @apply px-5 py-2 font-ivar lg:text-[15px] bg-transparent no-underline border border-solid border-dark/16 rounded-none md:text-[15px] text-[15px] font-normal leading-[100%] tracking-[0em] min-h-10 basis-auto hover:opacity-40 transition-all duration-300;
+}
+
 /* --- Homepage Carousel --- */
 beconcept-homecarousel-component {
   display: block;
