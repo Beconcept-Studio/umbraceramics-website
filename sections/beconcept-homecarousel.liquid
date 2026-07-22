@@ -69,14 +69,16 @@
                 ref="items[]"
                 on:pointerenter="/onItemEnter"
                 on:pointerleave="/onItemLeave"
-                class="{{ custom_classes }} overflow-hidden bg-gray-50 relative group"
+                class="{{ custom_classes }} overflow-hidden relative group"
               >
-                {{
-                  image
-                  | image_url: width: 800
-                  | image_tag: loading: 'lazy', class: 'w-full h-full object-cover object-center', alt: image.alt
-                  | default: section.settings.home_carousel.id_gallery
-                }}
+                <a href="{{ routes.all_products_collection_url }}" class="block w-full h-full">
+                  {{
+                    image
+                    | image_url: width: 800
+                    | image_tag: loading: 'lazy', class: 'w-full h-full object-cover object-center', alt: image.alt
+                    | default: section.settings.home_carousel.id_gallery
+                  }}
+                </a>
               </div>
             </div>
           {%- endfor -%}
@@ -85,24 +87,6 @@
     {%- endif -%}
   </div>
 </beconcept-homecarousel-component>
-
-{% stylesheet %}
-  beconcept-homecarousel-component {
-    display: block;
-  }
-
-  beconcept-homecarousel-component[data-loop-active] {
-    overflow: hidden;
-  }
-
-  footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 999;
-  }
-{% endstylesheet %}
-
 {% schema %}
 {
   "name": "Homepage Carousel",

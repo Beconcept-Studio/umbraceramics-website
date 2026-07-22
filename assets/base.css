@@ -609,21 +609,6 @@ p:empty {
   font-size: smaller;
 }
 
-/* Links */
-a {
-  color: currentcolor;
-  text-decoration-color: transparent;
-  text-decoration-thickness: 0.075em;
-  text-underline-offset: 0.125em;
-  transition:
-    text-decoration-color var(--animation-speed) var(--animation-easing),
-    color var(--animation-speed) var(--animation-easing);
-}
-
-:is(h1, h2, h3, h4, h5, h6, p) > a:hover {
-  color: rgb(var(--color-rgb, var(--color-foreground-rgb)) / 0.7);
-}
-
 /* Add underline to text using our paragraph styles only. */
 p:not(.h1, .h2, .h3, .h4, .h5, .h6) a:where(:not(.button, .button-secondary)),
 .rte

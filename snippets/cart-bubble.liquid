@@ -14,27 +14,28 @@
 
 <div
   ref="cartBubble"
-  class="cart-bubble{% if cart == empty %} visually-hidden{% endif %}"
+  class="cart-bubble"
   style="--cart-bubble-background-fallback: {{ bubble_bg_fallback }}; --cart-bubble-text-fallback: {{ bubble_text_fallback }};"
   {% assign item_count = cart.item_count %}
   {% if item_count <= 99 %}
     data-maintain-ratio
   {% endif %}
 >
-  <span class="cart-bubble__background"></span>
   <span
     ref="cartBubbleText"
     id="cart-bubble-text"
     class="cart-bubble__text"
   >
     <span
-      class="cart-bubble__text-count{% if cart == empty %} hidden{% endif %}"
+      class=""
       ref="cartBubbleCount"
       aria-hidden="true"
       data-testid="cart-bubble"
     >
       {%- if limit == blank or cart.item_count < limit %}
+        (
         {{- cart.item_count -}}
+        )
       {%- endif -%}
     </span>
   </span>

@@ -1,31 +1,63 @@
-<header class="w-full h-[72px] z-[999] fixed top-0 left-0 border-b border-solid border-dark/15">
+<script
+  type="module"
+  src="{{ 'cart-icon.js' | asset_url }}"
+  fetchpriority="low"
+></script>
+
+{% capture cart_icon %}
+  <cart-icon
+    class="label-l flex items-center gap-[6px] cursor-pointer"
+    data-testid="cart-icon"
+  >
+    <span class="">
+      {{ 'content.cart_title' | t }}
+    </span>
+    {% render 'cart-bubble', limit: 100 %}
+  </cart-icon>
+{% endcapture %}
+<header class="w-full h-[72px] z-[999] border-b border-solid border-dark/8 mix-blend-exclusion text-blend-typo absolute top-0 left-0">
   <div class="div--container common--grid h-full">
     <div class="col-span-5 self-center">
       {% if section.settings.main_menu %}
         {% assign mainmenu = section.settings.main_menu %}
         <div class="flex items-center gap-10">
           {% for link in mainmenu.links -%}
-            <a href="{{ link.url }}" class="mix-blend-difference label-l text-white">{{ link.title }}</a>
+            <a href="{{ link.url }}" class="label-l">{{ link.title }}</a>
           {%- endfor %}
         </div>
       {% endif %}
     </div>
-    <div class="col-span-2 self-center">
+    <div class="col-span-2 self-center isolate mix-blend-normal">
       {% if section.settings.mainlogo %}
-        <a href="{{ shop.url }}" class="block w-full max-w-[130px] mx-auto">
+        <a
+          href="{{ shop.url }}"
+          class="block w-full max-w-[130px] mx-auto hover:opacity-40 transition-all duration-500"
+        >
           <img src="{{ section.settings.mainlogo | image_url: width: 450 }}" />
         </a>
       {% endif %}
     </div>
     <div class="col-span-5 self-center flex items-center justify-end">
-      {% if section.settings.customer_account_menu %}
-        {% assign rightmenu = section.settings.customer_account_menu %}
-        <div class="flex items-center gap-10">
+      <div class="flex items-center gap-10">
+        {% if section.settings.customer_account_menu %}
+          {% assign rightmenu = section.settings.customer_account_menu %}
           {% for link in rightmenu.links -%}
-            <a href="{{ link.url }}" class="mix-blend-difference label-l">{{ link.title }}</a>
+            <a href="{{ link.url }}" class="label-l">{{ link.title }}</a>
           {%- endfor %}
-        </div>
-      {% endif %}
+        {% endif %}
+        <button
+          class="header-actions__action button-unstyled"
+          on:click="#cart-drawer/toggle"
+          aria-haspopup="dialog"
+          aria-expanded="false"
+          aria-controls="cart-drawer"
+          aria-label="{{ 'accessibility.cart' | t }}"
+          aria-describedby="cart-bubble-text"
+          data-testid="cart-drawer-trigger"
+        >
+          {{ cart_icon }}
+        </button>
+      </div>
     </div>
   </div>
 </header>

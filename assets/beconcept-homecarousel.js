@@ -1,6 +1,7 @@
 import { Component } from '@theme/component';
 import { debounce, ResizeNotifier } from '@theme/utilities';
 import gsap from 'gsap';
+import { createInfiniteLoop, setHoverTimeScale } from '@theme/gsap-animations';
 
 const DEFAULT_SPEED = 40;
 const HOVER_TIME_SCALE = 0.08;
@@ -31,8 +32,18 @@ class BeconceptHomeCarouselComponent extends Component {
   /** @type {ReturnType<typeof gsap.matchMedia> | null} */
   #mm = null;
 
+  get #autoplayEnabled() {
+    return this.dataset.autoplay === 'true';
+  }
+
+  get #hoverSlowdownEnabled() {
+    return this.dataset.hoverSlowdown === 'true';
+  }
+
   connectedCallback() {
     super.connectedCallback();
+
+    if (!this.#autoplayEnabled) return;
 
     this.#mm = gsap.matchMedia();
     this.#mm.add('(prefers-reduced-motion: no-preference)', () => {
@@ -55,13 +66,13 @@ class BeconceptHomeCarouselComponent extends Component {
   }
 
   onItemEnter() {
-    if (!this.#tween) return;
-    gsap.to(this.#tween, { timeScale: HOVER_TIME_SCALE, duration: HOVER_TRANSITION_DURATION, overwrite: true });
+    if (!this.#tween || !this.#hoverSlowdownEnabled) return;
+    setHoverTimeScale(this.#tween, HOVER_TIME_SCALE, HOVER_TRANSITION_DURATION);
   }
 
   onItemLeave() {
-    if (!this.#tween) return;
-    gsap.to(this.#tween, { timeScale: 1, duration: HOVER_TRANSITION_DURATION, overwrite: true });
+    if (!this.#tween || !this.#hoverSlowdownEnabled) return;
+    setHoverTimeScale(this.#tween, 1, HOVER_TRANSITION_DURATION);
   }
 
   #handleResize = debounce(() => {
@@ -82,19 +93,9 @@ class BeconceptHomeCarouselComponent extends Component {
     track.appendChild(this.#clone);
 
     const speed = Number(this.dataset.speed) || DEFAULT_SPEED;
-    const isUp = this.dataset.direction !== 'down';
-    const wrapMin = isUp ? -height : 0;
-    const wrapMax = isUp ? 0 : height;
+    const direction = this.dataset.direction === 'down' ? 'down' : 'up';
 
-    this.#tween = gsap.to(track, {
-      y: isUp ? `-=${height}` : `+=${height}`,
-      duration: height / speed,
-      ease: 'none',
-      repeat: -1,
-      modifiers: {
-        y: gsap.utils.unitize(gsap.utils.wrap(wrapMin, wrapMax)),
-      },
-    });
+    this.#tween = createInfiniteLoop(track, { height, speed, direction });
 
     this.setAttribute('data-loop-active', '');
   }

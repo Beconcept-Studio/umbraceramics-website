@@ -14,8 +14,6 @@
     "header_section": {
       "type": "header",
       "settings": {
-        "mainlogo": "shopify://shop_images/umbralogo.svg",
-        "main_menu": "main-menu",
         "customer_account_menu": "footer"
       }
     }
