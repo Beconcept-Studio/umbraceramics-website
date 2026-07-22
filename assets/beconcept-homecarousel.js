@@ -1,7 +1,7 @@
-import { Component } from '@theme/component';
-import { debounce, ResizeNotifier, mediaQueryLarge } from '@theme/utilities';
-import gsap from 'gsap';
-import { createInfiniteLoop, setHoverTimeScale } from '@theme/gsap-animations';
+import { Component } from "@theme/component";
+import { debounce, ResizeNotifier, mediaQueryLarge } from "@theme/utilities";
+import gsap from "gsap";
+import { createInfiniteLoop, setHoverTimeScale } from "@theme/gsap-animations";
 
 const DEFAULT_SPEED = 40;
 const HOVER_TIME_SCALE = 0.08;
@@ -18,7 +18,7 @@ const HOVER_TRANSITION_DURATION = 0.3;
  * @extends Component<Refs>
  */
 class BeconceptHomeCarouselComponent extends Component {
-  requiredRefs = ['track', 'content'];
+  requiredRefs = ["track", "content"];
 
   /** @type {gsap.core.Tween | null} */
   #tween = null;
@@ -33,23 +33,26 @@ class BeconceptHomeCarouselComponent extends Component {
   #mm = null;
 
   get #autoplayEnabled() {
-    return this.dataset.autoplay === 'true';
+    return this.dataset.autoplay === "true";
   }
 
   get #hoverSlowdownEnabled() {
-    return this.dataset.hoverSlowdown === 'true';
+    return this.dataset.hoverSlowdown === "true";
   }
 
   connectedCallback() {
     super.connectedCallback();
 
     this.#lockMobileHeight();
-    mediaQueryLarge.addEventListener('change', this.#lockMobileHeight);
+    mediaQueryLarge.addEventListener("change", this.#lockMobileHeight);
+
+    this.#lockMobileHeight();
+    mediaQueryLarge.addEventListener("change", this.#lockMobileHeight);
 
     if (!this.#autoplayEnabled) return;
 
     this.#mm = gsap.matchMedia();
-    this.#mm.add('(prefers-reduced-motion: no-preference)', () => {
+    this.#mm.add("(prefers-reduced-motion: no-preference)", () => {
       this.#buildLoop();
       this.#resizeObserver = new ResizeNotifier(this.#handleResize);
       this.#resizeObserver.observe(this.refs.content);
@@ -64,7 +67,8 @@ class BeconceptHomeCarouselComponent extends Component {
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    mediaQueryLarge.removeEventListener('change', this.#lockMobileHeight);
+    mediaQueryLarge.removeEventListener("change", this.#lockMobileHeight);
+    mediaQueryLarge.removeEventListener("change", this.#lockMobileHeight);
     this.#mm?.revert();
     this.#mm = null;
   }
@@ -76,8 +80,8 @@ class BeconceptHomeCarouselComponent extends Component {
    */
   #lockMobileHeight = () => {
     if (mediaQueryLarge.matches) {
-      this.style.removeProperty('height');
-      this.style.removeProperty('min-height');
+      this.style.removeProperty("height");
+      this.style.removeProperty("min-height");
       return;
     }
     const height = `${window.innerHeight}px`;
@@ -107,21 +111,22 @@ class BeconceptHomeCarouselComponent extends Component {
     if (!height) return;
 
     this.#clone = /** @type {HTMLElement} */ (content.cloneNode(true));
-    this.#clone.setAttribute('aria-hidden', 'true');
-    this.#clone.removeAttribute('ref');
-    for (const el of this.#clone.querySelectorAll('[ref]')) el.removeAttribute('ref');
+    this.#clone.setAttribute("aria-hidden", "true");
+    this.#clone.removeAttribute("ref");
+    for (const el of this.#clone.querySelectorAll("[ref]"))
+      el.removeAttribute("ref");
     track.appendChild(this.#clone);
 
     const speed = Number(this.dataset.speed) || DEFAULT_SPEED;
-    const direction = this.dataset.direction === 'down' ? 'down' : 'up';
+    const direction = this.dataset.direction === "down" ? "down" : "up";
 
     this.#tween = createInfiniteLoop(track, { height, speed, direction });
 
-    this.setAttribute('data-loop-active', '');
+    this.setAttribute("data-loop-active", "");
   }
 
   #teardownLoop() {
-    this.removeAttribute('data-loop-active');
+    this.removeAttribute("data-loop-active");
 
     this.#tween?.kill();
     this.#tween = null;
@@ -133,6 +138,9 @@ class BeconceptHomeCarouselComponent extends Component {
   }
 }
 
-if (!customElements.get('beconcept-homecarousel-component')) {
-  customElements.define('beconcept-homecarousel-component', BeconceptHomeCarouselComponent);
+if (!customElements.get("beconcept-homecarousel-component")) {
+  customElements.define(
+    "beconcept-homecarousel-component",
+    BeconceptHomeCarouselComponent,
+  );
 }
