@@ -141,6 +141,10 @@
 }
 
 @layer components {
+  html,
+  body {
+    overscroll-behavior: none;
+  }
   a {
     @apply outline-none focus:outline-none;
   }
