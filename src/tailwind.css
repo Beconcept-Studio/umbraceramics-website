@@ -142,7 +142,7 @@
 
 @layer components {
   .div--container {
-    @apply w-full px-10;
+    @apply w-full md:px-10 px-4;
   }
   .common--grid {
     @apply grid grid-cols-12 gap-4;
@@ -216,10 +216,7 @@
 
 /* HEADER */
 .header-section {
-  height: 72px;
-  position: absolute;
-  width: 100%;
-  inset: 0;
+  @apply lg:h-[72px] md:h-[64px] absolute w-full inset-0;
 }
 
 /* COOKIE BANNER */
