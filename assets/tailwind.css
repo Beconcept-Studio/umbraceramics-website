@@ -331,6 +331,12 @@
   .mt-16 {
     margin-top: calc(var(--spacing) * 16);
   }
+  .mt-\[120px\] {
+    margin-top: 120px;
+  }
+  .mt-\[200px\] {
+    margin-top: 200px;
+  }
   .mt-auto {
     margin-top: auto;
   }
@@ -621,9 +627,27 @@
   .text-right {
     text-align: right;
   }
+  .font-ivar {
+    font-family: var(--font-ivar);
+  }
   .text-base {
     font-size: var(--text-base);
     line-height: var(--tw-leading, var(--text-base--line-height));
+  }
+  .text-\[15px\] {
+    font-size: 15px;
+  }
+  .leading-\[140\%\] {
+    --tw-leading: 140%;
+    line-height: 140%;
+  }
+  .font-normal {
+    --tw-font-weight: var(--font-weight-normal);
+    font-weight: var(--font-weight-normal);
+  }
+  .tracking-\[0\.05em\] {
+    --tw-tracking: 0.05em;
+    letter-spacing: 0.05em;
   }
   .text-wrap {
     text-wrap: wrap;
@@ -792,6 +816,24 @@
     .md\:col-start-10 {
       grid-column-start: 10;
     }
+    .md\:mt-\[50px\] {
+      margin-top: 50px;
+    }
+    .md\:mt-\[130px\] {
+      margin-top: 130px;
+    }
+    .md\:mt-\[140px\] {
+      margin-top: 140px;
+    }
+    .md\:mt-\[150px\] {
+      margin-top: 150px;
+    }
+    .md\:mt-\[180px\] {
+      margin-top: 180px;
+    }
+    .md\:mt-\[250px\] {
+      margin-top: 250px;
+    }
     .md\:h-\[64px\] {
       height: 64px;
     }
@@ -803,6 +845,9 @@
     }
     .md\:gap-4 {
       gap: calc(var(--spacing) * 4);
+    }
+    .md\:text-\[16px\] {
+      font-size: 16px;
     }
   }
   @media (width >= 64rem) {
@@ -851,6 +896,39 @@
     .lg\:col-start-18 {
       grid-column-start: 18;
     }
+    .lg\:-mt-\[25px\] {
+      margin-top: calc(25px * -1);
+    }
+    .lg\:-mt-\[100px\] {
+      margin-top: calc(100px * -1);
+    }
+    .lg\:-mt-\[140px\] {
+      margin-top: calc(140px * -1);
+    }
+    .lg\:-mt-\[190px\] {
+      margin-top: calc(190px * -1);
+    }
+    .lg\:-mt-\[200px\] {
+      margin-top: calc(200px * -1);
+    }
+    .lg\:mt-\[24px\] {
+      margin-top: 24px;
+    }
+    .lg\:mt-\[25px\] {
+      margin-top: 25px;
+    }
+    .lg\:mt-\[70px\] {
+      margin-top: 70px;
+    }
+    .lg\:mt-\[90px\] {
+      margin-top: 90px;
+    }
+    .lg\:mt-\[120px\] {
+      margin-top: 120px;
+    }
+    .lg\:mt-\[200px\] {
+      margin-top: 200px;
+    }
     .lg\:block {
       display: block;
     }
@@ -872,9 +950,22 @@
     .lg\:gap-8 {
       gap: calc(var(--spacing) * 8);
     }
+    .lg\:font-satoshi {
+      font-family: var(--font-satoshi);
+    }
+    .lg\:text-\[10px\] {
+      font-size: 10px;
+    }
+    .lg\:tracking-\[0\.2em\] {
+      --tw-tracking: 0.2em;
+      letter-spacing: 0.2em;
+    }
   }
 }
 @layer components {
+  html, body {
+    overscroll-behavior: none;
+  }
   a {
     --tw-outline-style: none;
     outline-style: none;
@@ -1281,6 +1372,18 @@ body .shopify-pc__banner__dialog button, body .shopify-pc__banner__dialog button
   inherits: false;
   initial-value: 0;
 }
+@property --tw-leading {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-font-weight {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-tracking {
+  syntax: "*";
+  inherits: false;
+}
 @property --tw-shadow {
   syntax: "*";
   inherits: false;
@@ -1448,18 +1551,6 @@ body .shopify-pc__banner__dialog button, body .shopify-pc__banner__dialog button
   syntax: "*";
   inherits: false;
 }
-@property --tw-leading {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-font-weight {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-tracking {
-  syntax: "*";
-  inherits: false;
-}
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
@@ -1475,6 +1566,9 @@ body .shopify-pc__banner__dialog button, body .shopify-pc__banner__dialog button
       --tw-divide-x-reverse: 0;
       --tw-border-style: solid;
       --tw-divide-y-reverse: 0;
+      --tw-leading: initial;
+      --tw-font-weight: initial;
+      --tw-tracking: initial;
       --tw-shadow: 0 0 #0000;
       --tw-shadow-color: initial;
       --tw-shadow-alpha: 100%;
@@ -1514,9 +1608,6 @@ body .shopify-pc__banner__dialog button, body .shopify-pc__banner__dialog button
       --tw-backdrop-sepia: initial;
       --tw-duration: initial;
       --tw-ease: initial;
-      --tw-leading: initial;
-      --tw-font-weight: initial;
-      --tw-tracking: initial;
     }
   }
 }

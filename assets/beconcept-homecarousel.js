@@ -1,5 +1,12 @@
 import { Component } from "@theme/component";
-import { debounce, ResizeNotifier, mediaQueryLarge } from "@theme/utilities";
+import {
+  debounce,
+  throttle,
+  ResizeNotifier,
+  mediaQueryLarge,
+  isMobileBreakpoint,
+  isTouchDevice,
+} from "@theme/utilities";
 import gsap from "gsap";
 import { createInfiniteLoop, setHoverTimeScale } from "@theme/gsap-animations";
 
@@ -32,6 +39,12 @@ class BeconceptHomeCarouselComponent extends Component {
   /** @type {ReturnType<typeof gsap.matchMedia> | null} */
   #mm = null;
 
+  /** @type {HTMLElement[] | null} */
+  #manualClones = null;
+
+  /** @type {number} */
+  #manualHeight = 0;
+
   get #autoplayEnabled() {
     return this.dataset.autoplay === "true";
   }
@@ -46,31 +59,36 @@ class BeconceptHomeCarouselComponent extends Component {
     this.#lockMobileHeight();
     mediaQueryLarge.addEventListener("change", this.#lockMobileHeight);
 
-    this.#lockMobileHeight();
-    mediaQueryLarge.addEventListener("change", this.#lockMobileHeight);
+    if (this.#autoplayEnabled) {
+      this.#mm = gsap.matchMedia();
+      this.#mm.add("(prefers-reduced-motion: no-preference)", () => {
+        this.#buildLoop();
+        this.#resizeObserver = new ResizeNotifier(this.#handleResize);
+        this.#resizeObserver.observe(this.refs.content);
 
-    if (!this.#autoplayEnabled) return;
-
-    this.#mm = gsap.matchMedia();
-    this.#mm.add("(prefers-reduced-motion: no-preference)", () => {
-      this.#buildLoop();
-      this.#resizeObserver = new ResizeNotifier(this.#handleResize);
+        return () => {
+          this.#resizeObserver?.disconnect();
+          this.#resizeObserver = null;
+          this.#teardownLoop();
+        };
+      });
+    } else {
+      this.#buildManualLoop();
+      this.#resizeObserver = new ResizeNotifier(this.#handleManualResize);
       this.#resizeObserver.observe(this.refs.content);
-
-      return () => {
-        this.#resizeObserver?.disconnect();
-        this.#resizeObserver = null;
-        this.#teardownLoop();
-      };
-    });
+      this.addEventListener("scroll", this.#handleManualScroll);
+    }
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
     mediaQueryLarge.removeEventListener("change", this.#lockMobileHeight);
-    mediaQueryLarge.removeEventListener("change", this.#lockMobileHeight);
     this.#mm?.revert();
     this.#mm = null;
+    this.#resizeObserver?.disconnect();
+    this.#resizeObserver = null;
+    this.removeEventListener("scroll", this.#handleManualScroll);
+    this.#teardownManualLoop();
   }
 
   /**
@@ -91,11 +109,13 @@ class BeconceptHomeCarouselComponent extends Component {
 
   onItemEnter() {
     if (!this.#tween || !this.#hoverSlowdownEnabled) return;
+    if (isMobileBreakpoint() || isTouchDevice()) return;
     setHoverTimeScale(this.#tween, HOVER_TIME_SCALE, HOVER_TRANSITION_DURATION);
   }
 
   onItemLeave() {
     if (!this.#tween || !this.#hoverSlowdownEnabled) return;
+    if (isMobileBreakpoint() || isTouchDevice()) return;
     setHoverTimeScale(this.#tween, 1, HOVER_TRANSITION_DURATION);
   }
 
@@ -104,17 +124,22 @@ class BeconceptHomeCarouselComponent extends Component {
     this.#buildLoop();
   }, 250);
 
+  /** @returns {HTMLElement} a copy of `content` stripped of `ref` attributes, marked decorative. */
+  #cloneContent() {
+    const clone = /** @type {HTMLElement} */ (this.refs.content.cloneNode(true));
+    clone.setAttribute("aria-hidden", "true");
+    clone.removeAttribute("ref");
+    for (const el of clone.querySelectorAll("[ref]")) el.removeAttribute("ref");
+    return clone;
+  }
+
   #buildLoop() {
     const { track, content } = this.refs;
 
     const height = content.getBoundingClientRect().height;
     if (!height) return;
 
-    this.#clone = /** @type {HTMLElement} */ (content.cloneNode(true));
-    this.#clone.setAttribute("aria-hidden", "true");
-    this.#clone.removeAttribute("ref");
-    for (const el of this.#clone.querySelectorAll("[ref]"))
-      el.removeAttribute("ref");
+    this.#clone = this.#cloneContent();
     track.appendChild(this.#clone);
 
     const speed = Number(this.dataset.speed) || DEFAULT_SPEED;
@@ -135,6 +160,51 @@ class BeconceptHomeCarouselComponent extends Component {
     this.#clone = null;
 
     gsap.set(this.refs.track, { y: 0 });
+  }
+
+  /**
+   * When autoplay is off, the section still needs to loop endlessly under the
+   * user's own mouse/touch scrolling. Stack a clone before and after the
+   * original content, then silently jump `scrollTop` by one content-height
+   * whenever the scroll position drifts into a cloned copy, so the wrap is
+   * invisible.
+   */
+  #handleManualScroll = throttle(() => {
+    const height = this.#manualHeight;
+    if (!height) return;
+
+    if (this.scrollTop <= 0) {
+      this.scrollTop += height;
+    } else if (this.scrollTop >= height * 2) {
+      this.scrollTop -= height;
+    }
+  }, 100);
+
+  #handleManualResize = debounce(() => {
+    this.#teardownManualLoop();
+    this.#buildManualLoop();
+  }, 250);
+
+  #buildManualLoop() {
+    const { track, content } = this.refs;
+
+    const height = content.getBoundingClientRect().height;
+    if (!height) return;
+
+    const before = this.#cloneContent();
+    const after = this.#cloneContent();
+    track.insertBefore(before, content);
+    track.appendChild(after);
+    this.#manualClones = [before, after];
+    this.#manualHeight = height;
+
+    this.scrollTop = height;
+  }
+
+  #teardownManualLoop() {
+    this.#manualClones?.forEach((clone) => clone.remove());
+    this.#manualClones = null;
+    this.#manualHeight = 0;
   }
 }
 
