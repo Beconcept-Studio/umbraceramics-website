@@ -283,6 +283,18 @@
   .col-span-7 {
     grid-column: span 7 / span 7;
   }
+  .col-span-8 {
+    grid-column: span 8 / span 8;
+  }
+  .col-span-9 {
+    grid-column: span 9 / span 9;
+  }
+  .col-span-10 {
+    grid-column: span 10 / span 10;
+  }
+  .col-span-11 {
+    grid-column: span 11 / span 11;
+  }
   .col-span-12 {
     grid-column: span 12 / span 12;
   }
@@ -291,6 +303,9 @@
   }
   .col-start-2 {
     grid-column-start: 2;
+  }
+  .col-start-3 {
+    grid-column-start: 3;
   }
   .col-start-4 {
     grid-column-start: 4;
@@ -304,8 +319,23 @@
   .col-start-7 {
     grid-column-start: 7;
   }
+  .col-start-8 {
+    grid-column-start: 8;
+  }
+  .col-start-9 {
+    grid-column-start: 9;
+  }
   .col-start-10 {
     grid-column-start: 10;
+  }
+  .col-start-11 {
+    grid-column-start: 11;
+  }
+  .col-start-12 {
+    grid-column-start: 12;
+  }
+  .col-start-auto {
+    grid-column-start: auto;
   }
   .row-1 {
     grid-row: 1;
@@ -406,6 +436,30 @@
   .aspect-\[9\/11\.25\] {
     aspect-ratio: 9/11.25;
   }
+  .aspect-\[var\(--aspect-2-3\)\] {
+    aspect-ratio: var(--aspect-2-3);
+  }
+  .aspect-\[var\(--aspect-4-5\)\] {
+    aspect-ratio: var(--aspect-4-5);
+  }
+  .aspect-\[var\(--aspect-5-4\)\] {
+    aspect-ratio: var(--aspect-5-4);
+  }
+  .aspect-\[var\(--aspect-5-7\)\] {
+    aspect-ratio: var(--aspect-5-7);
+  }
+  .aspect-\[var\(--aspect-7-5\)\] {
+    aspect-ratio: var(--aspect-7-5);
+  }
+  .aspect-\[var\(--aspect-9-16\)\] {
+    aspect-ratio: var(--aspect-9-16);
+  }
+  .aspect-\[var\(--aspect-16-9\)\] {
+    aspect-ratio: var(--aspect-16-9);
+  }
+  .aspect-\[var\(--aspect-square\)\] {
+    aspect-ratio: var(--aspect-square);
+  }
   .aspect-square {
     aspect-ratio: 1 / 1;
   }
@@ -420,6 +474,9 @@
   }
   .h-\[100dvh\] {
     height: 100dvh;
+  }
+  .h-fit {
+    height: fit-content;
   }
   .h-full {
     height: 100%;
@@ -436,6 +493,9 @@
   .w-6 {
     width: calc(var(--spacing) * 6);
   }
+  .w-\[100px\] {
+    width: 100px;
+  }
   .w-full {
     width: 100%;
   }
@@ -450,6 +510,9 @@
   }
   .max-w-\[70\%\] {
     max-width: 70%;
+  }
+  .max-w-\[80px\] {
+    max-width: 80px;
   }
   .flex-shrink {
     flex-shrink: 1;
@@ -503,6 +566,9 @@
   .flex-col {
     flex-direction: column;
   }
+  .flex-row {
+    flex-direction: row;
+  }
   .flex-wrap {
     flex-wrap: wrap;
   }
@@ -514,6 +580,9 @@
   }
   .justify-end {
     justify-content: flex-end;
+  }
+  .gap-2 {
+    gap: calc(var(--spacing) * 2);
   }
   .gap-3 {
     gap: calc(var(--spacing) * 3);
@@ -540,6 +609,11 @@
     --tw-space-y-reverse: 0;
     margin-block-start: calc(var(--spacing) * var(--tw-space-y-reverse));
     margin-block-end: calc(var(--spacing) * calc(1 - var(--tw-space-y-reverse)));
+  }
+  :where(.space-y-3 > :not(:last-child)) {
+    --tw-space-y-reverse: 0;
+    margin-block-start: calc(calc(var(--spacing) * 3) * var(--tw-space-y-reverse));
+    margin-block-end: calc(calc(var(--spacing) * 3) * calc(1 - var(--tw-space-y-reverse)));
   }
   :where(.space-y-4 > :not(:last-child)) {
     --tw-space-y-reverse: 0;
@@ -700,6 +774,9 @@
   }
   .text-right {
     text-align: right;
+  }
+  .indent-\[100px\] {
+    text-indent: 100px;
   }
   .font-ivar {
     font-family: var(--font-ivar);
@@ -1102,10 +1179,19 @@
       padding-inline: calc(var(--spacing) * 10);
     }
   }
-  .div--container-about {
+  .div--container-small {
     margin-inline: auto;
     width: 100%;
     max-width: 1295px;
+    padding-inline: calc(var(--spacing) * 4);
+    @media (width >= 48rem) {
+      padding-inline: calc(var(--spacing) * 10);
+    }
+  }
+  .div--container-content {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 675px;
     padding-inline: calc(var(--spacing) * 4);
     @media (width >= 48rem) {
       padding-inline: calc(var(--spacing) * 10);
@@ -1126,6 +1212,18 @@
     padding-bottom: 60px;
     @media (width >= 48rem) {
       padding-bottom: 120px;
+    }
+  }
+  .space-top-less {
+    padding-top: 40px;
+    @media (width >= 48rem) {
+      padding-top: 80px;
+    }
+  }
+  .space-bottom-less {
+    padding-bottom: 40px;
+    @media (width >= 48rem) {
+      padding-bottom: 80px;
     }
   }
   .headline-l {
@@ -1388,6 +1486,12 @@ header a.current:after {
   transition-duration: var(--tw-duration, var(--default-transition-duration));
   --tw-duration: 300ms;
   transition-duration: 300ms;
+}
+body[data-template="page.about"] .content-for-layout {
+  padding-top: 20px;
+  @media (width >= 48rem) {
+    padding-top: 40px;
+  }
 }
 body .shopify-pc__banner__dialog {
   position: fixed;

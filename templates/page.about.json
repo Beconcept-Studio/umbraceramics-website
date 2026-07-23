@@ -13,13 +13,216 @@
       "type": "beconcept-video",
       "name": "Beconcept Video",
       "settings": {
-        "video": "shopify://files/videos/hometrim.mp4",
+        "add_space_top": true,
+        "add_space_bottom": false,
+        "video": "shopify://files/videos/5633940-uhd_3840_2160_24fps.mp4",
+        "video_preview_image": "shopify://shop_images/f71ab269d01acbed13f7d9873b852a19ffbf3046.jpg",
         "video_autoplay": false,
         "video_muted": false,
         "video_loop": true,
-        "caption": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et lobortis ex, eget vehicula lectus. Nullam sit amet ex quam. Mauris varius pretium pulvinar. "
+        "caption": ""
       }
+    },
+    "beconcept_numbered_text_fCiayr": {
+      "type": "beconcept-numbered-text",
+      "name": "Beconcept Numbered Text",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": false,
+        "show_number": true,
+        "number": 1,
+        "indent_content": true,
+        "title": "Ceramics for Gatherings",
+        "text": "<p>UMBRA is closely linked to food and the act of sharing a meal. The pieces are conceived as quiet companions to food, designed to frame dishes without overshadowing them. These pieces are not seen as decorative objects, but as tools that support gestures, textures, and moments at the table. The project is particularly interested in how handmade tableware can influence the experience of eating.</p>"
+      }
+    },
+    "beconcept_side_images_FBYHXU": {
+      "type": "beconcept-side-images",
+      "blocks": {
+        "image_byNYRH": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/7.jpg",
+            "size": "3",
+            "start": "auto",
+            "aspect_ratio": "square",
+            "didasc": "1.1"
+          }
+        },
+        "image_LBMR7c": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/11.jpg",
+            "size": "5",
+            "start": "auto",
+            "aspect_ratio": "4-5",
+            "didasc": "1.2"
+          }
+        },
+        "image_LpQAGk": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/1.jpg",
+            "size": "4",
+            "start": "auto",
+            "aspect_ratio": "4-5",
+            "didasc": "1.3"
+          }
+        }
+      },
+      "block_order": [
+        "image_byNYRH",
+        "image_LBMR7c",
+        "image_LpQAGk"
+      ],
+      "name": "Beconcept Side Imgs",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": false
+      }
+    },
+    "beconcept_numbered_text_Tw6GzC": {
+      "type": "beconcept-numbered-text",
+      "name": "Beconcept Numbered Text",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": false,
+        "show_number": true,
+        "number": 2,
+        "indent_content": true,
+        "title": "About Umbra",
+        "text": "<p>UMBRA is a ceramic project founded ten years ago by Alicia Garcia, developed alongside an ongoing architectural practice. It originated in Madrid, but after some changes in life and studio, it is now settled in Luxembourg. Working with clay emerged as a natural extension of an interest in space, proportion, and the everyday objects that shape our routines. Ceramics became a slower, more tactile way of thinking and making highlighting food and the gatherings that take place around a table.</p>"
+      }
+    },
+    "beconcept_side_images_6Vh7fB": {
+      "type": "beconcept-side-images",
+      "blocks": {
+        "image_rRfQHB": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/11.jpg",
+            "size": "5",
+            "start": "3",
+            "aspect_ratio": "4-5",
+            "didasc": "2.1"
+          }
+        },
+        "image_aA4zqm": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/1.jpg",
+            "size": "3",
+            "start": "auto",
+            "aspect_ratio": "4-5",
+            "didasc": "2.2"
+          }
+        }
+      },
+      "block_order": [
+        "image_rRfQHB",
+        "image_aA4zqm"
+      ],
+      "name": "Beconcept Side Imgs",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": false
+      }
+    },
+    "beconcept_numbered_text_mPLieH": {
+      "type": "beconcept-numbered-text",
+      "name": "Beconcept Numbered Text",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": false,
+        "show_number": true,
+        "number": 3,
+        "indent_content": true,
+        "title": "Atelier",
+        "text": "<p>All pieces are handmade in a small personal workshop in Luxembourg, where the entire process takes place, from throwing and trimming to glazing and firing. Working on a small scale allows care, flexibility, and attention to each object. The production embraces variation, imperfection, and the traces of the hand, resulting in unique pieces meant to be used, lived with  and integrated into daily life.</p>"
+      }
+    },
+    "beconcept_side_images_pzpjmC": {
+      "type": "beconcept-side-images",
+      "blocks": {
+        "image_RrNXbQ": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/11.jpg",
+            "size": "4",
+            "start": "auto",
+            "aspect_ratio": "4-5",
+            "didasc": "3.1"
+          }
+        },
+        "image_zGnFVt": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/1.jpg",
+            "size": "3",
+            "start": "auto",
+            "aspect_ratio": "square",
+            "didasc": "3.2"
+          }
+        },
+        "image_GCtY6G": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/12.jpg",
+            "size": "5",
+            "start": "auto",
+            "aspect_ratio": "4-5",
+            "didasc": "3.3"
+          }
+        }
+      },
+      "block_order": [
+        "image_RrNXbQ",
+        "image_zGnFVt",
+        "image_GCtY6G"
+      ],
+      "name": "Beconcept Side Imgs",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": false
+      }
+    },
+    "beconcept_numbered_text_A9NQTX": {
+      "type": "beconcept-numbered-text",
+      "name": "Beconcept Numbered Text",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": false,
+        "show_number": true,
+        "number": 4,
+        "indent_content": true,
+        "title": "Notes",
+        "text": "<p>UMBRA offers a small selection of pieces through its online shop, available for direct purchase. Alongside this, the studio is open to custom commissions and specific projects, including tableware developed for restaurants, private clients, or particular contexts. Each collaboration is approached as a dialogue, allowing the work to adapt to different needs while staying true to the values of the practice. Feel free to get in touch if you have a project in mind.</p>"
+      }
+    },
+    "beconcept_signature_eHFFLi": {
+      "type": "beconcept-signature",
+      "name": "Page Signature",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": true
+      }
+    },
+    "beconcept_final_gif_wtVB3b": {
+      "type": "beconcept-final-gif",
+      "name": "Page Gif Separator",
+      "settings": {}
     }
   },
-  "order": ["beconcept_video_AFGDA9"]
+  "order": [
+    "beconcept_video_AFGDA9",
+    "beconcept_numbered_text_fCiayr",
+    "beconcept_side_images_FBYHXU",
+    "beconcept_numbered_text_Tw6GzC",
+    "beconcept_side_images_6Vh7fB",
+    "beconcept_numbered_text_mPLieH",
+    "beconcept_side_images_pzpjmC",
+    "beconcept_numbered_text_A9NQTX",
+    "beconcept_signature_eHFFLi",
+    "beconcept_final_gif_wtVB3b"
+  ]
 }

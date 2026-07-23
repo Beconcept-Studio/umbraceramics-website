@@ -1,0 +1,216 @@
+<div
+  class="flex flex-col gap-2 div--container-small {% if section.settings.add_space_bottom %} space-bottom {% endif %} {% if section.settings.add_space_top %} space-top-less {% endif %}"
+>
+  <div class="grid grid-cols-12 gap-8">
+    {% for block in section.blocks %}
+      {% liquid
+        assign col_span = block.settings.size
+        assign col_start = block.settings.start
+        assign ratio = block.settings.aspect_ratio
+
+        case col_span
+          when '1'
+            assign span_class = 'col-span-1'
+          when '2'
+            assign span_class = 'col-span-2'
+          when '3'
+            assign span_class = 'col-span-3'
+          when '4'
+            assign span_class = 'col-span-4'
+          when '5'
+            assign span_class = 'col-span-5'
+          when '6'
+            assign span_class = 'col-span-6'
+          when '7'
+            assign span_class = 'col-span-7'
+          when '8'
+            assign span_class = 'col-span-8'
+          when '9'
+            assign span_class = 'col-span-9'
+          when '10'
+            assign span_class = 'col-span-10'
+          when '11'
+            assign span_class = 'col-span-11'
+          when '12'
+            assign span_class = 'col-span-12'
+        endcase
+
+        case col_start
+          when 'auto'
+            assign start_class = 'col-start-auto'
+          when '1'
+            assign start_class = 'col-start-1'
+          when '2'
+            assign start_class = 'col-start-2'
+          when '3'
+            assign start_class = 'col-start-3'
+          when '4'
+            assign start_class = 'col-start-4'
+          when '5'
+            assign start_class = 'col-start-5'
+          when '6'
+            assign start_class = 'col-start-6'
+          when '7'
+            assign start_class = 'col-start-7'
+          when '8'
+            assign start_class = 'col-start-8'
+          when '9'
+            assign start_class = 'col-start-9'
+          when '10'
+            assign start_class = 'col-start-10'
+          when '11'
+            assign start_class = 'col-start-11'
+          when '12'
+            assign start_class = 'col-start-12'
+        endcase
+
+        case ratio
+          when 'square'
+            assign ratio_class = 'aspect-square'
+          when '16-9'
+            assign ratio_class = 'aspect-[var(--aspect-16-9)]'
+          when '9-16'
+            assign ratio_class = 'aspect-[var(--aspect-9-16)]'
+          when '2-3'
+            assign ratio_class = 'aspect-[var(--aspect-2-3)]'
+          when '5-7'
+            assign ratio_class = 'aspect-[var(--aspect-5-7)]'
+          when '7-5'
+            assign ratio_class = 'aspect-[var(--aspect-7-5)]'
+          when '4-5'
+            assign ratio_class = 'aspect-[var(--aspect-4-5)]'
+          when '5-4'
+            assign ratio_class = 'aspect-[var(--aspect-5-4)]'
+        endcase
+      %}
+
+      <div
+        class="side-img h-fit space-y-3 {{ span_class }} {{ start_class }}"
+        {{ block.shopify_attributes }}
+      >
+        <div class="{{ ratio_class }} overflow-hidden">
+          {% if block.settings.image %}
+            {{
+              block.settings.image
+              | image_url: width: 1500
+              | image_tag: loading: 'lazy', class: 'w-full h-full object-cover object-center'
+            }}
+          {% else %}
+            {{ 'image' | placeholder_svg_tag: 'w-full h-full object-cover object-center' }}
+          {% endif %}
+        </div>
+
+        {% if block.settings.didasc %}
+          <div class="caption opacity-60">{{ block.settings.didasc }}</div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Beconcept Side Imgs",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "add_space_top",
+      "label": "Add padding top",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "add_space_bottom",
+      "label": "Add padding bottom",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Immagine",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Immagine"
+        },
+        {
+          "type": "select",
+          "id": "size",
+          "label": "Column Size / 12",
+          "options": [
+            { "value": "1", "label": "1/12" },
+            { "value": "2", "label": "2/12" },
+            { "value": "3", "label": "3/12" },
+            { "value": "4", "label": "4/12" },
+            { "value": "5", "label": "5/12" },
+            { "value": "6", "label": "6/12" },
+            { "value": "7", "label": "7/12" },
+            { "value": "8", "label": "8/12" },
+            { "value": "9", "label": "9/12" },
+            { "value": "10", "label": "10/12" },
+            { "value": "11", "label": "11/12" },
+            { "value": "12", "label": "12/12" }
+          ],
+          "default": "6"
+        },
+        {
+          "type": "select",
+          "id": "start",
+          "label": "Column Start / 12",
+          "options": [
+            { "value": "auto", "label": "Auto" },
+            { "value": "1", "label": "1" },
+            { "value": "2", "label": "2" },
+            { "value": "3", "label": "3" },
+            { "value": "4", "label": "4" },
+            { "value": "5", "label": "5" },
+            { "value": "6", "label": "6" },
+            { "value": "7", "label": "7" },
+            { "value": "8", "label": "8" },
+            { "value": "9", "label": "9" },
+            { "value": "10", "label": "10" },
+            { "value": "11", "label": "11" },
+            { "value": "12", "label": "12" }
+          ],
+          "default": "auto"
+        },
+        {
+          "type": "select",
+          "id": "aspect_ratio",
+          "label": "Aspect ratio",
+          "options": [
+            { "value": "square", "label": "Square (1:1)" },
+            { "value": "16-9", "label": "16:9" },
+            { "value": "9-16", "label": "9:16" },
+            { "value": "2-3", "label": "2:3" },
+            { "value": "5-7", "label": "5:7" },
+            { "value": "7-5", "label": "7:5" },
+            { "value": "4-5", "label": "4:5" },
+            { "value": "5-4", "label": "5:4" }
+          ],
+          "default": "square"
+        },
+        {
+          "type": "text",
+          "id": "didasc",
+          "label": "Text under image"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "Beconcept Side Imgs",
+      "category": "Beconcept"
+    }
+  ]
+}
+{% endschema %}

@@ -20,7 +20,7 @@
     <div class="col-span-5 self-center hidden lg:block">
       {% if section.settings.main_menu %}
         {% assign mainmenu = section.settings.main_menu %}
-        <div class="flex items-center gap-10">
+        <nav class="flex items-center gap-10">
           {% for link in mainmenu.links -%}
             <a
               href="{{ link.url }}"
@@ -29,7 +29,7 @@
               {{- link.title -}}
             </a>
           {%- endfor %}
-        </div>
+        </nav>
       {% endif %}
     </div>
     <div class="lg:col-span-2 col-span-4 col-start-5 self-center isolate mix-blend-normal">

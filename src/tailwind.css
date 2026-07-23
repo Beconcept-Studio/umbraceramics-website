@@ -151,8 +151,11 @@
   .div--container {
     @apply w-full md:px-10 px-4;
   }
-  .div--container-about {
+  .div--container-small {
     @apply w-full max-w-[1295px] mx-auto md:px-10 px-4;
+  }
+  .div--container-content {
+    @apply w-full max-w-[675px] mx-auto md:px-10 px-4;
   }
   .common--grid {
     @apply grid grid-cols-12 gap-4;
@@ -162,6 +165,12 @@
   }
   .space-bottom {
     @apply md:pb-[120px] pb-[60px];
+  }
+  .space-top-less {
+    @apply md:pt-[80px] pt-[40px];
+  }
+  .space-bottom-less {
+    @apply md:pb-[80px] pb-[40px];
   }
   /* Headline L — Ivar Headline, Regular, LH 120%, Track 1% */
   .headline-l {
@@ -254,6 +263,11 @@ header a.current:after {
 }
 .colophon-slided {
   @apply translate-y-0 transition-all duration-300;
+}
+
+/*SINGOLE PAGINE*/
+body[data-template="page.about"] .content-for-layout {
+  @apply md:pt-[40px] pt-[20px];
 }
 
 /*
