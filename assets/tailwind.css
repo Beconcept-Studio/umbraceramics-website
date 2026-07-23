@@ -283,6 +283,18 @@
   .col-span-7 {
     grid-column: span 7 / span 7;
   }
+  .col-span-8 {
+    grid-column: span 8 / span 8;
+  }
+  .col-span-9 {
+    grid-column: span 9 / span 9;
+  }
+  .col-span-10 {
+    grid-column: span 10 / span 10;
+  }
+  .col-span-11 {
+    grid-column: span 11 / span 11;
+  }
   .col-span-12 {
     grid-column: span 12 / span 12;
   }
@@ -291,6 +303,9 @@
   }
   .col-start-2 {
     grid-column-start: 2;
+  }
+  .col-start-3 {
+    grid-column-start: 3;
   }
   .col-start-4 {
     grid-column-start: 4;
@@ -304,8 +319,23 @@
   .col-start-7 {
     grid-column-start: 7;
   }
+  .col-start-8 {
+    grid-column-start: 8;
+  }
+  .col-start-9 {
+    grid-column-start: 9;
+  }
   .col-start-10 {
     grid-column-start: 10;
+  }
+  .col-start-11 {
+    grid-column-start: 11;
+  }
+  .col-start-12 {
+    grid-column-start: 12;
+  }
+  .col-start-auto {
+    grid-column-start: auto;
   }
   .row-1 {
     grid-row: 1;
@@ -406,6 +436,30 @@
   .aspect-\[9\/11\.25\] {
     aspect-ratio: 9/11.25;
   }
+  .aspect-\[var\(--aspect-2-3\)\] {
+    aspect-ratio: var(--aspect-2-3);
+  }
+  .aspect-\[var\(--aspect-4-5\)\] {
+    aspect-ratio: var(--aspect-4-5);
+  }
+  .aspect-\[var\(--aspect-5-4\)\] {
+    aspect-ratio: var(--aspect-5-4);
+  }
+  .aspect-\[var\(--aspect-5-7\)\] {
+    aspect-ratio: var(--aspect-5-7);
+  }
+  .aspect-\[var\(--aspect-7-5\)\] {
+    aspect-ratio: var(--aspect-7-5);
+  }
+  .aspect-\[var\(--aspect-9-16\)\] {
+    aspect-ratio: var(--aspect-9-16);
+  }
+  .aspect-\[var\(--aspect-16-9\)\] {
+    aspect-ratio: var(--aspect-16-9);
+  }
+  .aspect-\[var\(--aspect-square\)\] {
+    aspect-ratio: var(--aspect-square);
+  }
   .aspect-square {
     aspect-ratio: 1 / 1;
   }
@@ -420,6 +474,9 @@
   }
   .h-\[100dvh\] {
     height: 100dvh;
+  }
+  .h-fit {
+    height: fit-content;
   }
   .h-full {
     height: 100%;
@@ -552,6 +609,11 @@
     --tw-space-y-reverse: 0;
     margin-block-start: calc(var(--spacing) * var(--tw-space-y-reverse));
     margin-block-end: calc(var(--spacing) * calc(1 - var(--tw-space-y-reverse)));
+  }
+  :where(.space-y-3 > :not(:last-child)) {
+    --tw-space-y-reverse: 0;
+    margin-block-start: calc(calc(var(--spacing) * 3) * var(--tw-space-y-reverse));
+    margin-block-end: calc(calc(var(--spacing) * 3) * calc(1 - var(--tw-space-y-reverse)));
   }
   :where(.space-y-4 > :not(:last-child)) {
     --tw-space-y-reverse: 0;
