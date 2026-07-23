@@ -1,21 +1,23 @@
-<div class="div--container-content {% if section.settings.add_space_bottom %} space-bottom {% endif %} {% if section.settings.add_space_top %} space-top-less {% endif %}">
+<div class="div--container-small {% if section.settings.add_space_bottom %} space-bottom {% endif %} {% if section.settings.add_space_top %} space-top-less {% endif %}">
   {% if section.settings.title or section.settings.text %}
-    <div class="space-y-10">
-      {% if section.settings.title %}
-        <div class="flex flex-row">
-          {% if section.settings.show_number and section.settings.number != null %}
-            <div class="headline-m uppercase w-[100px]">({{ section.settings.number }}).</div>
-          {% endif %}
-          <div class="headline-m uppercase">
-            {{ section.settings.title }}
+    <div class="grid grid-cols-12 lg:gap-8 gap-4">
+      <div class="lg:col-span-6 lg:col-start-4 md:col-span-8  md:col-start-3 col-span-12 lg:space-y-10 space-y-6">
+        {% if section.settings.title %}
+          <div class="flex flex-row">
+            {% if section.settings.show_number and section.settings.number != null %}
+              <div class="headline-m uppercase lg:w-[100px] w-[64px]">({{ section.settings.number }}).</div>
+            {% endif %}
+            <div class="headline-m uppercase">
+              {{ section.settings.title }}
+            </div>
           </div>
-        </div>
-      {% endif %}
-      {% if section.settings.text %}
-        <div class="body-l {% if section.settings.indent_content %}indent-[100px]{% endif %}">
-          {{ section.settings.text }}
-        </div>
-      {% endif %}
+        {% endif %}
+        {% if section.settings.text %}
+          <div class="body-l {% if section.settings.indent_content %}lg:indent-[100px] indent-[64px]{% endif %}">
+            {{ section.settings.text }}
+          </div>
+        {% endif %}
+      </div>
     </div>
   {% endif %}
 </div>

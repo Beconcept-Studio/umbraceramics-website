@@ -167,10 +167,10 @@
     @apply md:pb-[120px] pb-[60px];
   }
   .space-top-less {
-    @apply md:pt-[80px] pt-[40px];
+    @apply md:pt-[80px] pt-[56px];
   }
   .space-bottom-less {
-    @apply md:pb-[80px] pb-[40px];
+    @apply md:pb-[80px] pb-[56px];
   }
   /* Headline L — Ivar Headline, Regular, LH 120%, Track 1% */
   .headline-l {
@@ -267,7 +267,7 @@ header a.current:after {
 
 /*SINGOLE PAGINE*/
 body[data-template="page.about"] .content-for-layout {
-  @apply md:pt-[40px] pt-[20px];
+  @apply md:pt-[40px] pt-0;
 }
 
 /*

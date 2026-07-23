@@ -1,67 +1,125 @@
 <div
   class="flex flex-col gap-2 div--container-small {% if section.settings.add_space_bottom %} space-bottom {% endif %} {% if section.settings.add_space_top %} space-top-less {% endif %}"
 >
-  <div class="grid grid-cols-12 gap-8">
+  <div class="grid grid-cols-12 lg:gap-8 gap-4 lg:gap-y-4 gap-y-6">
     {% for block in section.blocks %}
       {% liquid
         assign col_span = block.settings.size
         assign col_start = block.settings.start
+        assign col_span_mobile = block.settings.size_mobile
+        assign col_start_mobile = block.settings.start_mobile
         assign ratio = block.settings.aspect_ratio
 
         case col_span
           when '1'
-            assign span_class = 'col-span-1'
+            assign span_class = 'md:col-span-1'
           when '2'
-            assign span_class = 'col-span-2'
+            assign span_class = 'md:col-span-2'
           when '3'
-            assign span_class = 'col-span-3'
+            assign span_class = 'md:col-span-3'
           when '4'
-            assign span_class = 'col-span-4'
+            assign span_class = 'md:col-span-4'
           when '5'
-            assign span_class = 'col-span-5'
+            assign span_class = 'md:col-span-5'
           when '6'
-            assign span_class = 'col-span-6'
+            assign span_class = 'md:col-span-6'
           when '7'
-            assign span_class = 'col-span-7'
+            assign span_class = 'md:col-span-7'
           when '8'
-            assign span_class = 'col-span-8'
+            assign span_class = 'md:col-span-8'
           when '9'
-            assign span_class = 'col-span-9'
+            assign span_class = 'md:col-span-9'
           when '10'
-            assign span_class = 'col-span-10'
+            assign span_class = 'md:col-span-10'
           when '11'
-            assign span_class = 'col-span-11'
+            assign span_class = 'md:col-span-11'
           when '12'
-            assign span_class = 'col-span-12'
+            assign span_class = 'md:col-span-12'
         endcase
 
         case col_start
           when 'auto'
-            assign start_class = 'col-start-auto'
+            assign start_class = 'md:col-start-auto'
           when '1'
-            assign start_class = 'col-start-1'
+            assign start_class = 'md:col-start-1'
           when '2'
-            assign start_class = 'col-start-2'
+            assign start_class = 'md:col-start-2'
           when '3'
-            assign start_class = 'col-start-3'
+            assign start_class = 'md:col-start-3'
           when '4'
-            assign start_class = 'col-start-4'
+            assign start_class = 'md:col-start-4'
           when '5'
-            assign start_class = 'col-start-5'
+            assign start_class = 'md:col-start-5'
           when '6'
-            assign start_class = 'col-start-6'
+            assign start_class = 'md:col-start-6'
           when '7'
-            assign start_class = 'col-start-7'
+            assign start_class = 'md:col-start-7'
           when '8'
-            assign start_class = 'col-start-8'
+            assign start_class = 'md:col-start-8'
           when '9'
-            assign start_class = 'col-start-9'
+            assign start_class = 'md:col-start-9'
           when '10'
-            assign start_class = 'col-start-10'
+            assign start_class = 'md:col-start-10'
           when '11'
-            assign start_class = 'col-start-11'
+            assign start_class = 'md:col-start-11'
           when '12'
-            assign start_class = 'col-start-12'
+            assign start_class = 'md:col-start-12'
+        endcase
+
+        case col_span_mobile
+          when '1'
+            assign span_class_mobile = 'col-span-1'
+          when '2'
+            assign span_class_mobile = 'col-span-2'
+          when '3'
+            assign span_class_mobile = 'col-span-3'
+          when '4'
+            assign span_class_mobile = 'col-span-4'
+          when '5'
+            assign span_class_mobile = 'col-span-5'
+          when '6'
+            assign span_class_mobile = 'col-span-6'
+          when '7'
+            assign span_class_mobile = 'col-span-7'
+          when '8'
+            assign span_class_mobile = 'col-span-8'
+          when '9'
+            assign span_class_mobile = 'col-span-9'
+          when '10'
+            assign span_class_mobile = 'col-span-10'
+          when '11'
+            assign span_class_mobile = 'col-span-11'
+          when '12'
+            assign span_class_mobile = 'col-span-12'
+        endcase
+
+        case col_start_mobile
+          when 'auto'
+            assign start_class_mobile = 'col-start-auto'
+          when '1'
+            assign start_class_mobile = 'col-start-1'
+          when '2'
+            assign start_class_mobile = 'col-start-2'
+          when '3'
+            assign start_class_mobile = 'col-start-3'
+          when '4'
+            assign start_class_mobile = 'col-start-4'
+          when '5'
+            assign start_class_mobile = 'col-start-5'
+          when '6'
+            assign start_class_mobile = 'col-start-6'
+          when '7'
+            assign start_class_mobile = 'col-start-7'
+          when '8'
+            assign start_class_mobile = 'col-start-8'
+          when '9'
+            assign start_class_mobile = 'col-start-9'
+          when '10'
+            assign start_class_mobile = 'col-start-10'
+          when '11'
+            assign start_class_mobile = 'col-start-11'
+          when '12'
+            assign start_class_mobile = 'col-start-12'
         endcase
 
         case ratio
@@ -85,7 +143,7 @@
       %}
 
       <div
-        class="side-img h-fit space-y-3 {{ span_class }} {{ start_class }}"
+        class="side-img h-fit space-y-3 {{ span_class_mobile }} {{ start_class_mobile }} {{ span_class }} {{ start_class }}"
         {{ block.shopify_attributes }}
       >
         <div class="{{ ratio_class }} overflow-hidden">
@@ -141,6 +199,10 @@
           "label": "Immagine"
         },
         {
+          "type": "header",
+          "content": "Desktop layout (md e superiori)"
+        },
+        {
           "type": "select",
           "id": "size",
           "label": "Column Size / 12",
@@ -180,6 +242,55 @@
             { "value": "12", "label": "12" }
           ],
           "default": "auto"
+        },
+        {
+          "type": "header",
+          "content": "Mobile layout (sotto md)"
+        },
+        {
+          "type": "select",
+          "id": "size_mobile",
+          "label": "Column Size / 12 (mobile)",
+          "options": [
+            { "value": "1", "label": "1/12" },
+            { "value": "2", "label": "2/12" },
+            { "value": "3", "label": "3/12" },
+            { "value": "4", "label": "4/12" },
+            { "value": "5", "label": "5/12" },
+            { "value": "6", "label": "6/12" },
+            { "value": "7", "label": "7/12" },
+            { "value": "8", "label": "8/12" },
+            { "value": "9", "label": "9/12" },
+            { "value": "10", "label": "10/12" },
+            { "value": "11", "label": "11/12" },
+            { "value": "12", "label": "12/12" }
+          ],
+          "default": "12"
+        },
+        {
+          "type": "select",
+          "id": "start_mobile",
+          "label": "Column Start / 12 (mobile)",
+          "options": [
+            { "value": "auto", "label": "Auto" },
+            { "value": "1", "label": "1" },
+            { "value": "2", "label": "2" },
+            { "value": "3", "label": "3" },
+            { "value": "4", "label": "4" },
+            { "value": "5", "label": "5" },
+            { "value": "6", "label": "6" },
+            { "value": "7", "label": "7" },
+            { "value": "8", "label": "8" },
+            { "value": "9", "label": "9" },
+            { "value": "10", "label": "10" },
+            { "value": "11", "label": "11" },
+            { "value": "12", "label": "12" }
+          ],
+          "default": "auto"
+        },
+        {
+          "type": "header",
+          "content": "Aspect ratio"
         },
         {
           "type": "select",
