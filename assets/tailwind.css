@@ -436,6 +436,9 @@
   .w-6 {
     width: calc(var(--spacing) * 6);
   }
+  .w-\[100px\] {
+    width: 100px;
+  }
   .w-full {
     width: 100%;
   }
@@ -450,6 +453,9 @@
   }
   .max-w-\[70\%\] {
     max-width: 70%;
+  }
+  .max-w-\[80px\] {
+    max-width: 80px;
   }
   .flex-shrink {
     flex-shrink: 1;
@@ -503,6 +509,9 @@
   .flex-col {
     flex-direction: column;
   }
+  .flex-row {
+    flex-direction: row;
+  }
   .flex-wrap {
     flex-wrap: wrap;
   }
@@ -514,6 +523,9 @@
   }
   .justify-end {
     justify-content: flex-end;
+  }
+  .gap-2 {
+    gap: calc(var(--spacing) * 2);
   }
   .gap-3 {
     gap: calc(var(--spacing) * 3);
@@ -700,6 +712,9 @@
   }
   .text-right {
     text-align: right;
+  }
+  .indent-\[100px\] {
+    text-indent: 100px;
   }
   .font-ivar {
     font-family: var(--font-ivar);
@@ -1102,10 +1117,19 @@
       padding-inline: calc(var(--spacing) * 10);
     }
   }
-  .div--container-about {
+  .div--container-small {
     margin-inline: auto;
     width: 100%;
     max-width: 1295px;
+    padding-inline: calc(var(--spacing) * 4);
+    @media (width >= 48rem) {
+      padding-inline: calc(var(--spacing) * 10);
+    }
+  }
+  .div--container-content {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 675px;
     padding-inline: calc(var(--spacing) * 4);
     @media (width >= 48rem) {
       padding-inline: calc(var(--spacing) * 10);
@@ -1126,6 +1150,18 @@
     padding-bottom: 60px;
     @media (width >= 48rem) {
       padding-bottom: 120px;
+    }
+  }
+  .space-top-less {
+    padding-top: 40px;
+    @media (width >= 48rem) {
+      padding-top: 80px;
+    }
+  }
+  .space-bottom-less {
+    padding-bottom: 40px;
+    @media (width >= 48rem) {
+      padding-bottom: 80px;
     }
   }
   .headline-l {
@@ -1388,6 +1424,12 @@ header a.current:after {
   transition-duration: var(--tw-duration, var(--default-transition-duration));
   --tw-duration: 300ms;
   transition-duration: 300ms;
+}
+body[data-template="page.about"] .content-for-layout {
+  padding-top: 20px;
+  @media (width >= 48rem) {
+    padding-top: 40px;
+  }
 }
 body .shopify-pc__banner__dialog {
   position: fixed;

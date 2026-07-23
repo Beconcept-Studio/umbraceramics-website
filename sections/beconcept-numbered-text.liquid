@@ -1,0 +1,86 @@
+<div class="div--container-content {% if section.settings.add_space_bottom %} space-bottom {% endif %} {% if section.settings.add_space_top %} space-top-less {% endif %}">
+  {% if section.settings.title or section.settings.text %}
+    <div class="space-y-10">
+      {% if section.settings.title %}
+        <div class="flex flex-row">
+          {% if section.settings.show_number and section.settings.number != null %}
+            <div class="headline-m uppercase w-[100px]">({{ section.settings.number }}).</div>
+          {% endif %}
+          <div class="headline-m uppercase">
+            {{ section.settings.title }}
+          </div>
+        </div>
+      {% endif %}
+      {% if section.settings.text %}
+        <div class="body-l {% if section.settings.indent_content %}indent-[100px]{% endif %}">
+          {{ section.settings.text }}
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>
+
+{% render 'video-placeholder-styles' %}
+{% render 'deferred-media-video-styles' %}
+
+{% schema %}
+{
+  "name": "Beconcept Numbered Text",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "add_space_top",
+      "label": "Add padding top",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "add_space_bottom",
+      "label": "Add padding bottom",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_number",
+      "label": "Show number",
+      "default": false
+    },
+    {
+      "type": "number",
+      "id": "number",
+      "visible_if": "{{section.settings.show_number == true}}",
+      "label": "Choose number"
+    },
+    {
+      "type": "checkbox",
+      "id": "indent_content",
+      "label": "Indent content",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Content"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Beconcept Numbered Text"
+    }
+  ]
+}
+{% endschema %}

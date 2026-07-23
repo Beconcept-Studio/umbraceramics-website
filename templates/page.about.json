@@ -13,13 +13,88 @@
       "type": "beconcept-video",
       "name": "Beconcept Video",
       "settings": {
+        "add_space_top": true,
+        "add_space_bottom": false,
         "video": "shopify://files/videos/hometrim.mp4",
         "video_autoplay": false,
         "video_muted": false,
         "video_loop": true,
         "caption": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et lobortis ex, eget vehicula lectus. Nullam sit amet ex quam. Mauris varius pretium pulvinar. "
       }
+    },
+    "beconcept_numbered_text_fCiayr": {
+      "type": "beconcept-numbered-text",
+      "name": "Beconcept Numbered Text",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": false,
+        "show_number": true,
+        "number": 1,
+        "indent_content": true,
+        "title": "Ceramics for Gatherings",
+        "text": "<p>UMBRA is closely linked to food and the act of sharing a meal. The pieces are conceived as quiet companions to food, designed to frame dishes without overshadowing them. These pieces are not seen as decorative objects, but as tools that support gestures, textures, and moments at the table. The project is particularly interested in how handmade tableware can influence the experience of eating.</p>"
+      }
+    },
+    "beconcept_numbered_text_Tw6GzC": {
+      "type": "beconcept-numbered-text",
+      "name": "Beconcept Numbered Text",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": false,
+        "show_number": true,
+        "number": 2,
+        "indent_content": true,
+        "title": "About Umbra",
+        "text": "<p>UMBRA is a ceramic project founded ten years ago by Alicia Garcia, developed alongside an ongoing architectural practice. It originated in Madrid, but after some changes in life and studio, it is now settled in Luxembourg. Working with clay emerged as a natural extension of an interest in space, proportion, and the everyday objects that shape our routines. Ceramics became a slower, more tactile way of thinking and making highlighting food and the gatherings that take place around a table.</p>"
+      }
+    },
+    "beconcept_numbered_text_mPLieH": {
+      "type": "beconcept-numbered-text",
+      "name": "Beconcept Numbered Text",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": false,
+        "show_number": true,
+        "number": 3,
+        "indent_content": true,
+        "title": "Atelier",
+        "text": "<p>All pieces are handmade in a small personal workshop in Luxembourg, where the entire process takes place, from throwing and trimming to glazing and firing. Working on a small scale allows care, flexibility, and attention to each object. The production embraces variation, imperfection, and the traces of the hand, resulting in unique pieces meant to be used, lived with  and integrated into daily life.</p>"
+      }
+    },
+    "beconcept_numbered_text_A9NQTX": {
+      "type": "beconcept-numbered-text",
+      "name": "Beconcept Numbered Text",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": false,
+        "show_number": true,
+        "number": 4,
+        "indent_content": true,
+        "title": "Notes",
+        "text": "<p>UMBRA offers a small selection of pieces through its online shop, available for direct purchase. Alongside this, the studio is open to custom commissions and specific projects, including tableware developed for restaurants, private clients, or particular contexts. Each collaboration is approached as a dialogue, allowing the work to adapt to different needs while staying true to the values of the practice. Feel free to get in touch if you have a project in mind.</p>"
+      }
+    },
+    "beconcept_signature_eHFFLi": {
+      "type": "beconcept-signature",
+      "name": "Page Signature",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": true
+      }
+    },
+    "beconcept_final_gif_wtVB3b": {
+      "type": "beconcept-final-gif",
+      "name": "Page Gif Separator",
+      "settings": {}
     }
   },
-  "order": ["beconcept_video_AFGDA9"]
+  "order": [
+    "beconcept_video_AFGDA9",
+    "beconcept_numbered_text_fCiayr",
+    "beconcept_numbered_text_Tw6GzC",
+    "beconcept_numbered_text_mPLieH",
+    "beconcept_numbered_text_A9NQTX",
+    "beconcept_signature_eHFFLi",
+    "beconcept_final_gif_wtVB3b"
+  ]
 }

@@ -23,10 +23,10 @@
 %}
 
 {% capture video_tag %}
-  {{ video | video_tag: image_size: '2500x', autoplay: video_autoplay, loop: video_loop, muted: video_muted, controls: show_controls }}
+  {{ video | video_tag: image_size: '2500x', autoplay: true, loop: video_loop, muted: video_muted, controls: show_controls }}
 {% endcapture %}
 
-<div class="beconcept-video div--container-about">
+<div class="flex flex-col gap-2 div--container-small {% if section.settings.add_space_bottom %} space-bottom {% endif %} {% if section.settings.add_space_top %} space-top-less {% endif %}">
   {% if video != blank %}
     <deferred-media
       class="beconcept-video__media"
@@ -80,42 +80,39 @@
       {% endif %}
     </deferred-media>
   {% else %}
-    <div class="beconcept-video__placeholder">
+    <div class="w-full">
       {{ 'hero-apparel-3' | placeholder_svg_tag }}
     </div>
   {% endif %}
   {% if caption != blank %}
-    <p class="beconcept-video__caption">{{ caption }}</p>
+    <div class="body-s">{{ caption }}</div>
   {% endif %}
 </div>
 
 {% render 'video-placeholder-styles' %}
 {% render 'deferred-media-video-styles' %}
 
-{% stylesheet %}
-  .beconcept-video {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .beconcept-video__caption {
-    margin: 0;
-    text-align: center;
-    font-size: 0.875rem;
-    opacity: 0.75;
-  }
-
-  .beconcept-video__placeholder {
-    width: 100%;
-  }
-{% endstylesheet %}
-
 {% schema %}
 {
   "name": "Beconcept Video",
   "class": "section-wrapper",
   "settings": [
+    {
+      "type": "header",
+      "content": "Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "add_space_top",
+      "label": "Add padding top",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "add_space_bottom",
+      "label": "Add padding bottom",
+      "default": false
+    },
     {
       "type": "header",
       "content": "Video"
