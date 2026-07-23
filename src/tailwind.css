@@ -151,6 +151,9 @@
   .div--container {
     @apply w-full md:px-10 px-4;
   }
+  .div--container-about {
+    @apply w-full max-w-[1295px] mx-auto md:px-10 px-4;
+  }
   .common--grid {
     @apply grid grid-cols-12 gap-4;
   }

@@ -19,13 +19,15 @@
         "main_menu": "main-menu",
         "customer_account_menu": "footer",
         "main_mobile_menu": "main-mobile-menu",
-        "footer_mobile_menu": "footer-menu"
+        "footer_mobile_menu": "footer-menu-drawer-mobile"
       }
     },
     "beconcept_loader_hN7WE3": {
       "type": "beconcept-loader",
       "name": "Page Loader",
-      "settings": {}
+      "settings": {
+        "loader_time": 3
+      }
     }
   },
   "order": [
