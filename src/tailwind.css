@@ -144,6 +144,7 @@
   html,
   body {
     overscroll-behavior: none;
+    @apply antialiased;
   }
   a {
     @apply outline-none focus:outline-none;
@@ -231,6 +232,10 @@
   .caption {
     @apply font-redhat lg:text-[9px] md:text-[9px] text-[10px] font-light leading-[140%] uppercase tracking-[0em];
   }
+}
+
+.btn {
+  @apply px-5 py-2 border border-solid hover:opacity-60 transition-all duration-300 lg:w-fit w-full text-center border-dark/16 font-ivar leading-none -tracking-[0.01em] min-h-10 flex items-center justify-center font-normal;
 }
 
 /* HEADER */

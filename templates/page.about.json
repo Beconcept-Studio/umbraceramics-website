@@ -77,12 +77,8 @@
           }
         }
       },
-      "block_order": [
-        "image_byNYRH",
-        "image_LBMR7c",
-        "image_LpQAGk"
-      ],
-      "name": "Beconcept Side Imgs",
+      "block_order": ["image_byNYRH", "image_LBMR7c", "image_LpQAGk"],
+      "name": "Beconcept Img Grid",
       "settings": {
         "add_space_top": true,
         "add_space_bottom": false
@@ -129,11 +125,8 @@
           }
         }
       },
-      "block_order": [
-        "image_rRfQHB",
-        "image_aA4zqm"
-      ],
-      "name": "Beconcept Side Imgs",
+      "block_order": ["image_rRfQHB", "image_aA4zqm"],
+      "name": "Beconcept Img Grid",
       "settings": {
         "add_space_top": true,
         "add_space_bottom": false
@@ -192,12 +185,8 @@
           }
         }
       },
-      "block_order": [
-        "image_RrNXbQ",
-        "image_zGnFVt",
-        "image_GCtY6G"
-      ],
-      "name": "Beconcept Side Imgs",
+      "block_order": ["image_RrNXbQ", "image_zGnFVt", "image_GCtY6G"],
+      "name": "Beconcept Img Grid",
       "settings": {
         "add_space_top": true,
         "add_space_bottom": false

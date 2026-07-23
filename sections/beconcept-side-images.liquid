@@ -9,6 +9,7 @@
         assign col_span_mobile = block.settings.size_mobile
         assign col_start_mobile = block.settings.start_mobile
         assign ratio = block.settings.aspect_ratio
+        assign ratio_mobile = block.settings.aspect_ratio_mobile
 
         case col_span
           when '1'
@@ -124,29 +125,54 @@
 
         case ratio
           when 'square'
-            assign ratio_class = 'aspect-square'
+            assign ratio_class = 'md:aspect-square'
           when '16-9'
-            assign ratio_class = 'aspect-[var(--aspect-16-9)]'
+            assign ratio_class = 'md:aspect-[var(--aspect-16-9)]'
           when '9-16'
-            assign ratio_class = 'aspect-[var(--aspect-9-16)]'
+            assign ratio_class = 'md:aspect-[var(--aspect-9-16)]'
           when '2-3'
-            assign ratio_class = 'aspect-[var(--aspect-2-3)]'
+            assign ratio_class = 'md:aspect-[var(--aspect-2-3)]'
           when '5-7'
-            assign ratio_class = 'aspect-[var(--aspect-5-7)]'
+            assign ratio_class = 'md:aspect-[var(--aspect-5-7)]'
           when '7-5'
-            assign ratio_class = 'aspect-[var(--aspect-7-5)]'
+            assign ratio_class = 'md:aspect-[var(--aspect-7-5)]'
           when '4-5'
-            assign ratio_class = 'aspect-[var(--aspect-4-5)]'
+            assign ratio_class = 'md:aspect-[var(--aspect-4-5)]'
           when '5-4'
-            assign ratio_class = 'aspect-[var(--aspect-5-4)]'
+            assign ratio_class = 'md:aspect-[var(--aspect-5-4)]'
+        endcase
+
+        if ratio_mobile == 'inherit' or ratio_mobile == blank
+          assign effective_ratio_mobile = ratio
+        else
+          assign effective_ratio_mobile = ratio_mobile
+        endif
+
+        case effective_ratio_mobile
+          when 'square'
+            assign ratio_class_mobile = 'aspect-square'
+          when '16-9'
+            assign ratio_class_mobile = 'aspect-[var(--aspect-16-9)]'
+          when '9-16'
+            assign ratio_class_mobile = 'aspect-[var(--aspect-9-16)]'
+          when '2-3'
+            assign ratio_class_mobile = 'aspect-[var(--aspect-2-3)]'
+          when '5-7'
+            assign ratio_class_mobile = 'aspect-[var(--aspect-5-7)]'
+          when '7-5'
+            assign ratio_class_mobile = 'aspect-[var(--aspect-7-5)]'
+          when '4-5'
+            assign ratio_class_mobile = 'aspect-[var(--aspect-4-5)]'
+          when '5-4'
+            assign ratio_class_mobile = 'aspect-[var(--aspect-5-4)]'
         endcase
       %}
 
       <div
-        class="side-img h-fit space-y-3 {{ span_class_mobile }} {{ start_class_mobile }} {{ span_class }} {{ start_class }}"
+        class="side-img h-fit {{ span_class_mobile }} {{ start_class_mobile }} {{ span_class }} {{ start_class }}"
         {{ block.shopify_attributes }}
       >
-        <div class="{{ ratio_class }} overflow-hidden">
+        <div class="{{ ratio_class_mobile }} {{ ratio_class }} overflow-hidden">
           {% if block.settings.image %}
             {{
               block.settings.image
@@ -158,8 +184,8 @@
           {% endif %}
         </div>
 
-        {% if block.settings.didasc %}
-          <div class="caption opacity-60">{{ block.settings.didasc }}</div>
+        {% if block.settings.didasc != empty %}
+          <div class="caption opacity-60 mt-3">{{ block.settings.didasc }}</div>
         {% endif %}
       </div>
     {% endfor %}
@@ -168,7 +194,7 @@
 
 {% schema %}
 {
-  "name": "Beconcept Side Imgs",
+  "name": "Beconcept Img Grid",
   "class": "section-wrapper",
   "settings": [
     {
@@ -244,6 +270,22 @@
           "default": "auto"
         },
         {
+          "type": "select",
+          "id": "aspect_ratio",
+          "label": "Aspect ratio (desktop)",
+          "options": [
+            { "value": "square", "label": "Square (1:1)" },
+            { "value": "16-9", "label": "16:9" },
+            { "value": "9-16", "label": "9:16" },
+            { "value": "2-3", "label": "2:3" },
+            { "value": "5-7", "label": "5:7" },
+            { "value": "7-5", "label": "7:5" },
+            { "value": "4-5", "label": "4:5" },
+            { "value": "5-4", "label": "5:4" }
+          ],
+          "default": "square"
+        },
+        {
           "type": "header",
           "content": "Mobile layout (sotto md)"
         },
@@ -289,14 +331,11 @@
           "default": "auto"
         },
         {
-          "type": "header",
-          "content": "Aspect ratio"
-        },
-        {
           "type": "select",
-          "id": "aspect_ratio",
-          "label": "Aspect ratio",
+          "id": "aspect_ratio_mobile",
+          "label": "Aspect ratio (mobile)",
           "options": [
+            { "value": "inherit", "label": "Inherit from desktop" },
             { "value": "square", "label": "Square (1:1)" },
             { "value": "16-9", "label": "16:9" },
             { "value": "9-16", "label": "9:16" },
@@ -306,7 +345,7 @@
             { "value": "4-5", "label": "4:5" },
             { "value": "5-4", "label": "5:4" }
           ],
-          "default": "square"
+          "default": "inherit"
         },
         {
           "type": "text",
@@ -319,7 +358,7 @@
   "max_blocks": 3,
   "presets": [
     {
-      "name": "Beconcept Side Imgs",
+      "name": "Beconcept Img Grid",
       "category": "Beconcept"
     }
   ]

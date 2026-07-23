@@ -17,6 +17,9 @@
             {{ section.settings.text }}
           </div>
         {% endif %}
+        {% if section.settings.btnlink and section.settings.btntext %}
+          <a href="{{ section.settings.btnlink }}" class="btn mx-auto">{{ section.settings.btntext }}</a>
+        {% endif %}
       </div>
     </div>
   {% endif %}
@@ -77,6 +80,17 @@
       "type": "richtext",
       "id": "text",
       "label": "Content"
+    },
+    {
+      "type": "text",
+      "id": "btntext",
+      "label": "Button text",
+      "default": "Read more"
+    },
+    {
+      "type": "url",
+      "id": "btnlink",
+      "label": "Button Link"
     }
   ],
   "presets": [
