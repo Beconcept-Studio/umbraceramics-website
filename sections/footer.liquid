@@ -4,19 +4,37 @@
       {% assign footermenu = section.settings.footer_menu %}
       <div class="flex items-center gap-[3px] justify-center">
         {% for link in footermenu.links -%}
-          <a href="{{ link.url }}" class="body-s flex items-center gap-[3px] text-blend group"
-            ><span>{{ link.title }}</span><span class="group-last:hidden">•</span></a
+          <a
+            href="{{ link.url }}"
+            class="body-s flex items-center gap-[3px] text-blend group{% if link.url == '#colophon-closer-desktop' %} hidden{% endif %}"
+            ><span class="group-first:hidden">•</span><span>{{ link.title }}</span></a
           >
         {%- endfor %}
       </div>
     {% endif %}
   </div>
+
+  <div class="colophon-footer-wrapper absolute z-20 transition-all duration-200 flex flex-col justify-end w-full">
+    <div class="divide-x divide-dark/8 flex justify-center flex-wrap border-t border-solid border border-dark/10 transition-all duration-300">
+      <div class="px-4 py-[10px] text-center text-dark/60 body-s block border-l border-solid border-dark/8">
+        © Umbra, 2026
+      </div>
+      <div class="px-4 py-[10px] text-center text-dark/60 body-s block">
+        <span>Design: </span><a class="underline" href="#">Lorenzo Appiani</a>
+      </div>
+      <div class="px-4 py-[10px] text-center text-dark/60 body-s block border-r border-solid border-dark/8">
+        <span>Development: </span><a class="underline" href="">Beconcept</a>
+      </div>
+    </div>
+  </div>
 </footer>
+
+<script src="{{ 'footer.js' | asset_url }}" type="module" fetchpriority="low"></script>
 
 {% schema %}
 {
   "name": "Footer Block",
-  "class": "section-wrapper",
+  "class": "section-wrapper transition-all duration-300 translate-y-0 overflow-hidden",
   "enabled_on": {
     "groups": ["footer"]
   },
