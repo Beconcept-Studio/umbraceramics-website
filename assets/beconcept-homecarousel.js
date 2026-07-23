@@ -19,6 +19,14 @@ const HOVER_TIME_SCALE = 0.08;
 const HOVER_TRANSITION_DURATION = 0.3;
 const MANUAL_PAN_RESUME_DELAY = 150;
 
+// Momentum applied after a touch-drag release, so mobile panning decelerates
+// naturally instead of stopping dead the instant the finger lifts.
+const INERTIA_VELOCITY_THRESHOLD = 0.05; // px/ms
+const INERTIA_PROJECTION = 250; // px of travel per px/ms of release velocity
+const INERTIA_DURATION_SCALE = 0.3; // seconds of travel per px/ms of release velocity
+const INERTIA_MIN_DURATION = 0.4; // seconds
+const INERTIA_MAX_DURATION = 1; // seconds
+
 /**
  * A custom element that scrolls a duplicated image stack in an infinite, seamless loop.
  *
@@ -61,6 +69,18 @@ class BeconceptHomeCarouselComponent extends Component {
 
   /** @type {number} */
   #touchY = 0;
+
+  /** @type {number} */
+  #touchVelocity = 0;
+
+  /** @type {number} */
+  #touchLastTime = 0;
+
+  /** @type {gsap.core.Tween | null} */
+  #inertiaTween = null;
+
+  /** @type {number} */
+  #inertiaTraveled = 0;
 
   /** @type {ReturnType<typeof setTimeout> | null} */
   #resumeTimer = null;
@@ -179,6 +199,12 @@ class BeconceptHomeCarouselComponent extends Component {
     this.addEventListener("touchmove", this.#handleTouchMove, {
       passive: false,
     });
+    this.addEventListener("touchend", this.#handleTouchEnd, {
+      passive: true,
+    });
+    this.addEventListener("touchcancel", this.#handleTouchEnd, {
+      passive: true,
+    });
   }
 
   #startTween() {
@@ -195,8 +221,12 @@ class BeconceptHomeCarouselComponent extends Component {
     this.removeEventListener("wheel", this.#handleWheel);
     this.removeEventListener("touchstart", this.#handleTouchStart);
     this.removeEventListener("touchmove", this.#handleTouchMove);
+    this.removeEventListener("touchend", this.#handleTouchEnd);
+    this.removeEventListener("touchcancel", this.#handleTouchEnd);
     if (this.#resumeTimer) clearTimeout(this.#resumeTimer);
     this.#resumeTimer = null;
+    this.#inertiaTween?.kill();
+    this.#inertiaTween = null;
 
     this.#tween?.kill();
     this.#tween = null;
@@ -224,6 +254,10 @@ class BeconceptHomeCarouselComponent extends Component {
   #handleTouchStart = (event) => {
     const touch = event.touches[0];
     if (touch) this.#touchY = touch.clientY;
+    this.#inertiaTween?.kill();
+    this.#inertiaTween = null;
+    this.#touchVelocity = 0;
+    this.#touchLastTime = performance.now();
   };
 
   /**
@@ -234,14 +268,71 @@ class BeconceptHomeCarouselComponent extends Component {
     if (!this.#loopHeight) return;
     const touch = event.touches[0];
     if (!touch) return;
+
+    const now = performance.now();
+    const dt = now - this.#touchLastTime || 16;
+    this.#touchLastTime = now;
+
     const delta = this.#touchY - touch.clientY;
     this.#touchY = touch.clientY;
+
+    // Smooth the instantaneous velocity so a single noisy sample right
+    // before release doesn't produce an unnaturally long/short flick.
+    this.#touchVelocity = this.#touchVelocity * 0.7 + (delta / dt) * 0.3;
+
     event.preventDefault();
     this.#panBy(delta);
   };
 
+  #handleTouchEnd = () => {
+    this.#startInertia(this.#touchVelocity);
+  };
+
+  /**
+   * Lets the loop keep coasting after a touch drag ends, decelerating over
+   * time instead of stopping abruptly, so mobile panning feels like classic
+   * momentum scrolling.
+   * @param {number} velocity - px per ms at release.
+   */
+  #startInertia(velocity) {
+    if (Math.abs(velocity) < INERTIA_VELOCITY_THRESHOLD) {
+      this.#scheduleResume();
+      return;
+    }
+
+    const distance = velocity * INERTIA_PROJECTION;
+    const duration = gsap.utils.clamp(
+      INERTIA_MIN_DURATION,
+      INERTIA_MAX_DURATION,
+      Math.abs(velocity) * INERTIA_DURATION_SCALE,
+    );
+
+    this.#inertiaTraveled = 0;
+    const proxy = { distance: 0 };
+    this.#inertiaTween = gsap.to(proxy, {
+      distance,
+      duration,
+      ease: "power2.out",
+      onUpdate: () => {
+        const frameDelta = proxy.distance - this.#inertiaTraveled;
+        this.#inertiaTraveled = proxy.distance;
+        this.#applyPan(frameDelta);
+      },
+      onComplete: () => {
+        this.#inertiaTween = null;
+        this.#scheduleResume();
+      },
+    });
+  }
+
   /** @param {number} delta */
   #panBy(delta) {
+    this.#applyPan(delta);
+    this.#scheduleResume();
+  }
+
+  /** @param {number} delta */
+  #applyPan(delta) {
     if (this.#tween) {
       this.#tween.kill();
       this.#tween = null;
@@ -256,7 +347,9 @@ class BeconceptHomeCarouselComponent extends Component {
       this.#loopDirection,
     );
     gsap.set(track, { y: next });
+  }
 
+  #scheduleResume() {
     if (this.#resumeTimer) clearTimeout(this.#resumeTimer);
     this.#resumeTimer = setTimeout(() => {
       this.#resumeTimer = null;

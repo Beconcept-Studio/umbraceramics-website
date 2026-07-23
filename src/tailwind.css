@@ -253,6 +253,13 @@ header a.current:after {
   @apply translate-y-0 transition-all duration-300;
 }
 
+/*
+ * Desktop/tablet footer colophon: instead of the mobile drawer's
+ * absolute-overlay slide, the bar is collapsed to zero height and the
+ * footer grows (visually translating upward, since the footer sits at
+ * the bottom of the page/viewport) to reveal it.
+ */
+
 /* COOKIE BANNER */
 body .shopify-pc__banner__dialog {
   position: fixed;
@@ -305,4 +312,14 @@ body .shopify-pc__banner__dialog button.shopify-pc__banner__btn-manage-prefs {
       @apply border-t-0;
     }
   }
+}
+
+.shopify-section-group-footer-group.translated-footer {
+  @apply -translate-y-[37px] transition-all duration-300 bg-main-bg overflow-visible;
+}
+.shopify-section-group-footer-group.translated-footer footer {
+  @apply transition-all duration-200 bg-main-bg;
+}
+.shopify-section-group-footer-group.translated-footer .colophon-footer-wrapper {
+  @apply transition-all duration-200 bg-main-bg;
 }
