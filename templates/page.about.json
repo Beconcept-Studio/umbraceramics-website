@@ -12,8 +12,16 @@
     "beconcept_video_AFGDA9": {
       "type": "beconcept-video",
       "name": "Beconcept Video",
-      "settings": {}
+      "settings": {
+        "video": "shopify://files/videos/hometrim.mp4",
+        "video_autoplay": false,
+        "video_muted": false,
+        "video_loop": true,
+        "caption": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et lobortis ex, eget vehicula lectus. Nullam sit amet ex quam. Mauris varius pretium pulvinar. "
+      }
     }
   },
-  "order": ["beconcept_video_AFGDA9"]
+  "order": [
+    "beconcept_video_AFGDA9"
+  ]
 }
