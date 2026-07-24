@@ -270,6 +270,21 @@ header a.current:after {
   @apply translate-y-0 transition-all duration-300;
 }
 
+/*HOME COMPONENT*/
+beconcept-homecarousel-component {
+  display: block;
+}
+beconcept-homecarousel-component[data-loop-active] {
+  overflow: hidden;
+}
+body:has(beconcept-homecarousel-component) .page-wrapper > footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+}
+
 /*SINGOLE PAGINE*/
 body[data-template="page.about"] .content-for-layout {
   @apply md:pt-[40px] pt-0;
