@@ -240,10 +240,10 @@
 
 /* HEADER */
 .header-section {
-  @apply lg:h-[72px] md:h-[64px] h-[48px] w-full absolute transition-transform duration-300;
+  @apply lg:h-[72px] md:h-[64px] h-[48px] w-full fixed lg:absolute transition-transform duration-300 bg-main-bg z-[8888];
 }
-body:not([data-template="index"]) .header-section {
-  @apply bg-main-bg;
+body[data-template="index"] .header-section {
+  @apply bg-transparent z-auto absolute lg:absolute;
 }
 .header-section.translated-up {
   @apply -translate-y-full transition-transform duration-300;
