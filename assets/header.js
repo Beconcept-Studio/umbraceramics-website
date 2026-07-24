@@ -1,5 +1,5 @@
 import { Component } from "@theme/component";
-import { onDocumentLoaded } from "@theme/utilities";
+import { onDocumentLoaded, lockScroll, unlockScroll } from "@theme/utilities";
 
 /**
  * A custom element that manages the mobile menu drawer, toggled by the
@@ -26,6 +26,11 @@ class MenuDrawer extends Component {
     document
       .querySelector(`[aria-controls="${this.id}"]`)
       ?.setAttribute("aria-expanded", String(open));
+    if (open) {
+      lockScroll(this);
+    } else {
+      unlockScroll(this);
+    }
   }
 }
 
@@ -102,6 +107,7 @@ onDocumentLoaded(() => {
     colophonOpener.addEventListener("click", (event) => {
       event.preventDefault();
       colophonWrapper.classList.add("colophon-open");
+      lockScroll(colophonWrapper);
       setTimeout(() => {
         colophonContent.classList.add("colophon-slided");
       }, 100);
@@ -111,7 +117,41 @@ onDocumentLoaded(() => {
       colophonContent.classList.remove("colophon-slided");
       setTimeout(() => {
         colophonWrapper.classList.remove("colophon-open");
+        unlockScroll(colophonWrapper);
       }, 100);
     });
+  }
+
+  // Gestione comparsa/scomparsa header allo scroll
+  const headerSectionGroup = document.querySelector(".header-section");
+  if (headerSectionGroup) {
+    let lastScrollY = 0;
+    // Con capture: true intercettiamo lo scroll di QUALSIASI contenitore del tema Shopify
+    window.addEventListener(
+      "scroll",
+      (event) => {
+        // Se a scrollare è il documento intero usiamo window, altrimenti leggiamo l'elemento che sta scrollando
+        const target = event.target === document ? window : event.target;
+        // Calcoliamo la posizione di scroll (funziona sia su window.scrollY che su div.scrollTop)
+        const currentScrollY = target.scrollY ?? target.scrollTop ?? 0;
+
+        // Evita bug in cima alla pagina (o rimbalzi su iOS)
+        if (currentScrollY <= 0) {
+          headerSectionGroup.classList.remove("translated-up");
+          return;
+        }
+        // Se scendo oltre i 200px
+        if (currentScrollY > 200 && currentScrollY > lastScrollY) {
+          headerSectionGroup.classList.add("translated-up");
+        }
+        // Se salgo verso l'alto
+        else if (currentScrollY < lastScrollY) {
+          headerSectionGroup.classList.remove("translated-up");
+        }
+
+        lastScrollY = currentScrollY;
+      },
+      { capture: true, passive: true },
+    );
   }
 });

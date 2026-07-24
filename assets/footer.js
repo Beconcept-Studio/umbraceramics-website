@@ -1,4 +1,5 @@
-import { onDocumentLoaded } from "@theme/utilities";
+import { onDocumentLoaded, lockScroll, unlockScroll } from "@theme/utilities";
+
 onDocumentLoaded(() => {
   const colophonFooterOpener = document.querySelector(
     'footer a[href="#colophon-opener-desktop"]',
@@ -25,6 +26,7 @@ onDocumentLoaded(() => {
     colophonFooterOpener.classList.add("hidden");
     colophonFooterCloser.classList.remove("hidden");
     footerSection.classList.add("translated-footer");
+    lockScroll(colophonFooterWrapper);
   });
 
   colophonFooterCloser.addEventListener("click", (event) => {
@@ -32,5 +34,6 @@ onDocumentLoaded(() => {
     colophonFooterCloser.classList.add("hidden");
     colophonFooterOpener.classList.remove("hidden");
     footerSection.classList.remove("translated-footer");
+    unlockScroll(colophonFooterWrapper);
   });
 });

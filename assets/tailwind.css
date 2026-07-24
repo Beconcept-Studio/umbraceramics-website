@@ -8,7 +8,6 @@
       "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-red-500: oklch(63.7% 0.237 25.331);
     --color-gray-50: oklch(98.5% 0.002 247.839);
     --color-black: #000;
     --color-white: #fff;
@@ -1543,9 +1542,14 @@
   }
 }
 .header-section {
-  position: relative;
+  position: absolute;
   height: 48px;
   width: 100%;
+  transition-property: transform, translate, scale, rotate;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+  --tw-duration: 300ms;
+  transition-duration: 300ms;
   @media (width >= 48rem) {
     height: 64px;
   }
@@ -1553,10 +1557,17 @@
     height: 72px;
   }
 }
-body[data-template="index"] .header-section {
-  position: absolute;
-  inset: 0px;
-  width: 100%;
+body:not([data-template="index"]) .header-section {
+  background-color: var(--color-main-bg);
+}
+.header-section.translated-up {
+  --tw-translate-y: -100%;
+  translate: var(--tw-translate-x) var(--tw-translate-y);
+  transition-property: transform, translate, scale, rotate;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+  --tw-duration: 300ms;
+  transition-duration: 300ms;
 }
 nav a {
   position: relative;
