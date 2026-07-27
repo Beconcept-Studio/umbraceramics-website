@@ -415,21 +415,6 @@
   .aspect-4-5 {
     aspect-ratio: var(--aspect-4-5);
   }
-  .aspect-5-4 {
-    aspect-ratio: var(--aspect-5-4);
-  }
-  .aspect-5-7 {
-    aspect-ratio: var(--aspect-5-7);
-  }
-  .aspect-7-5 {
-    aspect-ratio: var(--aspect-7-5);
-  }
-  .aspect-9-16 {
-    aspect-ratio: var(--aspect-9-16);
-  }
-  .aspect-16-9 {
-    aspect-ratio: var(--aspect-16-9);
-  }
   .aspect-\[9\/11\.25\] {
     aspect-ratio: 9/11.25;
   }
@@ -595,9 +580,6 @@
   .gap-10 {
     gap: calc(var(--spacing) * 10);
   }
-  .gap-20 {
-    gap: calc(var(--spacing) * 20);
-  }
   .gap-\[3px\] {
     gap: 3px;
   }
@@ -717,9 +699,6 @@
       border-color: color-mix(in oklab, var(--color-dark) 10%, transparent);
     }
   }
-  .bg-black {
-    background-color: var(--color-black);
-  }
   .bg-dark\/8 {
     background-color: color-mix(in srgb, #151617 8%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -786,10 +765,6 @@
   .font-ivar {
     font-family: var(--font-ivar);
   }
-  .text-base {
-    font-size: var(--text-base);
-    line-height: var(--tw-leading, var(--text-base--line-height));
-  }
   .text-\[8px\] {
     font-size: 8px;
   }
@@ -831,9 +806,6 @@
   }
   .text-inherit {
     color: inherit;
-  }
-  .text-white {
-    color: var(--color-white);
   }
   .capitalize {
     text-transform: capitalize;

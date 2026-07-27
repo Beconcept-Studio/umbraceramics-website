@@ -157,10 +157,7 @@
                   "blocks": {}
                 }
               },
-              "block_order": [
-                "text_xrnftG",
-                "price_tVjtKg"
-              ]
+              "block_order": ["text_xrnftG", "price_tVjtKg"]
             },
             "divider_VJhene": {
               "type": "_divider",
@@ -275,7 +272,7 @@
       }
     },
     "product_recommendations_qepVTw": {
-      "type": "product-recommendations",
+      "type": "beconcept-product-recommendations",
       "name": "t:names.product_recommendations",
       "settings": {
         "section_title": "More from the shop",
