@@ -3,18 +3,15 @@
   if featured_image != blank
     assign featured_media_url = featured_image | image_url: width: 500
   endif
-
   assign selected_variant = product.selected_or_first_available_variant
   assign price = selected_variant.price | money
   assign compare_at_price = selected_variant.compare_at_price
-
   assign show_compare_price = false
   if compare_at_price > selected_variant.price
     assign show_compare_price = true
     assign compare_at_price = compare_at_price | money
   endif
 %}
-
 <beconcept-product-card
   data-product-id="{{ product.id }}"
   class="block relative hover:opacity-80 transition-opacity duration-300 h-full"

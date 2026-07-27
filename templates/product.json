@@ -274,6 +274,15 @@
         "padding-block-end": 0
       }
     },
+    "product_recommendations_qepVTw": {
+      "type": "product-recommendations",
+      "name": "t:names.product_recommendations",
+      "settings": {
+        "section_title": "More from the shop",
+        "section_btnurl": "shopify://collections/shop",
+        "section_btntext": "View all items"
+      }
+    },
     "beconcept_final_gif_gydFNe": {
       "type": "beconcept-final-gif",
       "name": "Page Gif Separator",
@@ -282,6 +291,7 @@
   },
   "order": [
     "main",
+    "product_recommendations_qepVTw",
     "beconcept_final_gif_gydFNe"
   ]
 }
