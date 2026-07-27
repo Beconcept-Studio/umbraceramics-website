@@ -9,13 +9,71 @@
  */
 {
   "sections": {
+    "beconcept_pagetitle_9krXeG": {
+      "type": "beconcept-pagetitle",
+      "name": "Page Title",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": false,
+        "title": ""
+      }
+    },
     "beconcept_numbered_text_Jhm9an": {
       "type": "beconcept-numbered-text",
       "name": "Indent text with numbers",
       "settings": {
-        "add_space_top": false,
+        "add_space_top": true,
         "add_space_bottom": false,
         "show_number": false,
+        "number": 0,
+        "indent_content": true,
+        "title": "Section title",
+        "subtitle": "Subtitle",
+        "text": "<p>Varius mattis ac sit diam suscipit sit risus aenean. Facilisi massa donec ultrices diam montes enim. Erat et velit viverra eget cursus at sit augue. Et cum scelerisque risus cras rhoncus tellus tincidunt scelerisque. Aliquet pretium aliquam nunc pellentesque libero sit tellus ut vitae. Facilisi tellus sit orci in varius nulla malesuada.</p>",
+        "btntext": "",
+        "btnlink": ""
+      }
+    },
+    "beconcept_numbered_text_jexnCD": {
+      "type": "beconcept-numbered-text",
+      "name": "Indent text with numbers",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": false,
+        "show_number": false,
+        "number": 0,
+        "indent_content": true,
+        "title": "Section title",
+        "subtitle": "Subtitle",
+        "text": "<p>Varius mattis ac sit diam suscipit sit risus aenean. Facilisi massa donec ultrices diam montes enim. Erat et velit viverra eget cursus at sit augue. Et cum scelerisque risus cras rhoncus tellus tincidunt scelerisque. Aliquet pretium aliquam nunc pellentesque libero sit tellus ut vitae. Facilisi tellus sit orci in varius nulla malesuada.</p>",
+        "btntext": "",
+        "btnlink": ""
+      }
+    },
+    "beconcept_numbered_text_W4LXAr": {
+      "type": "beconcept-numbered-text",
+      "name": "Indent text with numbers",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": false,
+        "show_number": false,
+        "number": 0,
+        "indent_content": true,
+        "title": "Section title",
+        "subtitle": "Subtitle",
+        "text": "<p>Varius mattis ac sit diam suscipit sit risus aenean. Facilisi massa donec ultrices diam montes enim. Erat et velit viverra eget cursus at sit augue. Et cum scelerisque risus cras rhoncus tellus tincidunt scelerisque. Aliquet pretium aliquam nunc pellentesque libero sit tellus ut vitae. Facilisi tellus sit orci in varius nulla malesuada.</p><ul><li>Enim pellentesque vulputate mus tellus mauris aenean maecenas sem dictum iaculis venenatis.</li><li>Maecenas venenatis vulputate molestie nibh ut fusce.</li><li>Aliquam nisl quis vivamus habitant tempus faucibus at laoreet vulputate lobortis convallis.</li><li>Lectus porttitor suscipit pretium hendrerit sagittis viverra habitant scelerisque.</li></ul><p>Varius mattis ac sit diam suscipit sit risus aenean. Facilisi massa donec ultrices diam montes enim. Erat et velit viverra eget cursus at sit augue. Et cum scelerisque risus cras rhoncus tellus tincidunt scelerisque. Aliquet pretium aliquam nunc pellentesque libero sit tellus ut vitae. Facilisi tellus sit orci in varius nulla malesuada.</p>",
+        "btntext": "",
+        "btnlink": ""
+      }
+    },
+    "beconcept_numbered_text_9DqTCU": {
+      "type": "beconcept-numbered-text",
+      "name": "Indent text with numbers",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": true,
+        "show_number": false,
+        "number": 0,
         "indent_content": true,
         "title": "Section title",
         "subtitle": "Subtitle",
@@ -26,6 +84,10 @@
     }
   },
   "order": [
-    "beconcept_numbered_text_Jhm9an"
+    "beconcept_pagetitle_9krXeG",
+    "beconcept_numbered_text_Jhm9an",
+    "beconcept_numbered_text_jexnCD",
+    "beconcept_numbered_text_W4LXAr",
+    "beconcept_numbered_text_9DqTCU"
   ]
 }
