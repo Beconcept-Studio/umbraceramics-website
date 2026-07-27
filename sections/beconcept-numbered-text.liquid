@@ -12,9 +12,18 @@
             </div>
           </div>
         {% endif %}
-        {% if section.settings.text %}
-          <div class="body-l {% if section.settings.indent_content %}md:indent-[100px] indent-[64px]{% endif %}">
-            {{ section.settings.text }}
+        {% if section.settings.subtitle != empty or section.settings.text != empty %}
+          <div class="space-y-2">
+            {% if section.settings.subtitle != empty %}
+              <div class="headline-s {% if section.settings.number != 0 %}md:indent-[100px] indent-[64px]{% endif %}">
+                {{ section.settings.subtitle }}
+              </div>
+            {% endif %}
+            {% if section.settings.text != empty %}
+              <div class="body-l {% if section.settings.indent_content %}md:indent-[100px] indent-[64px]{% endif %}">
+                {{ section.settings.text }}
+              </div>
+            {% endif %}
           </div>
         {% endif %}
         {% if section.settings.btnlink and section.settings.btntext %}
@@ -28,7 +37,7 @@
 {% schema %}
 {
   "name": "Indent text with numbers",
-  "class": "section-wrapper",
+  "class": "section-wrapper-numbered-text",
   "settings": [
     {
       "type": "header",
@@ -72,6 +81,11 @@
       "type": "text",
       "id": "title",
       "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
     },
     {
       "type": "richtext",

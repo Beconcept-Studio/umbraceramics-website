@@ -366,3 +366,12 @@ body .shopify-pc__banner__dialog button.shopify-pc__banner__btn-manage-prefs {
 .shopify-section-group-footer-group.translated-footer .colophon-footer-wrapper {
   @apply transition-all duration-200 bg-main-bg;
 }
+
+.section-wrapper-numbered-text {
+  .body-l {
+    @apply space-y-3;
+  }
+  ul {
+    @apply indent-0 list-disc pl-4;
+  }
+}
