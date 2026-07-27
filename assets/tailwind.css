@@ -9,6 +9,7 @@
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     --color-gray-50: oklch(98.5% 0.002 247.839);
+    --color-gray-400: oklch(70.7% 0.022 261.325);
     --color-white: #fff;
     --spacing: 0.25rem;
     --font-weight-light: 300;
@@ -460,6 +461,9 @@
   .h-screen {
     height: 100vh;
   }
+  .min-h-\[100dvh\] {
+    min-height: 100dvh;
+  }
   .min-h-screen {
     min-height: 100vh;
   }
@@ -477,6 +481,9 @@
   }
   .w-full {
     width: 100%;
+  }
+  .w-max {
+    width: max-content;
   }
   .w-screen {
     width: 100vw;
@@ -553,11 +560,17 @@
   .items-center {
     align-items: center;
   }
+  .items-start {
+    align-items: flex-start;
+  }
   .justify-center {
     justify-content: center;
   }
   .justify-end {
     justify-content: flex-end;
+  }
+  .gap-0 {
+    gap: 0px;
   }
   .gap-1 {
     gap: var(--spacing);
@@ -705,6 +718,9 @@
   .bg-gray-50 {
     background-color: var(--color-gray-50);
   }
+  .bg-gray-400 {
+    background-color: var(--color-gray-400);
+  }
   .bg-main-bg {
     background-color: var(--color-main-bg);
   }
@@ -735,6 +751,9 @@
   .px-6 {
     padding-inline: calc(var(--spacing) * 6);
   }
+  .px-\[130px\] {
+    padding-inline: 130px;
+  }
   .py-5 {
     padding-block: calc(var(--spacing) * 5);
   }
@@ -747,14 +766,14 @@
   .py-\[40px\] {
     padding-block: 40px;
   }
+  .py-\[160px\] {
+    padding-block: 160px;
+  }
   .text-center {
     text-align: center;
   }
   .text-left {
     text-align: left;
-  }
-  .text-right {
-    text-align: right;
   }
   .indent-\[64px\] {
     text-indent: 64px;

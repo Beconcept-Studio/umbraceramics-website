@@ -1,0 +1,41 @@
+<div
+  class="product-informations relative"
+>
+  {% if section.settings.section_title != empty %}
+    <div
+      class="grid grid-cols-2 gap-0 divide-x divide-dark/10"
+      style="height: calc(100dvh - var(--header-group-height)"
+    >
+      <div class="px-[130px] flex items-center justify-center">
+        <div class="gap-10 flex items-start w-full">
+          <div class="caption flex flex-col gap-2">
+            <a class="w-max">1 - 4</a>
+            <a class="w-max opacity-30">2 - 4</a>
+            <a class="w-max opacity-30">3 - 4</a>
+            <a class="w-max opacity-30">4 - 4</a>
+          </div>
+          <div class="aspect-4-5 w-full bg-gray-400"></div>
+        </div>
+      </div>
+      <div class="flex items-center justify-center px-[130px]">
+        <div class="headline-l">{{ product.title }}</div>
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Product Informations",
+  "limit": 1,
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "presets": [
+    {
+      "name": "Product Informations",
+      "category": "Beconcept"
+    }
+  ]
+}
+{% endschema %}
