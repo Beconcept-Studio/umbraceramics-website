@@ -18,11 +18,14 @@
         "show_number": false,
         "indent_content": true,
         "title": "Section title",
+        "subtitle": "Subtitle",
         "text": "<p>Varius mattis ac sit diam suscipit sit risus aenean. Facilisi massa donec ultrices diam montes enim. Erat et velit viverra eget cursus at sit augue. Et cum scelerisque risus cras rhoncus tellus tincidunt scelerisque. Aliquet pretium aliquam nunc pellentesque libero sit tellus ut vitae. Facilisi tellus sit orci in varius nulla malesuada.</p>",
         "btntext": "",
         "btnlink": ""
       }
     }
   },
-  "order": ["beconcept_numbered_text_Jhm9an"]
+  "order": [
+    "beconcept_numbered_text_Jhm9an"
+  ]
 }

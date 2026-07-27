@@ -12,6 +12,11 @@
             </div>
           </div>
         {% endif %}
+        {% if section.settings.subtitle %}
+          <div class="body-l">
+            {{ section.settings.subtitle }}
+          </div>
+        {% endif %}
         {% if section.settings.text %}
           <div class="body-l {% if section.settings.indent_content %}md:indent-[100px] indent-[64px]{% endif %}">
             {{ section.settings.text }}
@@ -72,6 +77,11 @@
       "type": "text",
       "id": "title",
       "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
     },
     {
       "type": "richtext",
