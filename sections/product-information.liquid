@@ -25,12 +25,6 @@
 {% render 'deferred-media-product-model-styles' %}
 {% render 'deferred-media-video-styles' %}
 
-{% if section.settings.enable_sticky_add_to_cart %}
-  {% render 'fly-to-cart-styles' %}
-
-  {% render 'add-to-cart-button-styles' %}
-{% endif %}
-
 {% render 'product-information-content',
   product: closest.product,
   section_id: section.id,

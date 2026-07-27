@@ -1,19 +1,4 @@
-
-
 {% assign block_settings = block.settings %}
-{% liquid
-  assign custom_color = false
-  if block_settings.background_color != blank or block_settings.text_color != blank
-    assign custom_color = true
-    render 'contrast-override', background_color: block_settings.background_color, text_color: block_settings.text_color, section_id: block.id
-  endif
-%}
-
-{%- capture cart_summary_inner_class -%}
-  cart-summary__inner
-  {% if block_settings.extend_summary == false and custom_color %} color-custom-{{ block.id }} inherit-parent-scheme--mobile{% endif %}
-  {% if block_settings.extend_summary == false and block_settings.border_radius > 0 %} has-border-radius{% endif %}
-{%- endcapture -%}
 
 {% if block_settings.extend_summary %}
   <div

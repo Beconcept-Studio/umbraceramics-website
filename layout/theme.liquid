@@ -38,8 +38,6 @@
     {%- render 'meta-tags' -%}
     {%- render 'stylesheets' -%}
     {%- render 'scripts' -%}
-    {%- render 'theme-styles-variables' -%}
-    {%- render 'color-palette' -%}
 
     {% if request.design_mode %}
       {%- render 'theme-editor' -%}
@@ -62,8 +60,6 @@
 
   <body class="bg-main-bg" data-template="{{ template }}">
     {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}
-
-    {% render 'chat-drawer' %}
 
     <div class="page-wrapper">
       <div id="header-group">
