@@ -5,7 +5,7 @@
         {% if section.settings.title %}
           <div class="flex flex-row">
             {% if section.settings.show_number and section.settings.number != null %}
-              <div class="headline-m uppercase lg:w-[100px] w-[64px]">({{ section.settings.number }}).</div>
+              <div class="headline-m uppercase md:w-[100px] w-[64px]">({{ section.settings.number }}).</div>
             {% endif %}
             <div class="headline-m uppercase">
               {{ section.settings.title }}
@@ -13,7 +13,7 @@
           </div>
         {% endif %}
         {% if section.settings.text %}
-          <div class="body-l {% if section.settings.indent_content %}lg:indent-[100px] indent-[64px]{% endif %}">
+          <div class="body-l {% if section.settings.indent_content %}md:indent-[100px] indent-[64px]{% endif %}">
             {{ section.settings.text }}
           </div>
         {% endif %}

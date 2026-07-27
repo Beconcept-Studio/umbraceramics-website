@@ -373,17 +373,20 @@
   .mt-3 {
     margin-top: calc(var(--spacing) * 3);
   }
+  .mt-4 {
+    margin-top: calc(var(--spacing) * 4);
+  }
   .mt-6 {
     margin-top: calc(var(--spacing) * 6);
+  }
+  .mt-16 {
+    margin-top: calc(var(--spacing) * 16);
   }
   .mt-\[120px\] {
     margin-top: 120px;
   }
   .mt-\[200px\] {
     margin-top: 200px;
-  }
-  .mt-auto {
-    margin-top: auto;
   }
   .-mb-\[1px\] {
     margin-bottom: calc(1px * -1);
@@ -758,8 +761,14 @@
   .py-5 {
     padding-block: calc(var(--spacing) * 5);
   }
+  .py-\[10\] {
+    padding-block: 10;
+  }
   .py-\[10px\] {
     padding-block: 10px;
+  }
+  .py-\[16px\] {
+    padding-block: 16px;
   }
   .py-\[40px\] {
     padding-block: 40px;
@@ -782,6 +791,9 @@
   .text-base {
     font-size: var(--text-base);
     line-height: var(--tw-leading, var(--text-base--line-height));
+  }
+  .text-\[8px\] {
+    font-size: 8px;
   }
   .text-\[15px\] {
     font-size: 15px;
@@ -1090,6 +1102,9 @@
     .md\:h-\[64px\] {
       height: 64px;
     }
+    .md\:w-\[100px\] {
+      width: 100px;
+    }
     .md\:max-w-\[146px\] {
       max-width: 146px;
     }
@@ -1102,11 +1117,16 @@
     .md\:gap-4 {
       gap: calc(var(--spacing) * 4);
     }
-    .md\:px-4 {
-      padding-inline: calc(var(--spacing) * 4);
+    :where(.md\:space-y-6 > :not(:last-child)) {
+      --tw-space-y-reverse: 0;
+      margin-block-start: calc(calc(var(--spacing) * 6) * var(--tw-space-y-reverse));
+      margin-block-end: calc(calc(var(--spacing) * 6) * calc(1 - var(--tw-space-y-reverse)));
     }
-    .md\:py-\[120px\] {
-      padding-block: 120px;
+    .md\:py-\[60px\] {
+      padding-block: 60px;
+    }
+    .md\:indent-\[100px\] {
+      text-indent: 100px;
     }
     .md\:text-\[16px\] {
       font-size: 16px;
@@ -1200,11 +1220,8 @@
     .lg\:h-\[72px\] {
       height: 72px;
     }
-    .lg\:w-\[100px\] {
-      width: 100px;
-    }
-    .lg\:max-w-\[60\%\] {
-      max-width: 60%;
+    .lg\:max-w-\[50\%\] {
+      max-width: 50%;
     }
     .lg\:max-w-\[130px\] {
       max-width: 130px;
@@ -1223,8 +1240,14 @@
     .lg\:gap-y-4 {
       row-gap: calc(var(--spacing) * 4);
     }
-    .lg\:indent-\[100px\] {
-      text-indent: 100px;
+    .lg\:py-\[16px\] {
+      padding-block: 16px;
+    }
+    .lg\:py-\[120px\] {
+      padding-block: 120px;
+    }
+    .lg\:pl-4 {
+      padding-left: calc(var(--spacing) * 4);
     }
     .lg\:font-satoshi {
       font-family: var(--font-satoshi);
@@ -1256,6 +1279,13 @@
     width: 100%;
     padding-inline: calc(var(--spacing) * 4);
     @media (width >= 48rem) {
+      padding-inline: calc(var(--spacing) * 10);
+    }
+  }
+  .div--container-header {
+    width: 100%;
+    padding-inline: calc(var(--spacing) * 4);
+    @media (width >= 64rem) {
       padding-inline: calc(var(--spacing) * 10);
     }
   }
@@ -1346,8 +1376,8 @@
     line-height: 140%;
     --tw-font-weight: var(--font-weight-normal);
     font-weight: var(--font-weight-normal);
-    --tw-tracking: -0.01em;
-    letter-spacing: -0.01em;
+    --tw-tracking: 0em;
+    letter-spacing: 0em;
     @media (width >= 48rem) {
       font-size: 15px;
     }
@@ -1362,8 +1392,8 @@
     line-height: 140%;
     --tw-font-weight: var(--font-weight-normal);
     font-weight: var(--font-weight-normal);
-    --tw-tracking: 0em;
-    letter-spacing: 0em;
+    --tw-tracking: 0.05em;
+    letter-spacing: 0.05em;
     @media (width >= 48rem) {
       font-size: 14px;
     }
@@ -1378,8 +1408,8 @@
     line-height: 140%;
     --tw-font-weight: var(--font-weight-normal);
     font-weight: var(--font-weight-normal);
-    --tw-tracking: 0.01em;
-    letter-spacing: 0.01em;
+    --tw-tracking: 0.05em;
+    letter-spacing: 0.05em;
     @media (width >= 48rem) {
       font-size: 13px;
     }
@@ -1411,8 +1441,8 @@
     line-height: 140%;
     --tw-font-weight: var(--font-weight-normal);
     font-weight: var(--font-weight-normal);
-    --tw-tracking: 0em;
-    letter-spacing: 0em;
+    --tw-tracking: 0.2em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     @media (width >= 48rem) {
       font-size: 8px;
@@ -1476,8 +1506,8 @@
     line-height: 100%;
     --tw-font-weight: var(--font-weight-normal);
     font-weight: var(--font-weight-normal);
-    --tw-tracking: 0em;
-    letter-spacing: 0em;
+    --tw-tracking: calc(0.01em * -1);
+    letter-spacing: calc(0.01em * -1);
     @media (width >= 48rem) {
       font-size: 15px;
     }
@@ -1492,8 +1522,8 @@
     line-height: 140%;
     --tw-font-weight: var(--font-weight-light);
     font-weight: var(--font-weight-light);
-    --tw-tracking: 0em;
-    letter-spacing: 0em;
+    --tw-tracking: 0.2em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     @media (width >= 48rem) {
       font-size: 9px;
@@ -1582,13 +1612,13 @@ body[data-template="index"] .header-section {
 nav a {
   position: relative;
 }
-menu-drawer a.current:after {
+header menu-drawer a.current:after {
   content: "";
   background-image: var(--nav-current-indicator);
   background-repeat: no-repeat;
   background-size: 100% auto;
   position: absolute;
-  bottom: var(--spacing);
+  bottom: calc(var(--spacing) * 2);
   left: calc(1 / 2 * 100%);
   height: 2px;
   width: 51px;

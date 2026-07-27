@@ -152,6 +152,9 @@
   .div--container {
     @apply w-full md:px-10 px-4;
   }
+  .div--container-header {
+    @apply w-full lg:px-10 px-4;
+  }
   .div--container-small {
     @apply w-full max-w-[1295px] mx-auto md:px-10 px-4;
   }
@@ -185,17 +188,17 @@
 
   /* Headline S — Ivar Headline, Regular, LH 140%, Track 0% */
   .headline-s {
-    @apply font-ivar lg:text-[15px] md:text-[15px] text-[15px] font-normal leading-[140%] tracking-[-0.01em];
+    @apply font-ivar lg:text-[15px] md:text-[15px] text-[15px] font-normal leading-[140%] tracking-[0em];
   }
 
   /* Body L — Satoshi, Regular, LH 140%, Track 0% */
   .body-l {
-    @apply font-satoshi lg:text-[13px] md:text-[14px] text-[14px] font-normal leading-[140%] tracking-[0em];
+    @apply font-satoshi lg:text-[13px] md:text-[14px] text-[14px] font-normal leading-[140%] tracking-[0.05em];
   }
 
   /* Body S — Satoshi, Regular, LH 140%, Track 0% */
   .body-s {
-    @apply font-satoshi lg:text-[11px] md:text-[13px] text-[13px] font-normal leading-[140%] tracking-[0.01em];
+    @apply font-satoshi lg:text-[11px] md:text-[13px] text-[13px] font-normal leading-[140%] tracking-[0.05em];
   }
 
   /* Label L — Satoshi, Regular, LH 140%, Track 0%, Uppercase */
@@ -205,7 +208,7 @@
 
   /* Label S — Satoshi, Regular, LH 140%, Track 0%, Uppercase */
   .label-s {
-    @apply font-satoshi lg:text-[8px] md:text-[8px] text-[8px] font-normal leading-[140%] uppercase tracking-[0em];
+    @apply font-satoshi lg:text-[8px] md:text-[8px] text-[8px] font-normal leading-[140%] uppercase tracking-[0.2em];
   }
 
   /* Price L — Red Hat Mono, Light, LH 140%, Track 2% */
@@ -225,12 +228,12 @@
 
   /* Button — Ivar Headline, Regular, LH 100%, Track 0% */
   .button {
-    @apply font-ivar lg:text-[15px] md:text-[15px] text-[15px] font-normal leading-[100%] tracking-[0em];
+    @apply font-ivar lg:text-[15px] md:text-[15px] text-[15px] font-normal leading-[100%] -tracking-[0.01em];
   }
 
   /* Caption — Red Hat Mono, Light, LH 140%, Track 0%, Uppercase */
   .caption {
-    @apply font-redhat lg:text-[9px] md:text-[9px] text-[10px] font-light leading-[140%] uppercase tracking-[0em];
+    @apply font-redhat lg:text-[9px] md:text-[9px] text-[10px] font-light leading-[140%] uppercase tracking-[0.2em];
   }
 }
 
@@ -252,12 +255,12 @@ nav a {
   @apply relative;
 }
 
-menu-drawer a.current:after {
+header menu-drawer a.current:after {
   content: "";
   background-image: var(--nav-current-indicator);
   background-repeat: no-repeat;
   background-size: 100% auto;
-  @apply absolute left-1/2 -translate-x-1/2 bottom-1 w-[51px] h-[2px];
+  @apply absolute left-1/2 -translate-x-1/2 bottom-2 w-[51px] h-[2px];
 }
 header a.current:after {
   content: "";

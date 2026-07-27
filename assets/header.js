@@ -104,6 +104,14 @@ onDocumentLoaded(() => {
   }
 
   if (colophonOpener && colophonCloser && colophonWrapper && colophonContent) {
+    const closeColophon = () => {
+      colophonContent.classList.remove("colophon-slided");
+      setTimeout(() => {
+        colophonWrapper.classList.remove("colophon-open");
+        unlockScroll(colophonWrapper);
+      }, 100);
+    };
+
     colophonOpener.addEventListener("click", (event) => {
       event.preventDefault();
       colophonWrapper.classList.add("colophon-open");
@@ -113,12 +121,12 @@ onDocumentLoaded(() => {
       }, 100);
     });
 
-    colophonCloser.addEventListener("click", () => {
-      colophonContent.classList.remove("colophon-slided");
-      setTimeout(() => {
-        colophonWrapper.classList.remove("colophon-open");
-        unlockScroll(colophonWrapper);
-      }, 100);
+    colophonCloser.addEventListener("click", closeColophon);
+
+    colophonWrapper.addEventListener("click", (event) => {
+      if (event.target === colophonWrapper) {
+        closeColophon();
+      }
     });
   }
 
@@ -141,7 +149,7 @@ onDocumentLoaded(() => {
           return;
         }
         // Se scendo oltre i 200px
-        if (currentScrollY > 200 && currentScrollY > lastScrollY) {
+        if (currentScrollY > 1 && currentScrollY > lastScrollY) {
           headerSectionGroup.classList.add("translated-up");
         }
         // Se salgo verso l'alto

@@ -17,7 +17,7 @@
         "home_carousel": "development-gallery",
         "enable_autoplay": true,
         "enable_hover_slowdown": false,
-        "scroll_speed": 60,
+        "scroll_speed": 80,
         "scroll_direction": "up"
       }
     }

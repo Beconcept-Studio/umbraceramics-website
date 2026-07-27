@@ -7,7 +7,7 @@
           <a
             href="{{ link.url }}"
             class="body-s flex items-center gap-[3px] text-blend group{% if link.url == '#colophon-closer-desktop' %} hidden{% endif %}"
-            ><span class="group-first:hidden">•</span><span>{{ link.title }}</span></a
+            ><span class="group-first:hidden text-[8px]">•</span><span>{{ link.title }}</span></a
           >
         {%- endfor %}
       </div>
@@ -20,10 +20,17 @@
         © Umbra, 2026
       </div>
       <div class="px-4 py-[10px] text-center text-dark/60 body-s block">
-        <span>Design: </span><a class="underline" href="#">Lorenzo Appiani</a>
+        <span>Design: </span><a class="underline" target="_blank" href="https://lorenzoappiani.com">Lorenzo Appiani</a>
       </div>
       <div class="px-4 py-[10px] text-center text-dark/60 body-s block border-r border-solid border-dark/8">
-        <span>Development: </span><a class="underline" href="">Beconcept</a>
+        <span>Development: </span
+        ><a
+          class="underline"
+          rel="dofollow"
+          target="_blank"
+          href="https://beconcept.studio/?utm_source=referral&utm_medium=customer_website&utm_campaign=UmbraCeramics"
+          >Beconcept</a
+        >
       </div>
     </div>
   </div>

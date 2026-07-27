@@ -16,7 +16,7 @@
   </cart-icon>
 {% endcapture %}
 <header class="mix-blend-exclusion text-blend-typo absolute top-0 left-0 w-full lg:h-[72px] md:h-[64px] h-[48px] z-[999]">
-  <div class="div--container common--grid h-full">
+  <div class="div--container-header common--grid h-full">
     <div class="col-span-5 self-center hidden lg:block">
       {% if section.settings.main_menu %}
         {% assign mainmenu = section.settings.main_menu %}
@@ -166,12 +166,12 @@
       </div>
     {% endif %}
     {% if section.settings.footer_mobile_menu %}
-      <div class="mt-auto divide-y divide-dark/10 flex flex-col relative">
+      <div class="divide-y divide-dark/10 flex flex-col relative">
         {% assign footermenu = section.settings.footer_mobile_menu %}
         {% for link in footermenu.links -%}
           <a
             href="{{ link.url }}"
-            class="first:border-t first:border-solid first:border-dark/10 px-4 py-[10px] text-center text-dark/60 body-s block hover:opacity-40 transition-opacity duration-300{% if link.current %} current{% endif %}{% if link.active %} active{% endif %}"
+            class="first:border-t first:border-solid first:border-dark/10 px-4 lg:py-[16px] py-[10px] text-center text-dark/60 body-s block hover:opacity-40 transition-opacity duration-300{% if link.current %} current{% endif %}{% if link.active %} active{% endif %}"
           >
             {{- link.title -}}
           </a>
@@ -189,12 +189,18 @@
 
             <div class="flex flex-wrap w-full border-y border-solid divide-x divide-dark/10 border-dark/10">
               <div class="w-1/2 px-4 py-[10px] text-center text-dark/60 body-s block">
-                <span class="block">Design:</span>
-                <a class="block underline" href="#">Lorenzo Appiani</a>
+                <span class="">Design:</span>
+                <a class="underline" target="_blank" href="https://lorenzoappiani.com">Lorenzo Appiani</a>
               </div>
               <div class="w-1/2 px-4 py-[10px] text-center text-dark/60 body-s block">
-                <span class="block">Development: body</span>
-                <a class="underline block" href="">Beconcept</a>
+                <span class="">Development:</span>
+                <a
+                  class="underline"
+                  rel="dofollow"
+                  target="_blank"
+                  href="https://beconcept.studio/?utm_source=referral&utm_medium=customer_website&utm_campaign=UmbraCeramics"
+                  >Beconcept</a
+                >
               </div>
             </div>
 

@@ -133,8 +133,12 @@ class BeconceptHomeCarouselComponent extends Component {
 
   /**
    * On mobile/tablet, `100vh`/`h-screen` jumps around as the browser chrome
-   * shows/hides on scroll. Lock the section to the viewport height measured
-   * once at load instead. Desktop keeps the CSS `h-screen` sizing.
+   * shows/hides on scroll. Lock the section to `lvh` (the viewport size with
+   * the browser UI collapsed) instead of the live, shrinking visual
+   * viewport — this pins the section to the device's actual fullscreen
+   * height so content extends behind the browser's (often translucent)
+   * address/nav bar, e.g. Safari's bottom toolbar, rather than stopping
+   * short of it. Desktop keeps the CSS `h-screen` sizing.
    */
   #lockMobileHeight = () => {
     if (mediaQueryLarge.matches) {
@@ -142,9 +146,8 @@ class BeconceptHomeCarouselComponent extends Component {
       this.style.removeProperty("min-height");
       return;
     }
-    const height = `${window.innerHeight}px`;
-    this.style.height = height;
-    this.style.minHeight = height;
+    this.style.height = "100lvh";
+    this.style.minHeight = "100lvh";
   };
 
   onItemEnter() {
