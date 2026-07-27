@@ -6,140 +6,96 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */
+{
   "sections": {
-    "main": {
-      "type": "main-page",
+    "beconcept_contacts_QzdBXK": {
+      "type": "beconcept-contacts",
       "blocks": {
-        "title": {
-          "type": "text",
-          "name": "t:names.title",
+        "contact_ibNxnh": {
+          "type": "contact",
           "settings": {
-            "text": "<h1>{{ closest.page.title }}</h1>",
-            "width": "100%",
-            "max_width": "normal",
-            "alignment": "center",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "contact_label": "Instagram",
+            "contact_content": "<p><a href=\"https://www.instagram.com/umbraceramics/\" target=\"_blank\" title=\"https://www.instagram.com/umbraceramics/\">@umbraceramics</a></p>"
+          }
         },
-        "content": {
-          "type": "text",
-          "name": "t:names.content",
+        "contact_jwKcwd": {
+          "type": "contact",
           "settings": {
-            "text": "{{ closest.page.content }}",
-            "width": "100%",
-            "max_width": "narrow",
-            "alignment": "center",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "contact_label": "E-mail",
+            "contact_content": "<p><a href=\"mailto:info@umbra-ceramics.com\" title=\"mailto:info@umbra-ceramics.com\">info@umbra-ceramics.com</a></p>"
+          }
+        },
+        "contact_KPCzae": {
+          "type": "contact",
+          "settings": {
+            "contact_label": "Phone",
+            "contact_content": "<p><a href=\"tel:+34667459161\" title=\"tel:+34667459161\">+34 667459161</a></p>"
+          }
+        },
+        "contact_wCm3A7": {
+          "type": "contact",
+          "settings": {
+            "contact_label": "Address",
+            "contact_content": "<p>Merl, Luxembourg</p>"
+          }
+        },
+        "contact_DawHfK": {
+          "type": "contact",
+          "settings": {
+            "contact_label": "VAT N°",
+            "contact_content": "<p>LU36174448</p>"
+          }
         }
       },
       "block_order": [
-        "title",
-        "content"
+        "contact_ibNxnh",
+        "contact_jwKcwd",
+        "contact_KPCzae",
+        "contact_wCm3A7",
+        "contact_DawHfK"
       ],
+      "name": "Contact grid",
       "settings": {
-        "content_direction": "column",
-        "gap": 32,
-        "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 40,
-        "padding-block-end": 0
+        "add_space_top": true,
+        "add_space_bottom": false,
+        "show_number": false,
+        "indent_content": true,
+        "title": "",
+        "text": "<p>Felis sed egestas tincidunt ullamcorper imperdiet tristique. Pharetra nunc eu at mollis non hendrerit adipiscing diam. Nisl gravida facilisis dapibus magna a rhoncus. Diam enim leo tortor tellus at phasellus pellentesque.</p>",
+        "btntext": "",
+        "btnlink": ""
       }
     },
-    "form": {
-      "type": "section",
+    "beconcept_side_images_Hgndgw": {
+      "type": "beconcept-side-images",
       "blocks": {
-        "contact_form_UwiCkQ": {
-          "type": "contact-form",
+        "image_AP8Q3y": {
+          "type": "image",
           "settings": {
-            "width": "custom",
-            "custom_width": 50,
-            "width_mobile": "custom",
-            "custom_width_mobile": 100,
-            "input_style": "default",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "submit-button": {
-              "type": "contact-form-submit-button",
-              "static": true,
-              "settings": {
-                "label": "Submit",
-                "style_class": "button",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": []
+            "image": "shopify://shop_images/12.jpg",
+            "size": "4",
+            "start": "5",
+            "aspect_ratio": "square",
+            "size_mobile": "6",
+            "start_mobile": "4",
+            "aspect_ratio_mobile": "4-5",
+            "didasc": ""
+          }
         }
       },
       "block_order": [
-        "contact_form_UwiCkQ"
+        "image_AP8Q3y"
       ],
-      "name": "t:names.contact_form",
+      "name": "Image grid",
       "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 32,
-        "section_width": "page-width",
-        "section_height_custom": 50,
-        "background_media": "none",
-        "background_color": "{{ settings.color_palette.background }}",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "padding-block-start": 32,
-        "padding-block-end": 84
+        "add_space_top": true,
+        "add_space_bottom": false
       }
     }
   },
   "order": [
-    "main",
-    "form"
+    "beconcept_contacts_QzdBXK",
+    "beconcept_side_images_Hgndgw"
   ]
 }

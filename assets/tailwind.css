@@ -232,14 +232,8 @@
   .bottom-0 {
     bottom: 0px;
   }
-  .bottom-4 {
-    bottom: calc(var(--spacing) * 4);
-  }
   .left-0 {
     left: 0px;
-  }
-  .left-1\/2 {
-    left: calc(1 / 2 * 100%);
   }
   .isolate {
     isolation: isolate;
@@ -379,9 +373,6 @@
   .mt-6 {
     margin-top: calc(var(--spacing) * 6);
   }
-  .mt-16 {
-    margin-top: calc(var(--spacing) * 16);
-  }
   .mt-\[120px\] {
     margin-top: 120px;
   }
@@ -496,6 +487,9 @@
   .w-6 {
     width: calc(var(--spacing) * 6);
   }
+  .w-\[1px\] {
+    width: 1px;
+  }
   .w-\[64px\] {
     width: 64px;
   }
@@ -532,10 +526,6 @@
   .grow {
     flex-grow: 1;
   }
-  .-translate-x-1\/2 {
-    --tw-translate-x: calc(calc(1 / 2 * 100%) * -1);
-    translate: var(--tw-translate-x) var(--tw-translate-y);
-  }
   .-translate-y-1\/2 {
     --tw-translate-y: calc(calc(1 / 2 * 100%) * -1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
@@ -560,6 +550,9 @@
   .grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+  .grid-cols-8 {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
   .grid-cols-12 {
     grid-template-columns: repeat(12, minmax(0, 1fr));
   }
@@ -583,6 +576,9 @@
   }
   .justify-end {
     justify-content: flex-end;
+  }
+  .gap-1 {
+    gap: var(--spacing);
   }
   .gap-2 {
     gap: calc(var(--spacing) * 2);
@@ -761,14 +757,11 @@
   .py-5 {
     padding-block: calc(var(--spacing) * 5);
   }
-  .py-\[10\] {
-    padding-block: 10;
+  .py-\[6px\] {
+    padding-block: 6px;
   }
   .py-\[10px\] {
     padding-block: 10px;
-  }
-  .py-\[16px\] {
-    padding-block: 16px;
   }
   .py-\[40px\] {
     padding-block: 40px;
@@ -967,9 +960,6 @@
     }
   }
   @media (width >= 48rem) {
-    .md\:bottom-\[40px\] {
-      bottom: 40px;
-    }
     .md\:col-span-1 {
       grid-column: span 1 / span 1;
     }
@@ -1133,11 +1123,23 @@
     }
   }
   @media (width >= 64rem) {
+    .lg\:absolute {
+      position: absolute;
+    }
+    .lg\:bottom-8 {
+      bottom: calc(var(--spacing) * 8);
+    }
+    .lg\:left-1\/2 {
+      left: calc(1 / 2 * 100%);
+    }
     .lg\:col-span-2 {
       grid-column: span 2 / span 2;
     }
     .lg\:col-span-3 {
       grid-column: span 3 / span 3;
+    }
+    .lg\:col-span-4 {
+      grid-column: span 4 / span 4;
     }
     .lg\:col-span-5 {
       grid-column: span 5 / span 5;
@@ -1225,6 +1227,10 @@
     }
     .lg\:max-w-\[130px\] {
       max-width: 130px;
+    }
+    .lg\:-translate-x-1\/2 {
+      --tw-translate-x: calc(calc(1 / 2 * 100%) * -1);
+      translate: var(--tw-translate-x) var(--tw-translate-y);
     }
     .lg\:grid-cols-24 {
       grid-template-columns: repeat(24, minmax(0, 1fr));
@@ -1631,7 +1637,7 @@ header a.current:after {
   background-repeat: no-repeat;
   background-size: 100% auto;
   position: absolute;
-  bottom: calc(var(--spacing) * -1);
+  bottom: calc(var(--spacing) * -2);
   left: calc(1 / 2 * 100%);
   height: 3px;
   width: 40px;

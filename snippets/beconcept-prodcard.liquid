@@ -44,7 +44,9 @@
       </div>
     </div>
     {% if product.available == false %}
-      <div class="label-s opacity-60 text-center mt-4">Sold out</div>
+      <div class="label-s opacity-60 text-center mt-4 lg:absolute lg:bottom-8 lg:left-1/2 lg:-translate-x-1/2">
+        Sold out
+      </div>
     {% endif %}
   </a>
 </beconcept-product-card>

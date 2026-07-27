@@ -11,7 +11,7 @@
   "sections": {
     "beconcept_numbered_text_dhkqQp": {
       "type": "beconcept-numbered-text",
-      "name": "Beconcept Numbered Text",
+      "name": "Indent text with numbers",
       "settings": {
         "add_space_top": true,
         "add_space_bottom": false,
@@ -40,9 +40,7 @@
           }
         }
       },
-      "block_order": [
-        "image_XNthFM"
-      ],
+      "block_order": ["image_XNthFM"],
       "name": "Beconcept Side Imgs",
       "settings": {
         "add_space_top": true,

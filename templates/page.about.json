@@ -12,7 +12,7 @@
     "beconcept_video_AFGDA9": {
       "type": "beconcept-video",
       "disabled": true,
-      "name": "Beconcept Video",
+      "name": "Video Block",
       "settings": {
         "add_space_top": true,
         "add_space_bottom": false,
@@ -26,7 +26,7 @@
     },
     "beconcept_numbered_text_fCiayr": {
       "type": "beconcept-numbered-text",
-      "name": "Beconcept Numbered Text",
+      "name": "Indent text with numbers",
       "settings": {
         "add_space_top": true,
         "add_space_bottom": false,
@@ -78,7 +78,7 @@
         }
       },
       "block_order": ["image_byNYRH", "image_LBMR7c", "image_LpQAGk"],
-      "name": "Beconcept Img Grid",
+      "name": "Image grid",
       "settings": {
         "add_space_top": true,
         "add_space_bottom": false
@@ -86,7 +86,7 @@
     },
     "beconcept_numbered_text_Tw6GzC": {
       "type": "beconcept-numbered-text",
-      "name": "Beconcept Numbered Text",
+      "name": "Indent text with numbers",
       "settings": {
         "add_space_top": true,
         "add_space_bottom": false,
@@ -126,7 +126,7 @@
         }
       },
       "block_order": ["image_rRfQHB", "image_aA4zqm"],
-      "name": "Beconcept Img Grid",
+      "name": "Image grid",
       "settings": {
         "add_space_top": true,
         "add_space_bottom": false
@@ -134,7 +134,7 @@
     },
     "beconcept_numbered_text_mPLieH": {
       "type": "beconcept-numbered-text",
-      "name": "Beconcept Numbered Text",
+      "name": "Indent text with numbers",
       "settings": {
         "add_space_top": true,
         "add_space_bottom": false,
@@ -186,7 +186,7 @@
         }
       },
       "block_order": ["image_RrNXbQ", "image_zGnFVt", "image_GCtY6G"],
-      "name": "Beconcept Img Grid",
+      "name": "Image grid",
       "settings": {
         "add_space_top": true,
         "add_space_bottom": false
@@ -194,7 +194,7 @@
     },
     "beconcept_numbered_text_A9NQTX": {
       "type": "beconcept-numbered-text",
-      "name": "Beconcept Numbered Text",
+      "name": "Indent text with numbers",
       "settings": {
         "add_space_top": true,
         "add_space_bottom": false,

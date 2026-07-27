@@ -93,11 +93,19 @@ class BeconceptHomeCarouselComponent extends Component {
     return this.dataset.hoverSlowdown === "true";
   }
 
+  get #speed() {
+    if (isMobileBreakpoint() && this.dataset.speedMobile) {
+      return Number(this.dataset.speedMobile) || DEFAULT_SPEED;
+    }
+    return Number(this.dataset.speed) || DEFAULT_SPEED;
+  }
+
   connectedCallback() {
     super.connectedCallback();
 
     this.#lockMobileHeight();
     mediaQueryLarge.addEventListener("change", this.#lockMobileHeight);
+    mediaQueryLarge.addEventListener("change", this.#handleBreakpointChange);
 
     if (this.#autoplayEnabled) {
       this.#mm = gsap.matchMedia();
@@ -123,6 +131,7 @@ class BeconceptHomeCarouselComponent extends Component {
   disconnectedCallback() {
     super.disconnectedCallback();
     mediaQueryLarge.removeEventListener("change", this.#lockMobileHeight);
+    mediaQueryLarge.removeEventListener("change", this.#handleBreakpointChange);
     this.#mm?.revert();
     this.#mm = null;
     this.#resizeObserver?.disconnect();
@@ -134,11 +143,13 @@ class BeconceptHomeCarouselComponent extends Component {
   /**
    * On mobile/tablet, `100vh`/`h-screen` jumps around as the browser chrome
    * shows/hides on scroll. Lock the section to `lvh` (the viewport size with
-   * the browser UI collapsed) instead of the live, shrinking visual
-   * viewport — this pins the section to the device's actual fullscreen
-   * height so content extends behind the browser's (often translucent)
-   * address/nav bar, e.g. Safari's bottom toolbar, rather than stopping
-   * short of it. Desktop keeps the CSS `h-screen` sizing.
+   * the browser UI collapsed) plus the toolbar's own reserved space
+   * (`100lvh - 100svh`, its max height) plus a fixed safety margin on top of
+   * that. The extra height means the toolbar always overlaps more of the
+   * infinite, looping image grid than it strictly needs to, instead of
+   * landing exactly on its last row — so it sits above genuinely repeating
+   * content rather than cropping anything unique. Desktop keeps the CSS
+   * `h-screen` sizing.
    */
   #lockMobileHeight = () => {
     if (mediaQueryLarge.matches) {
@@ -146,8 +157,8 @@ class BeconceptHomeCarouselComponent extends Component {
       this.style.removeProperty("min-height");
       return;
     }
-    this.style.height = "100lvh";
-    this.style.minHeight = "100lvh";
+    this.style.height = "calc(200lvh - 100svh + 60px)";
+    this.style.minHeight = "calc(200lvh - 100svh + 60px)";
   };
 
   onItemEnter() {
@@ -166,6 +177,10 @@ class BeconceptHomeCarouselComponent extends Component {
     this.#teardownLoop();
     this.#buildLoop();
   }, 250);
+
+  #handleBreakpointChange = () => {
+    if (this.#tween) this.#handleResize();
+  };
 
   /** @returns {HTMLElement} a copy of `content` stripped of `ref` attributes, marked decorative. */
   #cloneContent() {
@@ -188,7 +203,7 @@ class BeconceptHomeCarouselComponent extends Component {
     track.appendChild(this.#clone);
 
     this.#loopHeight = height;
-    this.#loopSpeed = Number(this.dataset.speed) || DEFAULT_SPEED;
+    this.#loopSpeed = this.#speed;
     this.#loopDirection = this.dataset.direction === "down" ? "down" : "up";
 
     this.#startTween();

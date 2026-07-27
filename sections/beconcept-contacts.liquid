@@ -1,4 +1,4 @@
-<div class="div--container-small {% if section.settings.add_space_bottom %} space-bottom {% endif %} {% if section.settings.add_space_top %} space-top-less {% endif %}">
+<div class="div--container-small space-y-10 {% if section.settings.add_space_bottom %} space-bottom {% endif %} {% if section.settings.add_space_top %} space-top-less {% endif %}">
   {% if section.settings.title or section.settings.text %}
     <div class="grid grid-cols-12 lg:gap-8 gap-4">
       <div class="lg:col-span-6 lg:col-start-4 md:col-span-8  md:col-start-3 col-span-12 lg:space-y-10 space-y-6">
@@ -23,11 +23,33 @@
       </div>
     </div>
   {% endif %}
+  {% if section.blocks.size > 0 %}
+    <div class="grid grid-cols-12 lg:gap-8">
+      <div class="lg:col-span-6 lg:col-start-4 md:col-span-8 md:col-start-3 col-span-12 divide-y divide-dark/8 border-y border-solid border-dark/8">
+        {% for block in section.blocks %}
+          <div class="grid grid-cols-8 gap-1">
+            <div class="lg:col-span-3 col-span-2 py-[6px] self-center">
+              <div class="label-l opacity-60">{{ block.settings.contact_label }}</div>
+            </div>
+            <div class="col-span-1 py-[6px] h-full self-center">
+              <div class="h-full w-[1px] bg-dark/8 mx-auto"></div>
+            </div>
+            <div class="lg:col-span-4 col-span-5 py-[6px] self-center">
+              <div class="body-l">{{ block.settings.contact_content }}</div>
+            </div>
+          </div>
+        {%- endfor %}
+      </div>
+    </div>
+  {% endif %}
 </div>
+
+{% render 'video-placeholder-styles' %}
+{% render 'deferred-media-video-styles' %}
 
 {% schema %}
 {
-  "name": "Indent text with numbers",
+  "name": "Contact grid",
   "class": "section-wrapper",
   "settings": [
     {
@@ -90,9 +112,27 @@
       "label": "Button Link"
     }
   ],
+  "blocks": [
+    {
+      "type": "contact",
+      "name": "Single Contact Line",
+      "settings": [
+        {
+          "type": "text",
+          "id": "contact_label",
+          "label": "Label"
+        },
+        {
+          "type": "richtext",
+          "id": "contact_content",
+          "label": "Content"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Indent text with numbers",
+      "name": "Contact grid",
       "category": "Beconcept"
     }
   ]

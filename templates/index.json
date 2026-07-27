@@ -18,6 +18,7 @@
         "enable_autoplay": true,
         "enable_hover_slowdown": false,
         "scroll_speed": 80,
+        "scroll_speed_mobile": 70,
         "scroll_direction": "up"
       }
     }
