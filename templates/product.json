@@ -22,7 +22,16 @@
       "type": "beconcept-final-gif",
       "name": "Page Gif Separator",
       "settings": {}
+    },
+    "beconcept_product_info_BDqaXm": {
+      "type": "beconcept-product-info",
+      "name": "Product Informations",
+      "settings": {}
     }
   },
-  "order": ["product_recommendations_qepVTw", "beconcept_final_gif_gydFNe"]
+  "order": [
+    "beconcept_product_info_BDqaXm",
+    "product_recommendations_qepVTw",
+    "beconcept_final_gif_gydFNe"
+  ]
 }
