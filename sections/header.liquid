@@ -62,7 +62,7 @@
         {% endif %}
         <button
           class="header-actions__action button-unstyled"
-          on:click="#cart-drawer/toggle"
+          on:click="#be-cart-drawer/toggle"
           aria-haspopup="dialog"
           aria-expanded="false"
           aria-controls="cart-drawer"
@@ -87,6 +87,7 @@
           {{- 'ic-hamburger.svg' | inline_asset_content -}}
         </span>
       </button>
+      <button on:click="#be-cart-drawer/toggle">CA</button>
     </div>
   </div>
 </header>

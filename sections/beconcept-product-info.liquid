@@ -100,13 +100,11 @@
             <input type="hidden" name="id" value="{{ selected_variant.id }}">
             <div class="flex w-full gap-4 items-stretch h-[40px]">
               {%- liquid
-                # Mostra l'input SOLO se il monitoraggio quantità di Shopify è ATTIVO
                 assign show_quantity_input = false
                 if selected_variant.inventory_management == 'shopify' and product.available
                   assign show_quantity_input = true
                 endif
 
-                # Calcola la quantità massima acquistabile solo per i prodotti monitorati e non acquistabili se esauriti
                 assign max_quantity = ''
                 if show_quantity_input and selected_variant.inventory_policy == 'deny' and selected_variant.inventory_quantity > 0
                   assign max_quantity = selected_variant.inventory_quantity
@@ -162,7 +160,9 @@
   </div>
 </div>
 
-<script>
+<script type="module">
+  import { CartLinesUpdateEvent } from '@shopify/events';
+
   document.addEventListener('DOMContentLoaded', function () {
     // --- 1. GESTIONE SWIPER ---
     const swiperEl = document.querySelector('.mySwiper');
@@ -224,18 +224,39 @@
 
     if (productForm) {
       productForm.addEventListener('submit', function (e) {
-        e.preventDefault(); // Impedisce il redirect standard
+        e.preventDefault();
 
         const submitButton = productForm.querySelector('button[type="submit"]');
         const originalText = submitButton.innerHTML;
 
-        // Stato di caricamento (opzionale ma consigliato per UX)
         submitButton.disabled = true;
         submitButton.innerHTML = '<span>Adding...</span>';
 
         const formData = new FormData(productForm);
+        const itemCount = Number(formData.get('quantity')) || 1;
 
-        // Chiamata AJAX a Shopify per aggiungere al carrello
+        const cartDrawerEl = document.querySelector('beconcept-cart-drawer');
+        const sectionId = cartDrawerEl ? cartDrawerEl.getAttribute('data-section-id') : null;
+        if (sectionId) {
+          formData.append('sections', sectionId);
+          formData.append('sections_url', window.location.pathname);
+        }
+
+        const deferredEventPromise = CartLinesUpdateEvent.createPromise();
+        productForm.dispatchEvent(
+          new CartLinesUpdateEvent({
+            action: 'add',
+            context: 'product',
+            lines: [
+              {
+                merchandiseId: formData.get('id'),
+                quantity: itemCount,
+              },
+            ],
+            promise: deferredEventPromise.promise,
+          })
+        );
+
         fetch('/cart/add.js', {
           method: 'POST',
           body: formData,
@@ -248,43 +269,51 @@
             if (!response.ok) throw new Error("Errore nell'aggiunta al carrello");
             return response.json();
           })
-          .then(() => {
-            // Prodotto aggiunto! Adesso scarichiamo l'intero carrello aggiornato per avere il nuovo conteggio
-            return fetch('/cart.js');
+          .then((addResponse) => {
+            // /cart/add.js returns the added line item + rendered sections, but not
+            // cart-level totals, so fetch those separately.
+            return fetch('/cart.js', { headers: { Accept: 'application/json' } })
+              .then((response) => response.json())
+              .then((cartState) => ({ addResponse, cartState }));
           })
-          .then((response) => response.json())
-          .then((cart) => {
-            // Ripristina il bottone
+          .then(({ addResponse, cartState }) => {
             submitButton.disabled = false;
             submitButton.innerHTML = originalText;
 
-            // CERCA TUTTE LE CART BUBBLE E LE AGGIORNA
-            const cartBubbles = document.querySelectorAll('.cart-bubble');
-
-            cartBubbles.forEach((bubble) => {
-              const countSpan = bubble.querySelector('[ref="cartBubbleCount"]');
-
-              if (countSpan) {
-                // Aggiorna il numero
-                countSpan.textContent = cart.item_count;
-              }
-
-              // Se l'elemento era nascosto perché il carrello era a zero, ora lo mostriamo
-              bubble.classList.remove('hidden', 'opacity-0');
-
-              // Avvia l'animazione CSS
-              bubble.classList.remove('cart-bubble--pop');
-              void bubble.offsetWidth; // TRUCCO: Forza il reflow del browser per riavviare l'animazione da zero
-              bubble.classList.add('cart-bubble--pop');
-
-              // Rimuovi la classe dell'animazione al termine per poterla riusare subito dopo
-              setTimeout(() => {
-                bubble.classList.remove('cart-bubble--pop');
-              }, 400);
+            // 1. Aggiorna i contatori carrello in tutta la pagina
+            const cartCounters = document.querySelectorAll(
+              '#cart-count, .cart-count, [data-cart-count], [data-cart-count-label]'
+            );
+            cartCounters.forEach((counter) => {
+              counter.textContent = cartState.item_count;
             });
 
-            // (Opzionale) Qui puoi inserire l'apertura automatica del tuo side-cart se ne hai uno:
-            // document.dispatchEvent(new CustomEvent('cart:open'));
+            // 2. Aggiorna l'interno del Drawer tramite la sezione restituita dall'add.js
+            const cartDrawer = document.querySelector('beconcept-cart-drawer');
+            if (cartDrawer) {
+              const htmlContent =
+                addResponse.sections?.[sectionId] ||
+                (addResponse.sections ? Object.values(addResponse.sections)[0] : null);
+
+              if (htmlContent) {
+                cartDrawer.renderNewHTML(htmlContent);
+              }
+
+              // 3. APRI IL DRAWER
+              if (typeof cartDrawer.open === 'function') {
+                cartDrawer.open();
+              }
+            }
+
+            deferredEventPromise.resolve({
+              cart: CartLinesUpdateEvent.createCartFromAjaxResponse(cartState),
+              detail: {
+                items: cartState.items,
+                source: 'beconcept-product-info',
+                itemCount,
+                didError: false,
+              },
+            });
           })
           .catch((error) => {
             console.error('Errore Add to Cart AJAX:', error);
@@ -293,6 +322,7 @@
             setTimeout(() => {
               submitButton.innerHTML = originalText;
             }, 2000);
+            deferredEventPromise.reject(error);
           });
       });
     }

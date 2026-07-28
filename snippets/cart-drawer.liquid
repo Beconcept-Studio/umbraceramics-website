@@ -18,7 +18,7 @@
 
   <script
     type="module"
-    src="{{ 'cart-drawer.js' | asset_url }}"
+    src="{{ 'be-cart-drawer.js' | asset_url }}"
     fetchpriority="low"
   ></script>
 
@@ -60,7 +60,7 @@
         </template>
 
         <div
-          class="cart-drawer__inner{% if cart.empty? %} cart-drawer--empty{% endif %}"
+          class="cart-drawer__inner{% if cart.empty? %} cart-drawer--empty{% endif %} bg-red-500"
           data-hydration-key="cart-drawer-inner"
         >
           {%- if cart.empty? -%}
@@ -71,9 +71,7 @@
                 type="button"
                 aria-label="{{ 'actions.close' | t }}"
               >
-                <span class="svg-wrapper">
-                  {{- 'icon-close.svg' | inline_asset_content -}}
-                </span>
+                CLOSE
               </button>
             </div>
           {%- else -%}
@@ -275,6 +273,28 @@
     .cart-drawer__header,
     .cart-drawer__content {
       background: transparent;
+    }
+  }
+
+  /* Cart drawer uses a fade in/out instead of the shared theme-drawer slide. */
+  theme-drawer#cart-drawer .theme-drawer__dialog--opening,
+  theme-drawer#cart-drawer .theme-drawer__dialog--opening-inline-start {
+    animation: cart-drawer-fade-in 500ms var(--animation-timing-fade-in);
+  }
+
+  theme-drawer#cart-drawer .theme-drawer__dialog--closing {
+    animation: cart-drawer-fade-out 500ms var(--animation-timing-fade-out) forwards;
+  }
+
+  @keyframes cart-drawer-fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @keyframes cart-drawer-fade-out {
+    to {
+      opacity: 0;
     }
   }
 {% endstylesheet %}

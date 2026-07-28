@@ -27,15 +27,12 @@
     {{ title }}
     {{ title_append }}
   </h2>
-
   <button
     class="theme-drawer__close-button"
     on:click="#{{ drawer_id }}/close"
     type="button"
     aria-label="{{ 'actions.close' | t }}"
   >
-    <span class="svg-wrapper">
-      {{- 'icon-close.svg' | inline_asset_content -}}
-    </span>
+    CLOSE
   </button>
 </div>
