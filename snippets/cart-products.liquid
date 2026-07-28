@@ -11,8 +11,6 @@
   {% render 'cart-products', force_empty: true %}
 {% enddoc %}
 
-{% render 'cart-typography-styles' %}
-
 {% liquid
   assign block_settings = block.settings
 %}
@@ -42,8 +40,6 @@
   type="module"
   fetchpriority="low"
 ></script>
-
-{% render 'text-component-shimmer-styles' %}
 
 <div
   {{ block.shopify_attributes }}

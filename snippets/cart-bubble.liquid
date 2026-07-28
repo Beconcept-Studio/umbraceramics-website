@@ -1,12 +1,3 @@
-{%- doc -%}
-  @param [limit] - {number}
-
-  The maximum number of items to display. Anything above shows as "99+".
-
-  Colors: reads --cart-bubble-background / --cart-bubble-text from an ancestor. Falls back to a contrasting pair
-  computed from the palette foreground when unset.
-{%- enddoc -%}
-
 {% liquid
   assign bubble_bg_fallback = settings.page_text_color
   assign bubble_text_fallback = settings.page_background_color
@@ -14,7 +5,7 @@
 
 <div
   ref="cartBubble"
-  class="cart-bubble"
+  class="cart-bubble transition-transform duration-300"
   {% assign item_count = cart.item_count %}
   {% if item_count <= 99 %}
     data-maintain-ratio
@@ -42,7 +33,6 @@
 {% stylesheet %}
   .cart-bubble {
     --cart-padding: 0.2em;
-
     position: relative;
     width: 20px;
     aspect-ratio: 1;
@@ -52,7 +42,6 @@
     line-height: normal;
     align-items: center;
     justify-content: center;
-    color: var(--cart-bubble-text, var(--cart-bubble-text-fallback));
     padding-inline: var(--cart-padding);
   }
 
@@ -67,7 +56,7 @@
   .cart-bubble__background {
     position: absolute;
     inset: 0;
-    background-color: var(--cart-bubble-background, var(--cart-bubble-background-fallback));
+
     border-radius: var(--style-border-radius-lg);
   }
 
@@ -77,5 +66,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  @keyframes cartBubblePop {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .cart-bubble--pop {
+    animation: cartBubblePop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
   }
 {% endstylesheet %}

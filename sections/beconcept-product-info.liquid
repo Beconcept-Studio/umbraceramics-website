@@ -1,28 +1,281 @@
-<div
-  class="product-informations relative"
->
-  {% if section.settings.section_title != empty %}
-    <div
-      class="grid grid-cols-2 gap-0 divide-x divide-dark/10"
-      style="height: calc(100dvh - var(--header-group-height)"
-    >
-      <div class="px-[130px] flex items-center justify-center">
-        <div class="gap-10 flex items-start w-full">
-          <div class="caption flex flex-col gap-2">
-            <a class="w-max">1 - 4</a>
-            <a class="w-max opacity-30">2 - 4</a>
-            <a class="w-max opacity-30">3 - 4</a>
-            <a class="w-max opacity-30">4 - 4</a>
+{% liquid
+  assign selected_variant = product.selected_or_first_available_variant
+  assign price = selected_variant.price | money
+  assign compare_at_price = selected_variant.compare_at_price
+  assign show_compare_price = false
+  if compare_at_price > selected_variant.price
+    assign show_compare_price = true
+    assign compare_at_price = compare_at_price | money
+  endif
+  assign product_features = product.metafields.custom.product_features.value
+%}
+<div class="product-informations relative">
+  <div
+    class="grid grid-cols-2 gap-0 divide-x divide-dark/10"
+    style="height: calc(100dvh - var(--header-group-height));"
+  >
+    <div class="px-[130px] flex items-center justify-center h-full overflow-hidden">
+      <div class="flex gap-10 items-start justify-center w-full">
+        <!-- Indice Cliccabile Laterale -->
+        <div class="caption flex flex-col gap-2 select-none z-10 shrink-0">
+          {%- for image in product.images -%}
+            <a
+              class="pagination-item w-max cursor-pointer transition-all duration-300 py-1 block {% if forloop.first %}opacity-100 font-bold{% else %}opacity-30{% endif %}"
+              data-index="{{ forloop.index0 }}"
+            >
+              {{ forloop.index }} - {{ forloop.length }}
+            </a>
+          {%- endfor -%}
+        </div>
+        <div class="swiper mySwiper overflow-visible w-full aspect-[4/5] relative">
+          <div class="swiper-wrapper h-full">
+            {%- for image in product.images -%}
+              <div class="swiper-slide flex items-center justify-center h-full w-full">
+                {{
+                  image
+                  | image_url: width: 1200
+                  | image_tag: class: 'w-full h-full object-cover object-center block', loading: 'lazy', alt: image.alt
+                  | default: product.title
+                }}
+              </div>
+            {%- endfor -%}
           </div>
-          <div class="aspect-4-5 w-full bg-gray-400"></div>
         </div>
       </div>
-      <div class="flex items-center justify-center px-[130px]">
-        <div class="headline-l">{{ product.title }}</div>
+    </div>
+
+    <!-- Colonna Destra: Titolo Prodotto -->
+    <div class="flex items-center justify-center px-[130px]">
+      <div class="w-full aspect-[9/9.5]">
+        <div class="space-y-14">
+          <div class="space-y-3">
+            <div class="headline-l">{{ product.title }}</div>
+            <div class="flex items-center gap-3 price-l">
+              <div class="opacity-60">{{ price }}</div>
+              {% if show_compare_price %}
+                <div class="opacity-30 line-through decoration-1">{{ compare_at_price }}</div>
+              {% endif %}
+            </div>
+          </div>
+
+          {% if product.description != empty or product_features != empty %}
+            <div class="space-y-5">
+              {% if product.description != empty %}
+                <div class="body-l max-w-[480px]">
+                  {{ product.description }}
+                </div>
+              {% endif -%}
+              {% if product_features != empty %}
+                <div class="divide-y divide-dark/8 border-y border-solid border-dark/8">
+                  {% for feature in product_features %}
+                    {% assign parts = feature | split: '|' %}
+                    <div class="grid grid-cols-8 gap-1">
+                      <div class="lg:col-span-5 py-[4px] self-center">
+                        <div class="label-l opacity-60">{{ parts[0] | strip }}</div>
+                      </div>
+                      <div class="col-span-1 py-[4px] h-full self-center">
+                        <div class="h-full w-[1px] bg-dark/8 mx-auto"></div>
+                      </div>
+                      <div class="lg:col-span-2 py-[4px] self-center">
+                        <div class="note opacity-60">
+                          {{ parts[1] | strip }}
+                        </div>
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+          {%- form 'product', product, class: 'w-full space-y-2' -%}
+            <input type="hidden" name="id" value="{{ selected_variant.id }}">
+            <div class="flex w-full gap-4 items-stretch h-[40px]">
+              {%- liquid
+                assign max_quantity = ''
+                if selected_variant.inventory_management == 'shopify' and selected_variant.inventory_policy == 'deny' and selected_variant.inventory_quantity > 0
+                  assign max_quantity = selected_variant.inventory_quantity
+                endif
+              -%}
+              <div class="flex items-center button border border-solid border-dark/16 w-[100px] shrink-0 relative">
+                <button
+                  type="button"
+                  class="min-w-10 w-10 h-full flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity select-none cursor-pointer"
+                  onclick="const inp = this.parentNode.querySelector('input[type=number]'); inp.stepDown(); inp.dispatchEvent(new Event('change'));"
+                >
+                  &minus;
+                </button>
+                <input
+                  type="number"
+                  name="quantity"
+                  value="1"
+                  min="1"
+                  {% if max_quantity != '' %}
+                    max="{{ max_quantity }}"
+                  {% endif %}
+                  class="w-full h-full text-center bg-transparent border-none focus:outline-none appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                >
+                <button
+                  type="button"
+                  class="min-w-10 w-10  h-full flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity select-none cursor-pointer"
+                  onclick="const inp = this.parentNode.querySelector('input[type=number]'); if(!inp.max || parseInt(inp.value) < parseInt(inp.max)) { inp.stepUp(); inp.dispatchEvent(new Event('change')); }"
+                >
+                  &plus;
+                </button>
+              </div>
+              <button
+                type="submit"
+                name="add"
+                class="w-full h-full bg-transparent text-dark button border border-solid border-dark/16 transition-all duration-300 hover:opacity-60 disabled:opacity-30 cursor-pointer disabled:cursor-not-allowed flex items-center justify-center"
+                {% unless selected_variant.available %}
+                  disabled
+                {% endunless %}
+              >
+                <span>
+                  {%- if selected_variant.available -%}
+                    Add to cart
+                  {%- else -%}
+                    Sold out
+                  {%- endif -%}
+                </span>
+              </button>
+            </div>
+          {%- endform -%}
+        </div>
       </div>
     </div>
-  {% endif %}
+  </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // --- 1. GESTIONE SWIPER ---
+    const swiperEl = document.querySelector('.mySwiper');
+    if (swiperEl && typeof Swiper !== 'undefined') {
+      const paginationItems = document.querySelectorAll('.pagination-item');
+      const swiper = new Swiper('.mySwiper', {
+        direction: 'vertical',
+        slidesPerView: 1,
+        speed: 1000,
+        spaceBetween: 160,
+        mousewheel: false,
+        grabCursor: false,
+        on: {
+          slideChange: function () {
+            paginationItems.forEach((item, idx) => {
+              if (idx === this.activeIndex) {
+                item.classList.remove('opacity-30');
+                item.classList.add('opacity-100');
+              } else {
+                item.classList.add('opacity-30');
+                item.classList.remove('opacity-100');
+              }
+            });
+          },
+        },
+      });
+
+      paginationItems.forEach((item) => {
+        item.addEventListener('click', function () {
+          const index = parseInt(this.getAttribute('data-index'), 10);
+          swiper.slideTo(index);
+        });
+      });
+    }
+
+    // --- 2. CONTROLLO INPUT QUANTITÀ ---
+    const qtyInput = document.querySelector('input[name="quantity"]');
+    if (qtyInput) {
+      qtyInput.addEventListener('change', function () {
+        let val = parseInt(this.value, 10);
+        const min = parseInt(this.min || 1, 10);
+        const max = parseInt(this.max, 10);
+
+        if (isNaN(val) || val < min) val = min;
+        if (!isNaN(max) && val > max) val = max;
+
+        this.value = val;
+      });
+    }
+
+    // --- 3. ADD TO CART AJAX & ANIMAZIONE BUBBLE ---
+    const productForm = document.querySelector('form[action$="/cart/add"]');
+
+    if (productForm) {
+      productForm.addEventListener('submit', function (e) {
+        e.preventDefault(); // Impedisce il redirect standard
+
+        const submitButton = productForm.querySelector('button[type="submit"]');
+        const originalText = submitButton.innerHTML;
+
+        // Stato di caricamento (opzionale ma consigliato per UX)
+        submitButton.disabled = true;
+        submitButton.innerHTML = '<span>Adding...</span>';
+
+        const formData = new FormData(productForm);
+
+        // Chiamata AJAX a Shopify per aggiungere al carrello
+        fetch('/cart/add.js', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            Accept: 'application/json',
+          },
+        })
+          .then((response) => {
+            if (!response.ok) throw new Error("Errore nell'aggiunta al carrello");
+            return response.json();
+          })
+          .then(() => {
+            // Prodotto aggiunto! Adesso scarichiamo l'intero carrello aggiornato per avere il nuovo conteggio
+            return fetch('/cart.js');
+          })
+          .then((response) => response.json())
+          .then((cart) => {
+            // Ripristina il bottone
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalText;
+
+            // CERCA TUTTE LE CART BUBBLE E LE AGGIORNA
+            const cartBubbles = document.querySelectorAll('.cart-bubble');
+
+            cartBubbles.forEach((bubble) => {
+              const countSpan = bubble.querySelector('[ref="cartBubbleCount"]');
+
+              if (countSpan) {
+                // Aggiorna il numero
+                countSpan.textContent = cart.item_count;
+              }
+
+              // Se l'elemento era nascosto perché il carrello era a zero, ora lo mostriamo
+              bubble.classList.remove('hidden', 'opacity-0');
+
+              // Avvia l'animazione CSS
+              bubble.classList.remove('cart-bubble--pop');
+              void bubble.offsetWidth; // TRUCCO: Forza il reflow del browser per riavviare l'animazione da zero
+              bubble.classList.add('cart-bubble--pop');
+
+              // Rimuovi la classe dell'animazione al termine per poterla riusare subito dopo
+              setTimeout(() => {
+                bubble.classList.remove('cart-bubble--pop');
+              }, 400);
+            });
+
+            // (Opzionale) Qui puoi inserire l'apertura automatica del tuo side-cart se ne hai uno:
+            // document.dispatchEvent(new CustomEvent('cart:open'));
+          })
+          .catch((error) => {
+            console.error('Errore Add to Cart AJAX:', error);
+            submitButton.disabled = false;
+            submitButton.innerHTML = '<span>Error! Try again</span>';
+            setTimeout(() => {
+              submitButton.innerHTML = originalText;
+            }, 2000);
+          });
+      });
+    }
+  });
+</script>
 
 {% schema %}
 {
