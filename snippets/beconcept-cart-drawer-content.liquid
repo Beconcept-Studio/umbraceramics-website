@@ -20,83 +20,125 @@
       </div>
       <div class="h-[1px] w-full block bg-dark/8"></div>
     {% else %}
-      {%- for item in cart.items -%}
-        <div class="grid grid-cols-12 gap-8 headline-s" data-item-key="{{ item.key }}">
-          <!-- 1. Immagine Articolo -->
-          <div class="lg:col-span-2 md:col-span-3 col-span-5">
-            <a href="{{ item.url }}" class="aspect-4-5 w-full bg-white block relative overflow-hidden">
-              {% if item.image %}
-                {{
-                  item.image
-                  | image_url: width: 300
-                  | image_tag: class: 'w-full h-full object-cover', loading: 'lazy'
-                }}
-              {% endif %}
-            </a>
-          </div>
-
-          <!-- 2. Info Dettagli e Prezzi -->
-          <div class="col-span-7 md:col-span-5 lg:col-span-6">
-            <div class="space-y-2">
-              <a href="{{ item.url }}" class="block hover:underline">{{ item.title }}</a>
-              <div class="flex items-center gap-3 price-label-s">
-                <div class="opacity-60">{{ item.final_line_price | money_with_currency }}</div>
-                {% if item.original_line_price > item.final_line_price %}
-                  <div class="opacity-30 line-through decoration-1">
-                    {{ item.original_line_price | money_with_currency }}
-                  </div>
+      <div class="max-h-[280px] overflow-y-auto lg:space-y-5 space-y-4">
+        {%- for item in cart.items -%}
+          <div class="grid grid-cols-12 gap-8 headline-s" data-item-key="{{ item.key }}">
+            <!-- 1. Immagine Articolo -->
+            <div class="lg:col-span-2 md:col-span-3 col-span-5">
+              <a href="{{ item.url }}" class="aspect-4-5 w-full bg-white block relative overflow-hidden">
+                {% if item.image %}
+                  {{
+                    item.image
+                    | image_url: width: 300
+                    | image_tag: class: 'w-full h-full object-cover', loading: 'lazy'
+                  }}
                 {% endif %}
+              </a>
+            </div>
+
+            <!-- 2. Info Dettagli e Prezzi -->
+            <div class="col-span-7 md:col-span-5 lg:col-span-6 flex flex-col h-full justify-between">
+              <div class="space-y-2">
+                <a href="{{ item.url }}" class="block hover:underline">{{ item.title }}</a>
+                <div class="flex items-center gap-3 price-label-s">
+                  <div class="opacity-60">{{ item.final_line_price | money_with_currency }}</div>
+                  {% if item.original_line_price > item.final_line_price %}
+                    <div class="opacity-30 line-through decoration-1">
+                      {{ item.original_line_price | money_with_currency }}
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="lg:hidden flex items-center justify-between">
+                <div class="flex items-center h-[40px] relative">
+                  <button
+                    type="button"
+                    data-qty-btn="minus"
+                    data-key="{{ item.key }}"
+                    data-qty="{{ item.quantity | minus: 1 }}"
+                    class="min-w-6 w-6 h-full flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity select-none cursor-pointer"
+                  >
+                    &minus;
+                  </button>
+
+                  <input
+                    type="number"
+                    value="{{ item.quantity }}"
+                    min="0"
+                    readonly
+                    class="w-[40px] h-full text-center bg-transparent border-none focus:outline-none appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                  >
+
+                  <button
+                    type="button"
+                    data-qty-btn="plus"
+                    data-key="{{ item.key }}"
+                    data-qty="{{ item.quantity | plus: 1 }}"
+                    class="min-w-6 w-6 h-full flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity select-none cursor-pointer"
+                  >
+                    &plus;
+                  </button>
+                </div>
+                <button
+                  type="button"
+                  data-remove-btn
+                  data-key="{{ item.key }}"
+                  class="button button--tertiary cursor-pointer hover:opacity-60 transition-opacity button"
+                >
+                  Remove
+                </button>
               </div>
             </div>
-          </div>
 
-          <!-- 3. Selettore Quantity Dinamico -->
-          <div class="col-span-2">
-            <div class="flex items-center border border-solid border-dark/16 w-[110px] h-[40px] relative">
+            <!-- 3. Selettore Quantity Dinamico Desktop -->
+            <div class="hidden lg:block col-span-2">
+              <div class="flex items-center h-[40px] relative">
+                <button
+                  type="button"
+                  data-qty-btn="minus"
+                  data-key="{{ item.key }}"
+                  data-qty="{{ item.quantity | minus: 1 }}"
+                  class="min-w-6 w-6 h-full flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity select-none cursor-pointer"
+                >
+                  &minus;
+                </button>
+
+                <input
+                  type="number"
+                  value="{{ item.quantity }}"
+                  min="0"
+                  readonly
+                  class="w-[40px] h-full text-center bg-transparent border-none focus:outline-none appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                >
+
+                <button
+                  type="button"
+                  data-qty-btn="plus"
+                  data-key="{{ item.key }}"
+                  data-qty="{{ item.quantity | plus: 1 }}"
+                  class="min-w-6 w-6 h-full flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity select-none cursor-pointer"
+                >
+                  &plus;
+                </button>
+              </div>
+            </div>
+
+            <!-- 4. Tasto Rimuovi in AJAX -->
+            <div class="hidden lg:flex col-span-2 items-start justify-end">
               <button
                 type="button"
-                data-qty-btn="minus"
+                data-remove-btn
                 data-key="{{ item.key }}"
-                data-qty="{{ item.quantity | minus: 1 }}"
-                class="min-w-10 w-10 h-full flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity select-none cursor-pointer"
+                class="button button--tertiary cursor-pointer hover:opacity-60 transition-opacity button"
               >
-                &minus;
-              </button>
-
-              <input
-                type="number"
-                value="{{ item.quantity }}"
-                min="0"
-                readonly
-                class="w-full h-full text-center bg-transparent border-none focus:outline-none appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-              >
-
-              <button
-                type="button"
-                data-qty-btn="plus"
-                data-key="{{ item.key }}"
-                data-qty="{{ item.quantity | plus: 1 }}"
-                class="min-w-10 w-10 h-full flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity select-none cursor-pointer"
-              >
-                &plus;
+                Remove
               </button>
             </div>
           </div>
-
-          <!-- 4. Tasto Rimuovi in AJAX -->
-          <div class="col-span-2 flex items-start justify-end">
-            <button
-              type="button"
-              data-remove-btn
-              data-key="{{ item.key }}"
-              class="button button--tertiary cursor-pointer hover:opacity-60 transition-opacity button"
-            >
-              Remove
-            </button>
-          </div>
-        </div>
-        <div class="h-[1px] w-full block bg-dark/8"></div>
-      {% endfor %}
+          <div class="h-[1px] w-full block bg-dark/8"></div>
+        {% endfor %}
+      </div>
     {%- endif %}
   </div>
 
