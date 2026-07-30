@@ -8,17 +8,10 @@
       "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-red-200: oklch(88.5% 0.062 18.334);
     --color-red-500: oklch(63.7% 0.237 25.331);
-    --color-red-600: oklch(57.7% 0.245 27.325);
-    --color-red-700: oklch(50.5% 0.213 27.518);
-    --color-amber-400: oklch(82.8% 0.189 84.429);
-    --color-green-300: oklch(87.1% 0.15 154.449);
     --color-gray-50: oklch(98.5% 0.002 247.839);
     --color-white: #fff;
     --spacing: 0.25rem;
-    --text-xl: 1.25rem;
-    --text-xl--line-height: calc(1.75 / 1.25);
     --font-weight-light: 300;
     --font-weight-normal: 400;
     --font-weight-medium: 500;
@@ -486,6 +479,15 @@
   .h-screen {
     height: 100vh;
   }
+  .max-h-\[280px\] {
+    max-height: 280px;
+  }
+  .max-h-\[300px\] {
+    max-height: 300px;
+  }
+  .max-h-\[340px\] {
+    max-height: 340px;
+  }
   .min-h-full {
     min-height: 100%;
   }
@@ -507,6 +509,12 @@
   .w-\[7px\] {
     width: 7px;
   }
+  .w-\[40px\] {
+    width: 40px;
+  }
+  .w-\[52px\] {
+    width: 52px;
+  }
   .w-\[64px\] {
     width: 64px;
   }
@@ -524,9 +532,6 @@
   }
   .w-screen {
     width: 100vw;
-  }
-  .max-w-\[20px\] {
-    max-width: 20px;
   }
   .max-w-\[28px\] {
     max-width: 28px;
@@ -546,20 +551,14 @@
   .max-w-\[146px\] {
     max-width: 146px;
   }
-  .max-w-\[200px\] {
-    max-width: 200px;
-  }
-  .max-w-\[250px\] {
-    max-width: 250px;
-  }
-  .max-w-\[430px\] {
-    max-width: 430px;
-  }
   .max-w-\[480px\] {
     max-width: 480px;
   }
   .max-w-\[1215px\] {
     max-width: 1215px;
+  }
+  .min-w-6 {
+    min-width: calc(var(--spacing) * 6);
   }
   .min-w-10 {
     min-width: calc(var(--spacing) * 10);
@@ -635,6 +634,9 @@
   }
   .items-stretch {
     align-items: stretch;
+  }
+  .justify-between {
+    justify-content: space-between;
   }
   .justify-center {
     justify-content: center;
@@ -830,9 +832,6 @@
   .bg-current {
     background-color: currentcolor;
   }
-  .bg-dark {
-    background-color: var(--color-dark);
-  }
   .bg-dark\/8 {
     background-color: color-mix(in srgb, #151617 8%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -881,20 +880,11 @@
   .px-6 {
     padding-inline: calc(var(--spacing) * 6);
   }
-  .px-8 {
-    padding-inline: calc(var(--spacing) * 8);
-  }
   .py-1 {
     padding-block: var(--spacing);
   }
-  .py-4 {
-    padding-block: calc(var(--spacing) * 4);
-  }
   .py-5 {
     padding-block: calc(var(--spacing) * 5);
-  }
-  .py-10 {
-    padding-block: calc(var(--spacing) * 10);
   }
   .py-12 {
     padding-block: calc(var(--spacing) * 12);
@@ -977,9 +967,6 @@
   }
   .text-inherit {
     color: inherit;
-  }
-  .text-white {
-    color: var(--color-white);
   }
   .capitalize {
     text-transform: capitalize;
@@ -1444,9 +1431,6 @@
     }
     .lg\:max-w-\[130px\] {
       max-width: 130px;
-    }
-    .lg\:max-w-none {
-      max-width: none;
     }
     .lg\:-translate-x-1\/2 {
       --tw-translate-x: calc(calc(1 / 2 * 100%) * -1);

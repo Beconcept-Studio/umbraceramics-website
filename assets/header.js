@@ -39,6 +39,14 @@ if (!customElements.get("menu-drawer")) {
 }
 
 onDocumentLoaded(() => {
+  const mobileCartTrigger = document.getElementById("mobile-cart-trigger");
+  const menuDrawer = document.getElementById("menu-drawer");
+  if (mobileCartTrigger && menuDrawer instanceof MenuDrawer) {
+    mobileCartTrigger.addEventListener("click", () => {
+      menuDrawer.close();
+    });
+  }
+
   const header = document.querySelector("header-component");
   const headerGroup = document.querySelector("#header-group");
   const colophonOpener = document.querySelector('a[href="#colophon-opener"]');
