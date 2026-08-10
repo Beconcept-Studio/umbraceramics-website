@@ -1,0 +1,18 @@
+{%- doc -%}
+  Exposes the current-nav-item indicator SVGs as CSS custom properties.
+
+  `src/tailwind.css`/`assets/tailwind.css` is compiled by the Tailwind CLI and
+  never goes through Shopify's Liquid engine, so `{{ '...' | asset_url }}`
+  cannot be used there directly. This snippet defines the variables in a
+  request-time-evaluated `<style>` block instead (same pattern as
+  `snippets/custom-fonts.liquid`), rendered before `tailwind.css` is linked in
+  `layout/theme.liquid` so the rules in `header menu-drawer a.current:after`
+  / `header a.current:after` that consume `var(--nav-current-indicator)` /
+  `var(--nav-current-indicator-alt)` resolve correctly.
+{%- enddoc -%}
+{% style %}
+  :root {
+    --nav-current-indicator: url("{{ 'indicator.svg' | asset_url }}");
+    --nav-current-indicator-alt: url("{{ 'indicator-alt.svg' | asset_url }}");
+  }
+{% endstyle %}

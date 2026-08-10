@@ -45,6 +45,7 @@
 
     {{ content_for_header }}
     {% render 'custom-fonts' %}
+    {% render 'nav-current-indicator' %}
     {{ 'swiper-bundle-v11.min.css' | asset_url | stylesheet_tag }}
     <script src="{{ 'swiper-bundle-v11.min.js' | asset_url }}" defer></script>
     {{ 'tailwind.css' | asset_url | stylesheet_tag }}

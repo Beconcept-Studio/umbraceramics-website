@@ -13,35 +13,39 @@
   <div class="grid gap-0 lg:divide-x divide-y lg:divide-y-0 divide-dark/10 lg:grid-cols-2 lg:h-[calc(100dvh_-_var(--header-group-height))]">
     <div class="xl:px-[130px] lg:px-[100px] md:py-[64px] py-[52px] lg:py-0 flex items-center justify-center lg:h-full h-fit overflow-hidden">
       <div class="flex lg:flex-row flex-col-reverse gap-10 items-start justify-center w-full">
-        <div class="caption flex lg:flex-col justify-center lg:justify-start w-full lg:w-fit lg:gap-2 gap-6 select-none z-10 shrink-0">
-          {%- for image in product.images -%}
-            <a
-              class="pagination-item w-max cursor-pointer transition-all duration-300 py-1 block {% if forloop.first %}opacity-100 font-bold{% else %}opacity-30{% endif %}"
-              data-index="{{ forloop.index0 }}"
-            >
-              {{ forloop.index }}-{{ forloop.length }}
-            </a>
-          {%- endfor -%}
-        </div>
-        <div class="swiper mySwiper max-w-[60%] md:!max-w-[40%] lg:!max-w-full mx-auto !overflow-visible w-full aspect-[4/5] relative">
-          <div class="swiper-wrapper h-full !overflow-visible">
+        <beconcept-product-swiper-component class="contents">
+          <div class="caption flex lg:flex-col justify-center lg:justify-start w-full lg:w-fit lg:gap-2 gap-6 select-none z-10 shrink-0">
             {%- for image in product.images -%}
-              <div class="swiper-slide flex items-center justify-center h-full w-full">
-                <div class="aspect-4-5 relative overflow-hidden">
-                  {{
-                    image
-                    | image_url: width: 1200
-                    | image_tag:
-                      class: 'w-full h-full object-cover object-center block',
-                      loading: 'lazy',
-                      alt: image.alt
-                    | default: product.title
-                  }}
-                </div>
-              </div>
+              <a
+                class="pagination-item w-max cursor-pointer transition-all duration-300 py-1 block {% if forloop.first %}opacity-100 font-bold{% else %}opacity-30{% endif %}"
+                data-index="{{ forloop.index0 }}"
+                ref="paginationItem[]"
+                on:click="/handlePaginationClick"
+              >
+                {{ forloop.index }}-{{ forloop.length }}
+              </a>
             {%- endfor -%}
           </div>
-        </div>
+          <div class="swiper mySwiper max-w-[60%] md:!max-w-[40%] lg:!max-w-full mx-auto !overflow-visible w-full aspect-[4/5] relative" ref="swiperEl">
+            <div class="swiper-wrapper h-full !overflow-visible">
+              {%- for image in product.images -%}
+                <div class="swiper-slide flex items-center justify-center h-full w-full">
+                  <div class="aspect-4-5 relative overflow-hidden">
+                    {{
+                      image
+                      | image_url: width: 1200
+                      | image_tag:
+                        class: 'w-full h-full object-cover object-center block',
+                        loading: 'lazy',
+                        alt: image.alt
+                      | default: product.title
+                    }}
+                  </div>
+                </div>
+              {%- endfor -%}
+            </div>
+          </div>
+        </beconcept-product-swiper-component>
       </div>
     </div>
 
@@ -101,7 +105,7 @@
             <div class="flex w-full gap-4 items-stretch h-[40px]">
               {%- liquid
                 assign show_quantity_input = false
-                if selected_variant.inventory_management == 'shopify' and product.available and product.inventory_quantity > 1
+                if selected_variant.inventory_management == 'shopify' and product.available and selected_variant.inventory_quantity > 1
                   assign show_quantity_input = true
                 endif
 
@@ -160,71 +164,11 @@
   </div>
 </div>
 
+<script src="{{ 'beconcept-product-swiper.js' | asset_url }}" type="module" fetchpriority="low"></script>
 <script type="module">
   import { CartLinesUpdateEvent } from '@shopify/events';
 
   document.addEventListener('DOMContentLoaded', function () {
-    // --- 1. GESTIONE SWIPER ---
-    const swiperEl = document.querySelector('.mySwiper');
-    if (swiperEl && typeof Swiper !== 'undefined') {
-      const paginationItems = document.querySelectorAll('.pagination-item');
-
-      // Funzione helper per calcolare i VW in Pixel
-      const getHwInPx = (vw) => (window.innerHeight * vw) / 100;
-
-      const swiper = new Swiper('.mySwiper', {
-        direction: 'horizontal',
-        slidesPerView: 1,
-        speed: 1000,
-        spaceBetween: 80, // Default in px
-        mousewheel: false,
-        grabCursor: false,
-        on: {
-          slideChange: function () {
-            paginationItems.forEach((item, idx) => {
-              if (idx === this.activeIndex) {
-                item.classList.remove('opacity-30');
-                item.classList.add('opacity-100');
-              } else {
-                item.classList.add('opacity-30');
-                item.classList.remove('opacity-100');
-              }
-            });
-          },
-          // Ricalcola lo spaceBetween al ridimensionamento della finestra
-          resize: function () {
-            if (window.innerWidth >= 899) {
-              // Imposta lo spazio in base al calcolo dei pixel equivalenti a 15vw
-              this.params.spaceBetween = getVwInPx(15);
-            } else {
-              // Torna al default se sotto 899px
-              this.params.spaceBetween = 80;
-            }
-            this.update(); // Forza l'aggiornamento del layout
-          }
-        },
-        breakpoints: {
-          899: {
-            direction: 'vertical',
-            // Inizializza con il calcolo dei pixel equivalenti a 15vw
-            spaceBetween: (window.innerHeight * 20) / 100,
-          },
-          1280: {
-            direction: 'vertical',
-            // Inizializza con il calcolo dei pixel equivalenti a 15vw
-            spaceBetween: (window.innerHeight * 35) / 100,
-          },
-        },
-      });
-
-      paginationItems.forEach((item) => {
-        item.addEventListener('click', function () {
-          const index = parseInt(this.getAttribute('data-index'), 10);
-          swiper.slideTo(index);
-        });
-      });
-    }
-
     // --- 2. CONTROLLO INPUT QUANTITÀ ---
     const qtyInput = document.querySelector('input[name="quantity"]');
     if (qtyInput) {

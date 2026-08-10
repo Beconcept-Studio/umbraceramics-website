@@ -140,8 +140,19 @@ onDocumentLoaded(() => {
 
   // Gestione comparsa/scomparsa header allo scroll
   const headerSectionGroup = document.querySelector(".header-section");
-  if (headerSectionGroup) {
+  if (headerSectionGroup instanceof HTMLElement) {
     let lastScrollY = 0;
+    // Quantità di header attualmente nascosta (px), sempre tra 0 e l'altezza dell'header
+    let hiddenOffset = 0;
+
+    const resetHeaderTransform = () => {
+      hiddenOffset = 0;
+      // Rimuoviamo gli override inline: l'header torna a translateY(0) animato
+      // dalla transition-transform (300ms) già definita su .header-section
+      headerSectionGroup.style.transitionProperty = "";
+      headerSectionGroup.style.transform = "";
+    };
+
     // Con capture: true intercettiamo lo scroll di QUALSIASI contenitore del tema Shopify
     window.addEventListener(
       "scroll",
@@ -153,16 +164,22 @@ onDocumentLoaded(() => {
 
         // Evita bug in cima alla pagina (o rimbalzi su iOS)
         if (currentScrollY <= 0) {
-          headerSectionGroup.classList.remove("translated-up");
+          resetHeaderTransform();
+          lastScrollY = currentScrollY;
           return;
         }
-        // Se scendo oltre i 200px
-        if (currentScrollY > 1 && currentScrollY > lastScrollY) {
-          headerSectionGroup.classList.add("translated-up");
-        }
-        // Se salgo verso l'alto
-        else if (currentScrollY < lastScrollY) {
-          headerSectionGroup.classList.remove("translated-up");
+
+        const delta = currentScrollY - lastScrollY;
+
+        if (delta > 0) {
+          // Scendo: l'header segue lo scroll 1:1, senza transition (effetto "nativo")
+          const headerHeight = headerSectionGroup.offsetHeight;
+          hiddenOffset = Math.min(hiddenOffset + delta, headerHeight);
+          headerSectionGroup.style.transitionProperty = "none";
+          headerSectionGroup.style.transform = `translateY(-${hiddenOffset}px)`;
+        } else if (delta < 0) {
+          // Salgo: torno visibile con la transition fluida esistente
+          resetHeaderTransform();
         }
 
         lastScrollY = currentScrollY;

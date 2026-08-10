@@ -3,9 +3,9 @@
   data-section-id="beconcept-cart-drawer-section"
   class="opacity-0 pointer-events-none transition-opacity duration-300 z-[9999999]"
 >
-  <section class="fixed inset-0 w-full h-full p-4 bg-main-bg/90 backdrop-blur-[10px] overflow-y-auto">
-    <div class="min-h-full w-full flex lg:items-center justify-center relative">
-      <button type="button" data-close class="cursor-pointer label-l top-0 right-0 absolute">Close</button>
+  <section class="fixed inset-0 w-full h-full p-4 md:py-6 md:px-10 bg-main-bg/90 backdrop-blur-[10px] overflow-y-auto">
+    <div class="min-h-full w-full flex flex-col lg:items-center lg:justify-center relative">
+      <button type="button" data-close class="cursor-pointer label-l ml-auto lg:absolute lg:top-0 lg:right-0">Close</button>
 
       {% render 'beconcept-cart-drawer-content' %}
     </div>

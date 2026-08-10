@@ -1,11 +1,11 @@
 {% # SRA target for /cart/change.js and /cart/clear.js AJAX requests, rendered on its own by sections/beconcept-cart-drawer-section.liquid. %}
-<div id="cart-drawer-content" class="w-full max-w-[1215px] space-y-20 py-12">
+<div id="cart-drawer-content" class="w-full max-w-[1215px] space-y-20 py-10">
   <div class="lg:space-y-5 space-y-4">
-    <div class="hidden lg:grid grid-cols-12 gap-8 label-l">
-      <div class="col-span-2">
+    <div class="hidden md:grid grid-cols-12 gap-8 label-l">
+      <div class="md:col-span-3 col-span-2">
         Cart (<span data-cart-count-label>{{ cart.item_count }}</span>)
       </div>
-      <div class="col-span-6">Item</div>
+      <div class="md:col-span-5 col-span-6">Item</div>
       <div class="col-span-4">Quantity</div>
     </div>
     <div class="h-[1px] w-full block bg-dark/8"></div>
@@ -69,7 +69,7 @@
               </div>
 
               <!-- Gestione mobile/tablet -->
-              <div class="lg:hidden flex items-center justify-between">
+              <div class="md:hidden flex items-center justify-between">
                 {% if show_qty_selector %}
                   <div class="flex items-center h-[40px] relative">
                     <button
@@ -118,7 +118,7 @@
             </div>
 
             <!-- 3. Selettore Quantity Dinamico Desktop -->
-            <div class="hidden lg:block col-span-2">
+            <div class="hidden md:block col-span-2">
                 <div class="flex items-center h-[40px] relative">
                   <button
                     type="button"
@@ -151,7 +151,7 @@
             </div>
 
             <!-- 4. Tasto Rimuovi in AJAX -->
-            <div class="hidden lg:flex col-span-2 items-start justify-end">
+            <div class="hidden md:flex col-span-2 items-start justify-end">
               <button
                 type="button"
                 data-remove-btn

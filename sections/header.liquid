@@ -4,9 +4,17 @@
   fetchpriority="low"
 ></script>
 
+{%- comment -%} On a product page there's no dedicated "product" nav link, so force the "Shop" menu item to read as current instead. {%- endcomment -%}
+{% liquid
+  assign force_shop_current = false
+  if request.page_type == 'product'
+    assign force_shop_current = true
+  endif
+%}
+
 {% capture cart_icon %}
   <cart-icon
-    class="font-ivar text-[15px] px-4 py-2 md:text-[16px] font-normal leading-[140%] uppercase tracking-[0.05em] lg:font-satoshi lg:text-[10px] lg:tracking-[0.2em] justify-center flex items-center gap-[6px] cursor-pointer"
+    class="font-ivar text-[15px] lg:px-4 lg:py-2 md:text-[16px] font-normal leading-[140%] uppercase tracking-[0.05em] lg:font-satoshi lg:text-[10px] lg:tracking-[0.2em] justify-center flex items-center gap-[6px] cursor-pointer"
     data-testid="cart-icon"
   >
     <span class="">
@@ -22,9 +30,15 @@
         {% assign mainmenu = section.settings.main_menu %}
         <nav class="flex items-center gap-4 -ml-4">
           {% for link in mainmenu.links -%}
+            {% liquid
+              assign link_is_current = link.current
+              if force_shop_current and link.title == 'Shop'
+                assign link_is_current = true
+              endif
+            %}
             <a
               href="{{ link.url }}"
-              class="label-l hover:opacity-40 px-4 py-2 transition-all duration-300{% if link.current %} current{% endif %}{% if link.active %} active{% endif %}"
+              class="label-l hover:opacity-40 px-4 py-2 transition-all duration-300{% if link_is_current %} current{% endif %}{% if link.active %} active{% endif %}"
             >
               {{- link.title -}}
             </a>
@@ -32,7 +46,7 @@
         </nav>
       {% endif %}
     </div>
-    <div class="lg:col-span-2 col-span-4 col-start-5 self-center isolate mix-blend-normal">
+    <div class="lg:col-span-2 col-span-6 col-start-4 self-center isolate mix-blend-normal">
       {% if section.settings.mainlogo %}
         <a
           href="{{ routes.root_url }}"
@@ -96,7 +110,7 @@
   id="menu-drawer"
   class="bg-main-bg/95 h-[100dvh] fixed inset-0 z-[1000] flex flex-col opacity-0 invisible pointer-events-none transition-[opacity,visibility] duration-300 open:opacity-100 open:visible open:pointer-events-auto"
 >
-  <div class="div--container common--grid border-b border-solid border-dark/8 md:h-[64px] h-[48px] shrink-0 isolate bg-main-bg ">
+  <div class="div--container-header common--grid border-b border-solid border-dark/8 md:h-[64px] h-[48px] shrink-0 isolate bg-main-bg ">
     <div class="lg:col-span-2 col-span-4 col-start-5 self-center isolate">
       {% if section.settings.altlogo %}
         <a
@@ -132,9 +146,15 @@
           {% assign mobile = section.settings.main_mobile_menu %}
           <div class="flex flex-col items-center justify-center">
             {% for link in mobile.links -%}
+              {% liquid
+                assign link_is_current = link.current
+                if force_shop_current and link.title == 'Shop'
+                  assign link_is_current = true
+                endif
+              %}
               <a
                 href="{{ link.url }}"
-                class="headline-m py-[10px] text-center{% if link.current %} current{% endif %}{% if link.active %} active{% endif %}"
+                class="headline-m py-[10px] text-center{% if link_is_current %} current{% endif %}{% if link.active %} active{% endif %}"
               >
                 {{- link.title -}}
               </a>

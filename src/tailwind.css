@@ -141,6 +141,7 @@
 }
 
 @layer components {
+
   html,
   body {
     overscroll-behavior: none;
@@ -267,7 +268,7 @@ header a.current:after {
   background-image: var(--nav-current-indicator-alt);
   background-repeat: no-repeat;
   background-size: 100% auto;
-  @apply absolute left-1/2 -translate-x-1/2 -bottom-2 w-[40px] h-[3px] opacity-60;
+  @apply absolute left-1/2 -translate-x-1/2 -bottom-2 lg:bottom-0 w-[40px] h-[3px] opacity-60;
 }
 .colophon-open {
   @apply visible opacity-100 transition-all duration-300;

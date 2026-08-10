@@ -9,12 +9,9 @@
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     --color-red-500: oklch(63.7% 0.237 25.331);
-    --color-red-600: oklch(57.7% 0.245 27.325);
     --color-gray-50: oklch(98.5% 0.002 247.839);
     --color-white: #fff;
     --spacing: 0.25rem;
-    --text-sm: 0.875rem;
-    --text-sm--line-height: calc(1.25 / 0.875);
     --font-weight-light: 300;
     --font-weight-normal: 400;
     --font-weight-medium: 500;
@@ -233,9 +230,6 @@
   .top-1\/2 {
     top: calc(1 / 2 * 100%);
   }
-  .right-0 {
-    right: 0px;
-  }
   .bottom-0 {
     bottom: 0px;
   }
@@ -400,6 +394,9 @@
   }
   .-ml-\[1px\] {
     margin-left: calc(1px * -1);
+  }
+  .ml-auto {
+    margin-left: auto;
   }
   .block {
     display: block;
@@ -901,8 +898,8 @@
   .py-2 {
     padding-block: calc(var(--spacing) * 2);
   }
-  .py-12 {
-    padding-block: calc(var(--spacing) * 12);
+  .py-10 {
+    padding-block: calc(var(--spacing) * 10);
   }
   .py-\[4px\] {
     padding-block: 4px;
@@ -922,6 +919,9 @@
   .py-\[60px\] {
     padding-block: 60px;
   }
+  .py-\[72px\] {
+    padding-block: 72px;
+  }
   .text-center {
     text-align: center;
   }
@@ -937,10 +937,6 @@
   .font-ivar {
     font-family: var(--font-ivar);
   }
-  .text-sm {
-    font-size: var(--text-sm);
-    line-height: var(--tw-leading, var(--text-sm--line-height));
-  }
   .text-\[8px\] {
     font-size: 8px;
   }
@@ -954,10 +950,6 @@
   .font-bold {
     --tw-font-weight: var(--font-weight-bold);
     font-weight: var(--font-weight-bold);
-  }
-  .font-medium {
-    --tw-font-weight: var(--font-weight-medium);
-    font-weight: var(--font-weight-medium);
   }
   .font-normal {
     --tw-font-weight: var(--font-weight-normal);
@@ -991,9 +983,6 @@
   .text-inherit {
     color: inherit;
   }
-  .text-red-600 {
-    color: var(--color-red-600);
-  }
   .capitalize {
     text-transform: capitalize;
   }
@@ -1020,9 +1009,6 @@
   }
   .opacity-30 {
     opacity: 30%;
-  }
-  .opacity-40 {
-    opacity: 40%;
   }
   .opacity-60 {
     opacity: 60%;
@@ -1271,6 +1257,9 @@
     .md\:flex {
       display: flex;
     }
+    .md\:grid {
+      display: grid;
+    }
     .md\:hidden {
       display: none;
     }
@@ -1307,6 +1296,9 @@
     .md\:\!max-w-\[40\%\] {
       max-width: 40% !important;
     }
+    .md\:max-w-\[60\%\] {
+      max-width: 60%;
+    }
     .md\:grid-cols-3 {
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
@@ -1324,8 +1316,11 @@
     .md\:px-10 {
       padding-inline: calc(var(--spacing) * 10);
     }
-    .md\:py-\[60px\] {
-      padding-block: 60px;
+    .md\:py-6 {
+      padding-block: calc(var(--spacing) * 6);
+    }
+    .md\:py-\[40px\] {
+      padding-block: 40px;
     }
     .md\:py-\[64px\] {
       padding-block: 64px;
@@ -1340,6 +1335,12 @@
   @media (width >= 64rem) {
     .lg\:absolute {
       position: absolute;
+    }
+    .lg\:top-0 {
+      top: 0px;
+    }
+    .lg\:right-0 {
+      right: 0px;
     }
     .lg\:bottom-8 {
       bottom: calc(var(--spacing) * 8);
@@ -1431,9 +1432,6 @@
     .lg\:flex {
       display: flex;
     }
-    .lg\:grid {
-      display: grid;
-    }
     .lg\:hidden {
       display: none;
     }
@@ -1486,6 +1484,9 @@
     .lg\:items-center {
       align-items: center;
     }
+    .lg\:justify-center {
+      justify-content: center;
+    }
     .lg\:justify-start {
       justify-content: flex-start;
     }
@@ -1529,11 +1530,17 @@
     .lg\:px-0 {
       padding-inline: 0px;
     }
+    .lg\:px-4 {
+      padding-inline: calc(var(--spacing) * 4);
+    }
     .lg\:px-\[100px\] {
       padding-inline: 100px;
     }
     .lg\:py-0 {
       padding-block: 0px;
+    }
+    .lg\:py-2 {
+      padding-block: calc(var(--spacing) * 2);
     }
     .lg\:py-\[16px\] {
       padding-block: 16px;
@@ -1944,6 +1951,9 @@ header a.current:after {
   --tw-translate-x: calc(calc(1 / 2 * 100%) * -1);
   translate: var(--tw-translate-x) var(--tw-translate-y);
   opacity: 60%;
+  @media (width >= 64rem) {
+    bottom: 0px;
+  }
 }
 .colophon-open {
   visibility: visible;
