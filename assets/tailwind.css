@@ -482,12 +482,6 @@
   .max-h-\[280px\] {
     max-height: 280px;
   }
-  .max-h-\[300px\] {
-    max-height: 300px;
-  }
-  .max-h-\[340px\] {
-    max-height: 340px;
-  }
   .min-h-full {
     min-height: 100%;
   }
@@ -512,17 +506,11 @@
   .w-\[40px\] {
     width: 40px;
   }
-  .w-\[52px\] {
-    width: 52px;
-  }
   .w-\[64px\] {
     width: 64px;
   }
   .w-\[100px\] {
     width: 100px;
-  }
-  .w-\[110px\] {
-    width: 110px;
   }
   .w-full {
     width: 100%;
