@@ -9,7 +9,7 @@
   endif
   assign product_features = product.metafields.custom.product_features.value
 %}
-<div class="product-informations relative">
+<div class="product-informations relative border-b border-solid border-dark/10">
   <div class="grid gap-0 lg:divide-x divide-y lg:divide-y-0 divide-dark/10 lg:grid-cols-2 lg:h-[calc(100dvh_-_var(--header-group-height))]">
     <div class="xl:px-[130px] lg:px-[100px] md:py-[64px] py-[52px] lg:py-0 flex items-center justify-center lg:h-full h-fit overflow-hidden">
       <div class="flex lg:flex-row flex-col-reverse gap-10 items-start justify-center w-full">
@@ -101,7 +101,7 @@
             <div class="flex w-full gap-4 items-stretch h-[40px]">
               {%- liquid
                 assign show_quantity_input = false
-                if selected_variant.inventory_management == 'shopify' and product.available
+                if selected_variant.inventory_management == 'shopify' and product.available and product.inventory_quantity > 1
                   assign show_quantity_input = true
                 endif
 
@@ -168,11 +168,15 @@
     const swiperEl = document.querySelector('.mySwiper');
     if (swiperEl && typeof Swiper !== 'undefined') {
       const paginationItems = document.querySelectorAll('.pagination-item');
+
+      // Funzione helper per calcolare i VW in Pixel
+      const getHwInPx = (vw) => (window.innerHeight * vw) / 100;
+
       const swiper = new Swiper('.mySwiper', {
         direction: 'horizontal',
         slidesPerView: 1,
         speed: 1000,
-        spaceBetween: 80,
+        spaceBetween: 80, // Default in px
         mousewheel: false,
         grabCursor: false,
         on: {
@@ -187,11 +191,28 @@
               }
             });
           },
+          // Ricalcola lo spaceBetween al ridimensionamento della finestra
+          resize: function () {
+            if (window.innerWidth >= 899) {
+              // Imposta lo spazio in base al calcolo dei pixel equivalenti a 15vw
+              this.params.spaceBetween = getVwInPx(15);
+            } else {
+              // Torna al default se sotto 899px
+              this.params.spaceBetween = 80;
+            }
+            this.update(); // Forza l'aggiornamento del layout
+          }
         },
         breakpoints: {
           899: {
             direction: 'vertical',
-            spaceBetween: 160,
+            // Inizializza con il calcolo dei pixel equivalenti a 15vw
+            spaceBetween: (window.innerHeight * 20) / 100,
+          },
+          1280: {
+            direction: 'vertical',
+            // Inizializza con il calcolo dei pixel equivalenti a 15vw
+            spaceBetween: (window.innerHeight * 35) / 100,
           },
         },
       });

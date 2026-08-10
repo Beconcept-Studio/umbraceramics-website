@@ -1,28 +1,45 @@
+{%- comment -%} Aggiunta la classe "hidden" per nascondere tutto di default {%- endcomment -%}
 <div
-  class="product-recommendations relative divide-y divide-dark/10 border-y border-solid border-dark/10"
-  data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=4&intent=related"
+  class="product-recommendations hidden relative divide-y divide-dark/10"
+  data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&intent=related"
 >
-  {% if section.settings.section_title != empty %}
-    <div class="space-top space-bottom div--container">
-      <div class="headline-m uppercase text-center">{{ section.settings.section_title }}</div>
-    </div>
-  {% endif %}
   {%- if recommendations.performed? and recommendations.products_count > 0 -%}
-    <div class="grid md:grid-cols-3 grid-cols-2">
+
+    {%- assign valid_products_count = 0 -%}
+    {%- capture product_list -%}
       {%- for product in recommendations.products -%}
-        <div class="product-item-wrapper border border-solid border-[#E0DFD5] -ml-[1px] -mb-[1px] col-span-1 ">
-          {% render 'beconcept-prodcard' with product as product %}
-        </div>
+        {%- comment -%} Mostra solo prodotti reali E disponibili (in stock) {%- endcomment -%}
+        {%- if product != blank and product.available -%}
+          {%- assign valid_products_count = valid_products_count | plus: 1 -%}
+          <div class="product-item-wrapper border border-solid border-[#E0DFD5] -ml-[1px] -mb-[1px] col-span-1 ">
+            {% render 'beconcept-prodcard' with product as product %}
+          </div>
+        {%- endif -%}
       {%- endfor -%}
-    </div>
+    {%- endcapture -%}
+
+    {%- if valid_products_count > 0 -%}
+
+      {% if section.settings.section_title != empty %}
+        <div class="space-top space-bottom div--container">
+          <div class="headline-m uppercase text-center">{{ section.settings.section_title }}</div>
+        </div>
+      {% endif %}
+
+      <div class="grid md:grid-cols-3 grid-cols-2">
+        {{ product_list }}
+      </div>
+
+      {% if section.settings.section_btntext != empty and section.settings.section_btnurl != null %}
+        <div class="space-top space-bottom div--container text-center">
+          <a href="{{ section.settings.section_btnurl }}" class="mx-auto text-center inline-block button underline decoration-1 underline-offset-4">
+            {{- section.settings.section_btntext -}}
+          </a>
+        </div>
+      {% endif %}
+
+    {%- endif -%}
   {%- endif -%}
-  {% if section.settings.section_btntext != empty and section.settings.section_btnurl != null %}
-    <div class="space-top space-bottom div--container text-center">
-      <a href="{{ section.settings.section_btnurl }}" class="mx-auto text-center inline-block button underline">
-        {{- section.settings.section_btntext -}}
-      </a>
-    </div>
-  {% endif %}
 </div>
 
 {% javascript %}
@@ -31,22 +48,27 @@
 
     if (recommendationsContainer) {
       let url = recommendationsContainer.dataset.url;
-
-      // Controlla la larghezza dello schermo (es. 768px come limite tra mobile e desktop)
       const limit = window.innerWidth < 768 ? 4 : 3;
-
-      // Sostituisce il parametro limit= nell'URL in modo dinamico
-      url = url.replace(/limit=\d+/, `limit=${limit}`);
+      url = url + `&limit=${limit}`;
 
       fetch(url)
         .then((response) => response.text())
         .then((text) => {
           const html = document.createElement('div');
           html.innerHTML = text;
-          const recommendations = html.querySelector('.product-recommendations');
 
-          if (recommendations && recommendations.innerHTML.trim().length) {
-            recommendationsContainer.innerHTML = recommendations.innerHTML;
+          const fetchedRecommendations = html.querySelector('.product-recommendations');
+
+          // Conta quanti prodotti effettivi ha restituito il ciclo for nel file Liquid
+          const productCards = fetchedRecommendations ? fetchedRecommendations.querySelectorAll('.product-item-wrapper') : [];
+
+          // Se ci sono prodotti, inserisci l'HTML e rimuovi la classe "hidden" per mostrare la sezione
+          if (productCards.length > 0) {
+            recommendationsContainer.innerHTML = fetchedRecommendations.innerHTML;
+            recommendationsContainer.classList.remove('hidden');
+          } else {
+            // Se non ci sono prodotti, assicurati che la sezione venga completamente rimossa visivamente
+            recommendationsContainer.remove();
           }
         })
         .catch((e) => console.error('Errore nel caricamento delle raccomandazioni:', e));

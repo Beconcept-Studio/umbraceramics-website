@@ -22,6 +22,13 @@
     {% else %}
       <div class="max-h-[280px] overflow-y-auto lg:space-y-5 space-y-4">
         {%- for item in cart.items -%}
+          {%- assign show_qty_selector = false -%}
+          {%- if item.variant.available -%}
+            {%- if item.variant.inventory_management == blank or item.variant.inventory_policy == 'continue' or item.variant.inventory_quantity > 1 -%}
+              {%- assign show_qty_selector = true -%}
+            {%- endif -%}
+          {%- endif -%}
+
           <div class="grid grid-cols-12 gap-8 headline-s" data-item-key="{{ item.key }}">
             <!-- 1. Immagine Articolo -->
             <div class="lg:col-span-2 md:col-span-3 col-span-5">
@@ -41,23 +48,84 @@
               <div class="space-y-2">
                 <a href="{{ item.url }}" class="block hover:underline">{{ item.title }}</a>
                 <div class="flex items-center gap-3 price-label-s">
-                  <div class="opacity-60">{{ item.final_line_price | money_with_currency }}</div>
-                  {% if item.original_line_price > item.final_line_price %}
+
+                  <!-- Prezzo finale da pagare (es. 68) -->
+                  <div class="opacity-60">{{ item.final_price | money_with_currency }}</div>
+
+                  <!-- Se il prodotto ha un "Prezzo di confronto" a catalogo maggiore del prezzo finale -->
+                  {% if item.variant.compare_at_price > item.final_price %}
                     <div class="opacity-30 line-through decoration-1">
-                      {{ item.original_line_price | money_with_currency }}
+                      {{ item.variant.compare_at_price | money_with_currency }}
+                    </div>
+
+                  <!-- Altrimenti, se c'è uno sconto applicato direttamente nel carrello -->
+                  {% elsif item.original_price > item.final_price %}
+                    <div class="opacity-30 line-through decoration-1">
+                      {{ item.original_price | money_with_currency }}
                     </div>
                   {% endif %}
+
                 </div>
               </div>
 
+              <!-- Gestione mobile/tablet -->
               <div class="lg:hidden flex items-center justify-between">
+                {% if show_qty_selector %}
+                  <div class="flex items-center h-[40px] relative">
+                    <button
+                      type="button"
+                      data-qty-btn="minus"
+                      data-key="{{ item.key }}"
+                      data-qty="{{ item.quantity | minus: 1 }}"
+                      class="min-w-6 w-6 h-full flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity select-none cursor-pointer"
+                    >
+                      &minus;
+                    </button>
+
+                    <input
+                      type="number"
+                      value="{{ item.quantity }}"
+                      min="0"
+                      readonly
+                      class="w-[40px] h-full text-center bg-transparent border-none focus:outline-none appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                    >
+
+                    <button
+                      type="button"
+                      data-qty-btn="plus"
+                      data-key="{{ item.key }}"
+                      data-qty="{{ item.quantity | plus: 1 }}"
+                      class="min-w-6 w-6 h-full flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity select-none cursor-pointer"
+                    >
+                      &plus;
+                    </button>
+                  </div>
+                {% else %}
+                  <div class="flex items-center h-[40px] relative opacity-60">
+                    {{ item.quantity }}
+                  </div>
+                {% endif %}
+
+                <button
+                  type="button"
+                  data-remove-btn
+                  data-key="{{ item.key }}"
+                  class="button button--tertiary cursor-pointer hover:opacity-60 transition-opacity button"
+                >
+                  Remove
+                </button>
+              </div>
+            </div>
+
+            <!-- 3. Selettore Quantity Dinamico Desktop -->
+            <div class="hidden lg:block col-span-2">
                 <div class="flex items-center h-[40px] relative">
                   <button
                     type="button"
                     data-qty-btn="minus"
                     data-key="{{ item.key }}"
                     data-qty="{{ item.quantity | minus: 1 }}"
-                    class="min-w-6 w-6 h-full flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity select-none cursor-pointer"
+                    class="min-w-6 w-6 h-full flex items-center justify-center select-none {% if show_qty_selector %}opacity-60 cursor-pointer hover:opacity-100 transition-opacity{% else %}opacity-0{% endif %}"
                   >
                     &minus;
                   </button>
@@ -75,53 +143,11 @@
                     data-qty-btn="plus"
                     data-key="{{ item.key }}"
                     data-qty="{{ item.quantity | plus: 1 }}"
-                    class="min-w-6 w-6 h-full flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity select-none cursor-pointer"
+                    class="min-w-6 w-6 h-full flex items-center justify-center select-none {% if show_qty_selector %}opacity-60 cursor-pointer hover:opacity-100 transition-opacity{% else %}opacity-0{% endif %}"
                   >
                     &plus;
                   </button>
                 </div>
-                <button
-                  type="button"
-                  data-remove-btn
-                  data-key="{{ item.key }}"
-                  class="button button--tertiary cursor-pointer hover:opacity-60 transition-opacity button"
-                >
-                  Remove
-                </button>
-              </div>
-            </div>
-
-            <!-- 3. Selettore Quantity Dinamico Desktop -->
-            <div class="hidden lg:block col-span-2">
-              <div class="flex items-center h-[40px] relative">
-                <button
-                  type="button"
-                  data-qty-btn="minus"
-                  data-key="{{ item.key }}"
-                  data-qty="{{ item.quantity | minus: 1 }}"
-                  class="min-w-6 w-6 h-full flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity select-none cursor-pointer"
-                >
-                  &minus;
-                </button>
-
-                <input
-                  type="number"
-                  value="{{ item.quantity }}"
-                  min="0"
-                  readonly
-                  class="w-[40px] h-full text-center bg-transparent border-none focus:outline-none appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                >
-
-                <button
-                  type="button"
-                  data-qty-btn="plus"
-                  data-key="{{ item.key }}"
-                  data-qty="{{ item.quantity | plus: 1 }}"
-                  class="min-w-6 w-6 h-full flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity select-none cursor-pointer"
-                >
-                  &plus;
-                </button>
-              </div>
             </div>
 
             <!-- 4. Tasto Rimuovi in AJAX -->
@@ -136,7 +162,6 @@
               </button>
             </div>
           </div>
-          <div class="h-[1px] w-full block bg-dark/8"></div>
         {% endfor %}
       </div>
     {%- endif %}

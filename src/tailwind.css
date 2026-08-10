@@ -358,7 +358,7 @@ body .shopify-pc__banner__dialog button.shopify-pc__banner__btn-manage-prefs {
 }
 
 .shopify-section-group-footer-group.translated-footer {
-  @apply -translate-y-[37px] transition-all duration-300 bg-main-bg overflow-visible;
+  @apply -translate-y-[32px] transition-all duration-300 bg-main-bg overflow-visible;
 }
 .shopify-section-group-footer-group.translated-footer footer {
   @apply transition-all duration-200 bg-main-bg;

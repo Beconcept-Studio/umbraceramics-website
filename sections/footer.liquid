@@ -1,5 +1,5 @@
-<footer class="bg-transparent w-full hidden lg:block border-t border-solid border-dark/8">
-  <div class="div--container py-5">
+<footer class="bg-transparent w-full hidden lg:block">
+  <div class="div--container h-[32px] flex items-center justify-center">
     {% if section.settings.footer_menu %}
       {% assign footermenu = section.settings.footer_menu %}
       <div class="flex items-center gap-[3px] justify-center">
@@ -16,13 +16,13 @@
 
   <div class="colophon-footer-wrapper absolute z-20 transition-all duration-200 flex flex-col justify-end w-full">
     <div class="divide-x divide-dark/8 flex justify-center flex-wrap border-t border-solid border border-dark/10 transition-all duration-300">
-      <div class="px-4 py-[10px] text-center text-dark/60 body-s block border-l border-solid border-dark/8">
+      <div class="px-4 h-[30px] flex items-center justify-center text-center text-dark/60 body-s border-l border-solid border-dark/8">
         © Umbra, 2026
       </div>
-      <div class="px-4 py-[10px] text-center text-dark/60 body-s block">
+      <div class="px-4 h-[30px] flex items-center justify-center text-center text-dark/60 body-s">
         <span>Design: </span><a class="underline" target="_blank" href="https://lorenzoappiani.com">Lorenzo Appiani</a>
       </div>
-      <div class="px-4 py-[10px] text-center text-dark/60 body-s block border-r border-solid border-dark/8">
+      <div class="px-4 h-[30px] flex items-center justify-center text-center text-dark/60 body-s border-r border-solid border-dark/8">
         <span>Development: </span
         ><a
           class="underline"

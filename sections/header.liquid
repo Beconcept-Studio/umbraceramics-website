@@ -6,7 +6,7 @@
 
 {% capture cart_icon %}
   <cart-icon
-    class="font-ivar text-[15px] md:text-[16px] font-normal leading-[140%] uppercase tracking-[0.05em] lg:font-satoshi lg:text-[10px] lg:tracking-[0.2em] justify-center flex items-center gap-[6px] cursor-pointer"
+    class="font-ivar text-[15px] px-4 py-2 md:text-[16px] font-normal leading-[140%] uppercase tracking-[0.05em] lg:font-satoshi lg:text-[10px] lg:tracking-[0.2em] justify-center flex items-center gap-[6px] cursor-pointer"
     data-testid="cart-icon"
   >
     <span class="">
@@ -20,11 +20,11 @@
     <div class="col-span-5 self-center hidden lg:block">
       {% if section.settings.main_menu %}
         {% assign mainmenu = section.settings.main_menu %}
-        <nav class="flex items-center gap-10">
+        <nav class="flex items-center gap-4 -ml-4">
           {% for link in mainmenu.links -%}
             <a
               href="{{ link.url }}"
-              class="label-l hover:opacity-40 transition-all duration-300{% if link.current %} current{% endif %}{% if link.active %} active{% endif %}"
+              class="label-l hover:opacity-40 px-4 py-2 transition-all duration-300{% if link.current %} current{% endif %}{% if link.active %} active{% endif %}"
             >
               {{- link.title -}}
             </a>
@@ -36,7 +36,7 @@
       {% if section.settings.mainlogo %}
         <a
           href="{{ routes.root_url }}"
-          class="block w-full lg:max-w-[130px] max-w-[146px] mx-auto hover:opacity-40 transition-all duration-300"
+          class="block w-full lg:max-w-[146px] max-w-[160px] px-2 py-2 mx-auto hover:opacity-40 transition-all duration-300"
         >
           <img
             class="w-full mx-auto"
@@ -48,13 +48,13 @@
       {% endif %}
     </div>
     <div class="col-span-5 self-center items-center justify-end hidden lg:flex">
-      <nav class="flex items-center gap-10">
+      <nav class="flex items-center gap-4 -mr-4">
         {% if section.settings.customer_account_menu %}
           {% assign rightmenu = section.settings.customer_account_menu %}
           {% for link in rightmenu.links -%}
             <a
               href="{{ link.url }}"
-              class="label-l hover:opacity-40 transition-all duration-300{% if link.current %} current{% endif %}{% if link.active %} active{% endif %}"
+              class="label-l hover:opacity-40 px-4 py-2 transition-all duration-300{% if link.current %} current{% endif %}{% if link.active %} active{% endif %}"
             >
               {{- link.title -}}
             </a>
