@@ -1,13 +1,24 @@
 import { Component } from '@theme/component';
 import { lockScroll, unlockScroll } from '@theme/utilities';
 
-const DESKTOP_MEDIA_QUERY = '(min-width: 899px)';
+// Tailwind's `lg` breakpoint (64rem) — the same breakpoint where
+// `.product-informations` (sections/beconcept-product-info.liquid) switches
+// from a stacked single column to the 2-column desktop grid. The swiper's own
+// direction/scroll-hijack switch is pinned to this same value so the two
+// never disagree (they used to sit at an arbitrary 899px, independent of the
+// page layout's own breakpoint, which produced a visibly broken in-between
+// state around 900px).
+const DESKTOP_BREAKPOINT_PX = 1024;
+const DESKTOP_MEDIA_QUERY = `(min-width: ${DESKTOP_BREAKPOINT_PX}px)`;
+// Tailwind's `md` breakpoint (48rem) — used to widen the horizontal gap on
+// tablet without touching the mobile spacing below it.
+const TABLET_BREAKPOINT_PX = 768;
 const INTERSECTION_THRESHOLD = 0.6;
 const SWIPER_READY_RETRY_MS = 50;
 const SWIPER_READY_MAX_ATTEMPTS = 40; // ~2s
 
 /**
- * Product gallery swiper. On desktop (>= 899px, the same breakpoint where the
+ * Product gallery swiper. On desktop (>= 1024px, the same breakpoint where the
  * underlying Swiper switches to vertical), scrolling the page while the
  * `.product-informations` section is in view steps through the gallery
  * instead of scrolling the page — using Swiper's own `freeMode` + native
@@ -85,9 +96,9 @@ class BeconceptProductSwiperComponent extends Component {
       direction: 'horizontal',
       slidesPerView: 1,
       speed: 1000,
-      // Mobile default: same idea as the desktop vh-based gap, but tied to
-      // viewport width since the gap here is horizontal, not vertical.
-      spaceBetween: getVwInPx(25),
+      // Mobile/tablet default: same idea as the desktop vh-based gap, but tied
+      // to viewport width since the gap here is horizontal, not vertical.
+      spaceBetween: window.innerWidth >= TABLET_BREAKPOINT_PX ? getVwInPx(35) : getVwInPx(25),
       grabCursor: false,
       // Bound but disabled at init: only armed on desktop while the section
       // is in view (see #syncWheelCapture). `eventsTarget` scopes capture to
@@ -117,25 +128,22 @@ class BeconceptProductSwiperComponent extends Component {
           });
         },
         resize: function () {
-          if (window.innerWidth >= 899) {
-            this.params.spaceBetween = getHwInPx(15);
+          if (window.innerWidth >= DESKTOP_BREAKPOINT_PX) {
+            this.params.spaceBetween = getHwInPx(35);
+          } else if (window.innerWidth >= TABLET_BREAKPOINT_PX) {
+            this.params.spaceBetween = getVwInPx(35);
           } else {
-            this.params.spaceBetween = getVwInPx(20);
+            this.params.spaceBetween = getVwInPx(25);
           }
           this.update();
         },
       },
       breakpoints: {
-        899: {
-          direction: 'vertical',
-          spaceBetween: getHwInPx(20),
-          // Fluid, momentum-driven movement; `sticky: false` lets it come to
-          // rest wherever the momentum ends instead of snapping to a slide.
-          freeMode: { enabled: true, sticky: false, momentumBounce: false },
-        },
-        1280: {
+        [DESKTOP_BREAKPOINT_PX]: {
           direction: 'vertical',
           spaceBetween: getHwInPx(35),
+          // Fluid, momentum-driven movement; `sticky: false` lets it come to
+          // rest wherever the momentum ends instead of snapping to a slide.
           freeMode: { enabled: true, sticky: false, momentumBounce: false },
         },
       },

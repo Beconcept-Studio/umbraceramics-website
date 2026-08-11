@@ -21,7 +21,7 @@
     {%- if valid_products_count > 0 -%}
 
       {% if section.settings.section_title != empty %}
-        <div class="lg:py-[120px] md:py-[64px] py-[72px] div--container">
+        <div class="xl:py-[120px] md:py-[64px] py-[72px] div--container">
           <div class="headline-m uppercase text-center">{{ section.settings.section_title }}</div>
         </div>
       {% endif %}
@@ -31,7 +31,7 @@
       </div>
 
       {% if section.settings.section_btntext != empty and section.settings.section_btnurl != null %}
-        <div class="lg:py-[120px] md:py-[64px] py-[72px] div--container text-center">
+        <div class="xl:py-[120px] md:py-[64px] py-[72px] div--container text-center">
           <a href="{{ section.settings.section_btnurl }}" class="mx-auto text-center inline-block button underline decoration-1 underline-offset-4">
             {{- section.settings.section_btntext -}}
           </a>
