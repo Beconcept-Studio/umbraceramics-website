@@ -11,47 +11,60 @@
 %}
 <div class="product-informations relative border-b border-solid border-dark/10">
   <div class="grid gap-0 lg:divide-x divide-y lg:divide-y-0 divide-dark/10 lg:grid-cols-2 lg:h-[calc(100dvh_-_var(--header-group-height))]">
-    <div class="xl:px-[130px] lg:px-[100px] md:py-[64px] py-[52px] lg:py-0 flex items-center justify-center lg:h-full h-fit overflow-hidden">
-      <div class="flex lg:flex-row flex-col-reverse gap-10 items-start justify-center w-full">
+    <div class="flex items-center justify-center lg:h-full h-fit overflow-hidden">
+      <div class="items-start justify-center w-full relative pt-16 pb-10 md:pt-20 md:pb-10 lg:pt-0 lg:pb-0">
         <beconcept-product-swiper-component class="contents">
-          <div class="caption flex lg:flex-col justify-center lg:justify-start w-full lg:w-fit lg:gap-2 gap-6 select-none z-10 shrink-0">
-            {%- for image in product.images -%}
-              <a
-                class="pagination-item w-max cursor-pointer transition-all duration-300 py-1 block {% if forloop.first %}opacity-100 font-bold{% else %}opacity-30{% endif %}"
-                data-index="{{ forloop.index0 }}"
-                ref="paginationItem[]"
-                on:click="/handlePaginationClick"
-              >
-                {{ forloop.index }}-{{ forloop.length }}
-              </a>
-            {%- endfor -%}
-          </div>
-          <div class="swiper mySwiper max-w-[60%] md:!max-w-[40%] lg:!max-w-full mx-auto !overflow-visible w-full aspect-[4/5] relative" ref="swiperEl">
-            <div class="swiper-wrapper h-full !overflow-visible">
+
+          <div class="xl:max-w-[480px] flex lg:flex-row flex-col-reverse gap-10 md:gap-16  lg:max-w-[379px] md:max-w-[305px] max-w-[249px] mx-auto relative">
+
+            <div class="caption flex lg:flex-col lg:absolute lg:top-0 lg:-left-12 justify-center lg:justify-start w-full lg:w-fit lg:gap-2 gap-6 select-none z-10 shrink-0">
               {%- for image in product.images -%}
-                <div class="swiper-slide flex items-center justify-center h-full w-full">
-                  <div class="aspect-4-5 relative overflow-hidden">
-                    {{
-                      image
-                      | image_url: width: 1200
-                      | image_tag:
-                        class: 'w-full h-full object-cover object-center block',
-                        loading: 'lazy',
-                        alt: image.alt
-                      | default: product.title
-                    }}
-                  </div>
-                </div>
+                <a
+                  class="pagination-item w-max cursor-pointer transition-all duration-300 py-1 block {% if forloop.first %}opacity-100 font-bold{% else %}opacity-30{% endif %}"
+                  data-index="{{ forloop.index0 }}"
+                  ref="paginationItem[]"
+                  on:click="/handlePaginationClick"
+                >
+                  {{ forloop.index }}-{{ forloop.length }}
+                </a>
               {%- endfor -%}
+            </div>
+
+
+            <div class="swiper mySwiper !overflow-visible w-full aspect-[4/5] relative" ref="swiperEl">
+              <div class="swiper-wrapper h-full !overflow-visible">
+                {%- for image in product.images -%}
+                  <div class="swiper-slide flex items-center justify-center h-full w-full">
+                    <div class="aspect-4-5 relative overflow-hidden">
+                      {{
+                        image
+                        | image_url: width: 1200
+                        | image_tag:
+                          class: 'w-full h-full object-cover object-center block',
+                          loading: 'lazy',
+                          alt: image.alt
+                        | default: product.title
+                      }}
+                    </div>
+                  </div>
+                {%- endfor -%}
+              </div>
             </div>
           </div>
         </beconcept-product-swiper-component>
       </div>
     </div>
 
+
+
+
+
+
+
+
     <!-- Colonna Destra: Titolo Prodotto -->
-    <div class="flex items-center justify-center xl:px-[130px] lg:px-[100px] py-[60px] lg:py-0">
-      <div class="w-full lg:aspect-[9/9.5] md:px-10 px-4 lg:px-0 grid lg:block grid-cols-12 gap-x-4">
+    <div class="flex items-center justify-center lg:py-0 py-14 md:py-16">
+      <div class="w-full lg:aspect-[4/5] xl:max-w-[480px] lg:max-w-[379px] md:px-10 px-4 lg:px-0 grid lg:block grid-cols-12 gap-x-4">
         <div class="lg:space-y-14 space-y-10 md:col-span-8 col-span-12 md:col-start-3">
           <div class="space-y-3">
             <div class="headline-l">{{ product.title }}</div>
@@ -66,7 +79,7 @@
           {% if product.description != empty or product_features != empty %}
             <div class="space-y-5">
               {% if product.description != empty %}
-                <div class="body-l max-w-[480px]">
+                <div class="body-l space-y-3">
                   {{ product.description }}
                 </div>
               {% endif -%}
