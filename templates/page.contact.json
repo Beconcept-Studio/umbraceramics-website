@@ -90,7 +90,7 @@
       "name": "Image grid",
       "settings": {
         "add_space_top": true,
-        "add_space_bottom": false
+        "add_space_bottom": true
       }
     }
   },
