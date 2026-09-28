@@ -26,10 +26,10 @@
         "add_space_bottom": false,
         "show_number": false,
         "number": 0,
-        "indent_content": true,
-        "title": "Section title",
-        "subtitle": "Subtitle",
-        "text": "<p>Varius mattis ac sit diam suscipit sit risus aenean. Facilisi massa donec ultrices diam montes enim. Erat et velit viverra eget cursus at sit augue. Et cum scelerisque risus cras rhoncus tellus tincidunt scelerisque. Aliquet pretium aliquam nunc pellentesque libero sit tellus ut vitae. Facilisi tellus sit orci in varius nulla malesuada.</p>",
+        "indent_content": false,
+        "title": "Welcome to Umbra Ceramics",
+        "subtitle": "",
+        "text": "<p>This website,&nbsp;<a href=\"http://www.umbra-ceramics.com/\">www.umbra-ceramics.com</a>, is a space where I share and sell my handmade ceramic work, as well as, from time to time, offer pottery workshops in Luxembourg.</p><p>These Terms & Conditions explain how the website works and the conditions that apply when purchasing a piece or booking a workshop. By using this website or placing an order, you agree to these Terms & Conditions. Please take a moment to read them before making a purchase.</p><p>If you have any questions, you can always get in touch at&nbsp;<a href=\"mailto:info@umbra-ceramics.com\">info@umbra-ceramics.com</a>.</p>",
         "btntext": "",
         "btnlink": ""
       }
@@ -42,15 +42,15 @@
         "add_space_bottom": false,
         "show_number": false,
         "number": 0,
-        "indent_content": true,
-        "title": "Section title",
-        "subtitle": "Subtitle",
-        "text": "<p>Varius mattis ac sit diam suscipit sit risus aenean. Facilisi massa donec ultrices diam montes enim. Erat et velit viverra eget cursus at sit augue. Et cum scelerisque risus cras rhoncus tellus tincidunt scelerisque. Aliquet pretium aliquam nunc pellentesque libero sit tellus ut vitae. Facilisi tellus sit orci in varius nulla malesuada.</p>",
+        "indent_content": false,
+        "title": "About Umbra Ceramics",
+        "subtitle": "",
+        "text": "<p>Umbra Ceramics is the independent ceramic practice of&nbsp;Alicia Garcia, operating as a self-employed professional in Luxembourg.</p><p>Professional address:&nbsp;Merl, Luxembourg<br/>Tax / VAT identification number:&nbsp;LU36174448<br/>Email:&nbsp;<a href=\"mailto:info@umbra-ceramics.com\">info@umbra-ceramics.com</a><br/>Telephone:&nbsp;+34 667 459 161</p>",
         "btntext": "",
         "btnlink": ""
       }
     },
-    "beconcept_numbered_text_W4LXAr": {
+    "beconcept_numbered_text_HkbAFP": {
       "type": "beconcept-numbered-text",
       "name": "Indent text with numbers",
       "settings": {
@@ -58,26 +58,42 @@
         "add_space_bottom": false,
         "show_number": false,
         "number": 0,
-        "indent_content": true,
-        "title": "Section title",
-        "subtitle": "Subtitle",
-        "text": "<p>Varius mattis ac sit diam suscipit sit risus aenean. Facilisi massa donec ultrices diam montes enim. Erat et velit viverra eget cursus at sit augue. Et cum scelerisque risus cras rhoncus tellus tincidunt scelerisque. Aliquet pretium aliquam nunc pellentesque libero sit tellus ut vitae. Facilisi tellus sit orci in varius nulla malesuada.</p><ul><li>Enim pellentesque vulputate mus tellus mauris aenean maecenas sem dictum iaculis venenatis.</li><li>Maecenas venenatis vulputate molestie nibh ut fusce.</li><li>Aliquam nisl quis vivamus habitant tempus faucibus at laoreet vulputate lobortis convallis.</li><li>Lectus porttitor suscipit pretium hendrerit sagittis viverra habitant scelerisque.</li></ul><p>Varius mattis ac sit diam suscipit sit risus aenean. Facilisi massa donec ultrices diam montes enim. Erat et velit viverra eget cursus at sit augue. Et cum scelerisque risus cras rhoncus tellus tincidunt scelerisque. Aliquet pretium aliquam nunc pellentesque libero sit tellus ut vitae. Facilisi tellus sit orci in varius nulla malesuada.</p>",
+        "indent_content": false,
+        "title": "Using the website",
+        "subtitle": "",
+        "text": "<p>By using this website and placing an order, you agree to:</p><ul><li>Provide accurate and up-to-date information when making a purchase.</li><li>Not place fraudulent or false orders.</li><li>Not use the website or its content for unlawful purposes.</li><li>Not reproduce, copy or commercially use photographs, designs, texts or other content belonging to Umbra Ceramics without prior permission.</li></ul><p>I reserve the right to update these Terms & Conditions when necessary. The version applicable to your purchase will be the one available at the time your order is placed.</p>",
         "btntext": "",
         "btnlink": ""
       }
     },
-    "beconcept_numbered_text_9DqTCU": {
+    "beconcept_numbered_text_nGWnXE": {
       "type": "beconcept-numbered-text",
       "name": "Indent text with numbers",
       "settings": {
         "add_space_top": true,
-        "add_space_bottom": true,
+        "add_space_bottom": false,
         "show_number": false,
         "number": 0,
-        "indent_content": true,
-        "title": "Section title",
-        "subtitle": "Subtitle",
-        "text": "<p>Varius mattis ac sit diam suscipit sit risus aenean. Facilisi massa donec ultrices diam montes enim. Erat et velit viverra eget cursus at sit augue. Et cum scelerisque risus cras rhoncus tellus tincidunt scelerisque. Aliquet pretium aliquam nunc pellentesque libero sit tellus ut vitae. Facilisi tellus sit orci in varius nulla malesuada.</p>",
+        "indent_content": false,
+        "title": "Availability & Shipping",
+        "subtitle": "",
+        "text": "<p>Umbra Ceramics currently ships within&nbsp;Europe.</p><p>If you are located outside Europe and would like to purchase a piece, please get in touch at&nbsp;<a href=\"mailto:info@umbra-ceramics.com\">info@umbra-ceramics.com</a>and I will check whether shipping is possible and what the associated costs would be.</p><p>Shipping costs and estimated delivery times will be shown before completing your purchase.</p><p>Please note that international orders may be subject to customs duties, taxes or other charges depending on the destination country. These costs, where applicable, are the responsibility of the customer.</p>",
+        "btntext": "",
+        "btnlink": ""
+      }
+    },
+    "beconcept_numbered_text_rdECHq": {
+      "type": "beconcept-numbered-text",
+      "name": "Indent text with numbers",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": false,
+        "show_number": false,
+        "number": 0,
+        "indent_content": false,
+        "title": "The nature of handmade ceramics",
+        "subtitle": "",
+        "text": "<p>Every Umbra Ceramics piece is designed and made by hand. Small variations in shape, size, colour, texture, glaze and finish are an inherent part of the ceramic process. No two pieces will ever be exactly the same, and these variations are part of what makes each object unique. The final piece may therefore differ slightly from the photographs shown on the website, particularly in glaze tones and surface texture. These characteristics are not considered defects when they are a natural result of the handmade process.</p><p>Information about whether a piece is suitable for food use, dishwasher use or microwave use will be provided in the product description whenever relevant. If a piece is not suitable for food use, this will be clearly stated.</p>",
         "btntext": "",
         "btnlink": ""
       }
@@ -87,7 +103,8 @@
     "beconcept_pagetitle_9krXeG",
     "beconcept_numbered_text_Jhm9an",
     "beconcept_numbered_text_jexnCD",
-    "beconcept_numbered_text_W4LXAr",
-    "beconcept_numbered_text_9DqTCU"
+    "beconcept_numbered_text_HkbAFP",
+    "beconcept_numbered_text_nGWnXE",
+    "beconcept_numbered_text_rdECHq"
   ]
 }
