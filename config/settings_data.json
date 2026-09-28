@@ -112,7 +112,16 @@
       "color1": "#333333",
       "color2": "#DFDFDF"
     },
-    "content_for_index": []
+    "content_for_index": [],
+    "blocks": {
+      "11136173269683339241": {
+        "type": "shopify://apps/cmp-insert-code/blocks/cmp-insert-code/78eb98c3-3331-4186-baf2-1c07c0f8c0d1",
+        "disabled": false,
+        "settings": {
+          "hide_label": false
+        }
+      }
+    }
   },
   "presets": {
     "Horizon": {
