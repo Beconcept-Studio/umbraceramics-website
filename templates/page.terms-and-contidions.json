@@ -97,6 +97,134 @@
         "btntext": "",
         "btnlink": ""
       }
+    },
+    "beconcept_numbered_text_qXACMM": {
+      "type": "beconcept-numbered-text",
+      "name": "Indent text with numbers",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": false,
+        "show_number": false,
+        "number": 0,
+        "indent_content": false,
+        "title": "Orders",
+        "subtitle": "",
+        "text": "<p>When you place an order through the website, you are offering to purchase the selected piece under these Terms & Conditions. Before completing your order, you will have the opportunity to review and correct your information. Once your order and payment have been received, you will receive a confirmation by email.</p><p>All pieces available through the shop are generally already made and ready to be sent, unless otherwise stated in the product description.</p><p>If a piece is unavailable or an obvious error has occurred in the description or price, I will contact you as soon as possible and, where applicable, refund the amount paid.</p>",
+        "btntext": "",
+        "btnlink": ""
+      }
+    },
+    "beconcept_numbered_text_ppweRB": {
+      "type": "beconcept-numbered-text",
+      "name": "Indent text with numbers",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": false,
+        "show_number": false,
+        "number": 0,
+        "indent_content": false,
+        "title": "Custom orders",
+        "subtitle": "",
+        "text": "<p>The pieces available through the shop are normally conceived and made by me independently, without prior specifications from a customer.</p><p>From time to time, I may also accept individual commissions or custom orders. For a custom piece, we will agree beforehand on the main characteristics of the work, such as size, shape, colour, finish, inscription or other details, as well as the price and estimated production time. Because each piece is handmade, the final result may contain small variations from sketches, photographs or reference pieces.</p><p>Pieces made specifically according to a customer's specifications or clearly personalised may be excluded from the statutory right of withdrawal where permitted by applicable law.</p>",
+        "btntext": "",
+        "btnlink": ""
+      }
+    },
+    "beconcept_numbered_text_ya8WKB": {
+      "type": "beconcept-numbered-text",
+      "name": "Indent text with numbers",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": false,
+        "show_number": false,
+        "number": 0,
+        "indent_content": false,
+        "title": "Prices and payment",
+        "subtitle": "",
+        "text": "<p>All prices are stated in&nbsp;Euro (€).</p><p>The price applicable to an order is the price displayed on the website at the time of purchase.</p><p>Prices may be changed at any time, but changes will not affect orders that have already been confirmed.</p><p>Shipping costs will be added where applicable and shown before the order is completed.</p><p>I currently accept:</p><ul><li>Credit and debit cards</li><li>Bizum</li><li>Bank transfer</li><li>Payment upon local collection, when available</li></ul>",
+        "btntext": "",
+        "btnlink": ""
+      }
+    },
+    "beconcept_numbered_text_KaEhz7": {
+      "type": "beconcept-numbered-text",
+      "name": "Indent text with numbers",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": false,
+        "show_number": false,
+        "number": 0,
+        "indent_content": false,
+        "title": "Shipping & damaged packages",
+        "subtitle": "",
+        "text": "<p>Ceramics are fragile, so every piece is carefully packed before leaving the studio.</p><p>If your parcel arrives damaged, please contact me at&nbsp;<a href=\"mailto:info@umbra-ceramics.com\">info@umbra-ceramics.com</a>&nbsp;as soon as possible, ideally with photographs of the outside of the package, the packaging and the damaged piece.</p><p>I will assess the situation and work with you to find the appropriate solution in accordance with the applicable consumer protection legislation.</p>",
+        "btntext": "",
+        "btnlink": ""
+      }
+    },
+    "beconcept_numbered_text_PjHpmM": {
+      "type": "beconcept-numbered-text",
+      "name": "Indent text with numbers",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": false,
+        "show_number": false,
+        "number": 0,
+        "indent_content": false,
+        "title": "Withdrawal & returns",
+        "subtitle": "",
+        "text": "<p>For purchases made online, consumers generally have a statutory right of withdrawal of 14 days, subject to the exceptions established by applicable law.</p><p>The fact that a piece is handmade, unique or one of a kind does not, by itself, exclude this right.</p><p>The right of withdrawal may not apply to a piece made specifically according to the customer's specifications or clearly personalised, where such an exception is provided by law.</p><p>If you wish to exercise your right of withdrawal, please contact me at:</p><p><a href=\"mailto:info@umbra-ceramics.com\">info@umbra-ceramics.com</a></p><p>When returning a piece under the right of withdrawal, the customer is responsible for&nbsp;properly packaging the piece and arranging its return shipment, ensuring that it is adequately protected against damage during transport. The customer is also responsible for the direct cost of returning the piece, unless otherwise required by applicable law.</p><p>Umbra Ceramics cannot be held responsible for damage occurring during the return shipment if the piece has not been adequately packaged by the customer.</p><p>This does not affect your statutory rights in relation to defective or non-conforming products. Where a return is required due to a defective or non-conforming product, the applicable legal rights and responsibilities will apply.</p>",
+        "btntext": "",
+        "btnlink": ""
+      }
+    },
+    "beconcept_numbered_text_kbPUrX": {
+      "type": "beconcept-numbered-text",
+      "name": "Indent text with numbers",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": false,
+        "show_number": false,
+        "number": 0,
+        "indent_content": false,
+        "title": "Legal warranty",
+        "subtitle": "",
+        "text": "<p>All products sold by Umbra Ceramics are covered by the applicable statutory legal guarantee of conformity.</p><p>If you receive a piece that is defective or does not correspond to the characteristics agreed upon, please contact me at&nbsp;<a href=\"mailto:info@umbra-ceramics.com\">info@umbra-ceramics.com</a>, explaining the issue and, where useful, providing photographs.</p><p>I will assess the situation and provide the remedy required by applicable law.</p>",
+        "btntext": "",
+        "btnlink": ""
+      }
+    },
+    "beconcept_numbered_text_F6xaCM": {
+      "type": "beconcept-numbered-text",
+      "name": "Indent text with numbers",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": false,
+        "show_number": false,
+        "number": 0,
+        "indent_content": false,
+        "title": "Pottery workshops",
+        "subtitle": "",
+        "text": "<p>From time to time, Umbra Ceramics offers pottery workshops in Luxembourg.</p><p>The details of each workshop, including date, time, duration, location, price and what is included, will be provided when booking.</p><p>Unless otherwise stated, the materials needed for the workshop are included in the price.</p><p><br/><strong>Cancellations</strong></p><p>Workshops are small and places are limited, so bookings are made specifically for each participant. If you need to cancel your booking, please contact me as soon as possible at&nbsp;<a href=\"mailto:info@umbra-ceramics.com\"><strong>info@umbra-ceramics.com</strong></a>.</p><ul><li><strong>More than 7 days before the workshop:</strong>&nbsp;you may request a full refund or transfer your booking to another available date.</li><li><strong>Between 7 days and 48 hours before the workshop:</strong>&nbsp;you may transfer your booking to another available date, subject to availability. Refunds may not be available.</li><li><strong>Less than 48 hours before the workshop or in case of no-show:</strong>&nbsp;the booking is non-refundable and cannot normally be transferred.</li></ul><p>If Umbra Ceramics needs to cancel or reschedule a workshop, you will be offered the choice of transferring your booking to another date or receiving a full refund.</p><p>If you are unable to attend, you may also contact me to see whether another person can attend in your place.</p><p>These cancellation terms do not affect any mandatory consumer rights that may apply under applicable law.</p><p><br/></p><p>Umbra Ceramics reserves the right to cancel or reschedule a workshop due to insufficient enrolment, illness or other unforeseen circumstances.</p><p>If I have to cancel a workshop, you will be offered a full refund or the possibility to reschedule for another date.</p><p>Umbra Ceramics is not responsible for travel, accommodation or other expenses incurred in connection with a workshop.</p>",
+        "btntext": "",
+        "btnlink": ""
+      }
+    },
+    "beconcept_numbered_text_KfrLJd": {
+      "type": "beconcept-numbered-text",
+      "name": "Indent text with numbers",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": false,
+        "show_number": false,
+        "number": 0,
+        "indent_content": false,
+        "title": "Intellectual property",
+        "subtitle": "",
+        "text": "<p>All photographs, texts, designs, illustrations, logos and other content on this website are part of the creative work of Umbra Ceramics or are used with the relevant permission.</p><p>They may not be copied, reproduced, distributed or used commercially without prior permission.</p><p>Purchasing a ceramic piece or attending a workshop does not transfer any intellectual property rights over the designs, photographs or teaching materials.</p>",
+        "btntext": "",
+        "btnlink": ""
+      }
     }
   },
   "order": [
@@ -105,6 +233,14 @@
     "beconcept_numbered_text_jexnCD",
     "beconcept_numbered_text_HkbAFP",
     "beconcept_numbered_text_nGWnXE",
-    "beconcept_numbered_text_rdECHq"
+    "beconcept_numbered_text_rdECHq",
+    "beconcept_numbered_text_qXACMM",
+    "beconcept_numbered_text_ppweRB",
+    "beconcept_numbered_text_ya8WKB",
+    "beconcept_numbered_text_KaEhz7",
+    "beconcept_numbered_text_PjHpmM",
+    "beconcept_numbered_text_kbPUrX",
+    "beconcept_numbered_text_F6xaCM",
+    "beconcept_numbered_text_KfrLJd"
   ]
 }
