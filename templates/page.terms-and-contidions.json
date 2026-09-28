@@ -241,6 +241,69 @@
         "btntext": "",
         "btnlink": ""
       }
+    },
+    "beconcept_numbered_text_fatxf7": {
+      "type": "beconcept-numbered-text",
+      "name": "Indent text with numbers",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": false,
+        "show_number": false,
+        "number": 0,
+        "indent_content": false,
+        "title": "Newsletter",
+        "subtitle": "",
+        "text": "<p>In the future, Umbra Ceramics may offer the possibility of subscribing to a newsletter or receiving occasional updates about new pieces, workshops and other news.</p><p>You will always be able to unsubscribe from these communications.</p>",
+        "btntext": "",
+        "btnlink": ""
+      }
+    },
+    "beconcept_numbered_text_VCTMqT": {
+      "type": "beconcept-numbered-text",
+      "name": "Indent text with numbers",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": false,
+        "show_number": false,
+        "number": 0,
+        "indent_content": false,
+        "title": "Governing law",
+        "subtitle": "",
+        "text": "<p>These Terms & Conditions are governed by the laws applicable in Luxembourg, without prejudice to any mandatory consumer protection rights that may apply.</p><p>If a question or issue arises, I encourage you to contact me first at&nbsp;<a href=\"mailto:info@umbra-ceramics.com\">info@umbra-ceramics.com</a>&nbsp;so that we can try to resolve it directly.</p>",
+        "btntext": "",
+        "btnlink": ""
+      }
+    },
+    "beconcept_numbered_text_yx4GiH": {
+      "type": "beconcept-numbered-text",
+      "name": "Indent text with numbers",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": false,
+        "show_number": false,
+        "number": 0,
+        "indent_content": false,
+        "title": "Contact",
+        "subtitle": "",
+        "text": "<p>If you have any questions about a piece, an order, a return or a workshop, please don't hesitate to get in touch:</p><p>Umbra Ceramics<br/>Alicia Garcia<br/>Email:&nbsp;<a href=\"mailto:info@umbra-ceramics.com\">info@umbra-ceramics.com</a><br/>Telephone: +34 667 459 161<br/>Website:&nbsp;<a href=\"http://www.umbra-ceramics.com/\">www.umbra-ceramics.com</a><br/>Address:&nbsp;Merl, Luxembourg</p>",
+        "btntext": "",
+        "btnlink": ""
+      }
+    },
+    "beconcept_numbered_text_dNzryB": {
+      "type": "beconcept-numbered-text",
+      "name": "Indent text with numbers",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": true,
+        "show_number": false,
+        "indent_content": false,
+        "title": "",
+        "subtitle": "",
+        "text": "<p>Last updated:&nbsp;sept 2026</p>",
+        "btntext": "Read more",
+        "btnlink": ""
+      }
     }
   },
   "order": [
@@ -258,6 +321,10 @@
     "beconcept_numbered_text_kbPUrX",
     "beconcept_numbered_text_F6xaCM",
     "beconcept_numbered_text_TpgcTD",
-    "beconcept_numbered_text_KfrLJd"
+    "beconcept_numbered_text_KfrLJd",
+    "beconcept_numbered_text_fatxf7",
+    "beconcept_numbered_text_VCTMqT",
+    "beconcept_numbered_text_yx4GiH",
+    "beconcept_numbered_text_dNzryB"
   ]
 }
