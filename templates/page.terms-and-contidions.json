@@ -210,6 +210,22 @@
         "btnlink": ""
       }
     },
+    "beconcept_numbered_text_TpgcTD": {
+      "type": "beconcept-numbered-text",
+      "name": "Indent text with numbers",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": false,
+        "show_number": false,
+        "number": 0,
+        "indent_content": false,
+        "title": "Privacy and cookies",
+        "subtitle": "",
+        "text": "<p>For information about how personal data is collected and processed, please consult the Privacy Policy <a href=\"https://www.iubenda.com/privacy-policy/29537612\" target=\"_blank\" title=\"https://www.iubenda.com/privacy-policy/29537612\">here</a>.</p><p>Information about cookies used on this website can be found in the Cookies Policy <a href=\"https://www.iubenda.com/privacy-policy/29537612/cookie-policy\" target=\"_blank\" title=\"https://www.iubenda.com/privacy-policy/29537612/cookie-policy\">here</a>.</p>",
+        "btntext": "",
+        "btnlink": ""
+      }
+    },
     "beconcept_numbered_text_KfrLJd": {
       "type": "beconcept-numbered-text",
       "name": "Indent text with numbers",
@@ -241,6 +257,7 @@
     "beconcept_numbered_text_PjHpmM",
     "beconcept_numbered_text_kbPUrX",
     "beconcept_numbered_text_F6xaCM",
+    "beconcept_numbered_text_TpgcTD",
     "beconcept_numbered_text_KfrLJd"
   ]
 }
