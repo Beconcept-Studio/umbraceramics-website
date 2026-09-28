@@ -23,61 +23,13 @@
       "name": "Indent text with numbers",
       "settings": {
         "add_space_top": true,
-        "add_space_bottom": false,
-        "show_number": false,
-        "number": 0,
-        "indent_content": true,
-        "title": "Section title",
-        "subtitle": "Subtitle",
-        "text": "<p>Varius mattis ac sit diam suscipit sit risus aenean. Facilisi massa donec ultrices diam montes enim. Erat et velit viverra eget cursus at sit augue. Et cum scelerisque risus cras rhoncus tellus tincidunt scelerisque. Aliquet pretium aliquam nunc pellentesque libero sit tellus ut vitae. Facilisi tellus sit orci in varius nulla malesuada.</p>",
-        "btntext": "",
-        "btnlink": ""
-      }
-    },
-    "beconcept_numbered_text_jexnCD": {
-      "type": "beconcept-numbered-text",
-      "name": "Indent text with numbers",
-      "settings": {
-        "add_space_top": true,
-        "add_space_bottom": false,
-        "show_number": false,
-        "number": 0,
-        "indent_content": true,
-        "title": "Section title",
-        "subtitle": "Subtitle",
-        "text": "<p>Varius mattis ac sit diam suscipit sit risus aenean. Facilisi massa donec ultrices diam montes enim. Erat et velit viverra eget cursus at sit augue. Et cum scelerisque risus cras rhoncus tellus tincidunt scelerisque. Aliquet pretium aliquam nunc pellentesque libero sit tellus ut vitae. Facilisi tellus sit orci in varius nulla malesuada.</p>",
-        "btntext": "",
-        "btnlink": ""
-      }
-    },
-    "beconcept_numbered_text_W4LXAr": {
-      "type": "beconcept-numbered-text",
-      "name": "Indent text with numbers",
-      "settings": {
-        "add_space_top": true,
-        "add_space_bottom": false,
-        "show_number": false,
-        "number": 0,
-        "indent_content": true,
-        "title": "Section title",
-        "subtitle": "Subtitle",
-        "text": "<p>Varius mattis ac sit diam suscipit sit risus aenean. Facilisi massa donec ultrices diam montes enim. Erat et velit viverra eget cursus at sit augue. Et cum scelerisque risus cras rhoncus tellus tincidunt scelerisque. Aliquet pretium aliquam nunc pellentesque libero sit tellus ut vitae. Facilisi tellus sit orci in varius nulla malesuada.</p><ul><li>Enim pellentesque vulputate mus tellus mauris aenean maecenas sem dictum iaculis venenatis.</li><li>Maecenas venenatis vulputate molestie nibh ut fusce.</li><li>Aliquam nisl quis vivamus habitant tempus faucibus at laoreet vulputate lobortis convallis.</li><li>Lectus porttitor suscipit pretium hendrerit sagittis viverra habitant scelerisque.</li></ul><p>Varius mattis ac sit diam suscipit sit risus aenean. Facilisi massa donec ultrices diam montes enim. Erat et velit viverra eget cursus at sit augue. Et cum scelerisque risus cras rhoncus tellus tincidunt scelerisque. Aliquet pretium aliquam nunc pellentesque libero sit tellus ut vitae. Facilisi tellus sit orci in varius nulla malesuada.</p>",
-        "btntext": "",
-        "btnlink": ""
-      }
-    },
-    "beconcept_numbered_text_9DqTCU": {
-      "type": "beconcept-numbered-text",
-      "name": "Indent text with numbers",
-      "settings": {
-        "add_space_top": true,
         "add_space_bottom": true,
         "show_number": false,
         "number": 0,
-        "indent_content": true,
-        "title": "Section title",
-        "subtitle": "Subtitle",
-        "text": "<p>Varius mattis ac sit diam suscipit sit risus aenean. Facilisi massa donec ultrices diam montes enim. Erat et velit viverra eget cursus at sit augue. Et cum scelerisque risus cras rhoncus tellus tincidunt scelerisque. Aliquet pretium aliquam nunc pellentesque libero sit tellus ut vitae. Facilisi tellus sit orci in varius nulla malesuada.</p>",
+        "indent_content": false,
+        "title": "",
+        "subtitle": "",
+        "text": "<p>I carefully pack each Umbra Ceramics piece by hand to make sure it is as well protected as possible during transport.</p><p><strong>Shipping within Europe</strong><br/><br/>I currently ship orders within Europe. Shipping costs are calculated at checkout and may vary depending on the destination and size or weight of the package.</p><p><strong>Other destinations</strong><br/><br/>If you would like to order from outside Europe, please contact me at&nbsp;<a href=\"mailto:info@umbra-ceramics.com\"><strong>info@umbra-ceramics.com</strong></a>&nbsp;before placing your order so I can check the available shipping options and costs.</p><p><strong>Processing time</strong><br/><br/>As each piece is handmade and carefully prepared for shipping, orders are usually dispatched within&nbsp;<strong>3-4&nbsp;business days </strong>after payment is received. If your order requires additional preparation time, I will let you know.</p><p><strong>Delivery</strong><br/><br/>Once your order has been handed over to the shipping carrier, delivery times are outside my control and may vary depending on the destination and carrier.</p><p>Please make sure that your delivery address is correct when placing your order. Umbra Ceramics cannot be held responsible for delays or additional costs resulting from an incorrect or incomplete address provided by the customer.</p><p><strong>Damaged packages</strong><br/><br/>Ceramics are fragile, so although I take great care when packing every order, damage can occasionally occur during transport. If your package arrives visibly damaged, please take photographs of the package and the piece before disposing of any packaging and contact me at&nbsp;<a href=\"mailto:info@umbra-ceramics.com\"><strong>info@umbra-ceramics.com</strong></a>&nbsp;as soon as possible.</p><p>If a piece arrives damaged or does not conform to your order, this does not affect your statutory consumer rights.</p><p><strong>Local collection</strong></p><p>Orders may also be collected directly from the Umbra Ceramics studio in Luxembourg,&nbsp;<strong>by prior arrangement and appointment</strong>. Please contact me in advance to arrange a suitable collection time. No shipping costs will apply.</p>",
         "btntext": "",
         "btnlink": ""
       }
@@ -85,9 +37,6 @@
   },
   "order": [
     "beconcept_pagetitle_9krXeG",
-    "beconcept_numbered_text_Jhm9an",
-    "beconcept_numbered_text_jexnCD",
-    "beconcept_numbered_text_W4LXAr",
-    "beconcept_numbered_text_9DqTCU"
+    "beconcept_numbered_text_Jhm9an"
   ]
 }
