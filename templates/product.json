@@ -14,7 +14,7 @@
       "name": "t:names.product_recommendations",
       "settings": {
         "section_title": "More from the shop",
-        "section_btnurl": "shopify://collections/shop",
+        "section_btnurl": "shopify://collections/all",
         "section_btntext": "View all items"
       }
     },

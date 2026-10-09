@@ -20,7 +20,7 @@
         "title": "Missing page",
         "text": "<p>The page you were looking for could not be found. It might have been removed, renamed, or did not exist in the first place.</p>",
         "btntext": "Back to home",
-        "btnlink": "shopify://collections/shop"
+        "btnlink": "shopify://collections/all"
       }
     },
     "beconcept_side_images_HWBGaa": {
@@ -40,7 +40,9 @@
           }
         }
       },
-      "block_order": ["image_XNthFM"],
+      "block_order": [
+        "image_XNthFM"
+      ],
       "name": "Beconcept Side Imgs",
       "settings": {
         "add_space_top": true,
