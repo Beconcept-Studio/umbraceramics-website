@@ -1,0 +1,37 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "product_recommendations_qepVTw": {
+      "type": "beconcept-product-recommendations",
+      "name": "t:names.product_recommendations",
+      "settings": {
+        "section_title": "More from the shop",
+        "section_btnurl": "shopify://collections/shop",
+        "section_btntext": "View all items"
+      }
+    },
+    "beconcept_final_gif_gydFNe": {
+      "type": "beconcept-final-gif",
+      "name": "Page Gif Separator",
+      "settings": {}
+    },
+    "beconcept_product_info_BDqaXm": {
+      "type": "beconcept-product-info",
+      "name": "Product Informations",
+      "settings": {}
+    }
+  },
+  "order": [
+    "beconcept_product_info_BDqaXm",
+    "product_recommendations_qepVTw",
+    "beconcept_final_gif_gydFNe"
+  ]
+}
