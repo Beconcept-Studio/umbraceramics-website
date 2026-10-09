@@ -87,14 +87,14 @@
                 <div class="divide-y w-full divide-dark/8 border-y border-solid border-dark/8">
                   {% for feature in product_features %}
                     {% assign parts = feature | split: '|' %}
-                    <div class="grid w-full grid-cols-8 gap-1">
-                      <div class="col-span-5 py-[4px] self-center">
+                    <div class="grid w-full grid-cols-9 gap-1">
+                      <div class="col-span-4 py-[4px] self-center">
                         <div class="label-l opacity-60">{{ parts[0] | strip }}</div>
                       </div>
                       <div class="col-span-1 py-[4px] h-full self-center">
                         <div class="h-full w-[1px] bg-dark/8 mx-auto"></div>
                       </div>
-                      <div class="col-span-2 py-[4px] self-center">
+                      <div class="col-span-4 py-[4px] self-center">
                         <div class="note opacity-60">
                           {{ parts[1] | strip }}
                         </div>
