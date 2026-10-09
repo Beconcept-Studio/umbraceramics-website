@@ -54,14 +54,6 @@
         </beconcept-product-swiper-component>
       </div>
     </div>
-
-
-
-
-
-
-
-
     <!-- Colonna Destra: Titolo Prodotto -->
     <div class="flex items-center justify-center lg:py-0 py-14 md:py-16">
       <div class="w-full lg:aspect-[4/5] xl:max-w-[480px] lg:max-w-[379px] md:px-10 px-4 lg:px-0 grid lg:block grid-cols-12 gap-x-4">
@@ -76,8 +68,19 @@
             </div>
           </div>
 
-          {% if product.description != empty or product_features != empty %}
+          {% assign is_made_to_order = false %}
+          {% if product.template_suffix == 'made-to-order' %}
+            {% assign is_made_to_order = true %}
+          {% endif %}
+
+          {% if product.description != empty or product_features != empty or is_made_to_order %}
             <div class="space-y-5">
+              {% if is_made_to_order %}
+                <div class="p-3 space-y-1 border border-solid border-dark/8">
+                  <div class="label-l opacity-60">This product is in preorder</div>
+                  <div class="body-l">Lead time: 4-6 weeks</div>
+                </div>
+              {% endif %}
               {% if product.description != empty %}
                 <div class="body-l space-y-3">
                   {{ product.description }}
