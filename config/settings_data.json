@@ -120,6 +120,11 @@
         "settings": {
           "hide_label": false
         }
+      },
+      "2507977957783105356": {
+        "type": "shopify://apps/umbra-ceramics-withdrawal/blocks/entry-link/01a15a18-f40b-76d4-b68b-7c2f69574f3d",
+        "disabled": false,
+        "settings": {}
       }
     }
   },
