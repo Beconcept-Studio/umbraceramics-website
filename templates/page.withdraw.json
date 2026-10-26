@@ -19,7 +19,7 @@
         "indent_content": false,
         "title": "Withdraw from the sales contract",
         "subtitle": "",
-        "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec finibus elit. Ut in varius elit. Phasellus tempor interdum maximus. Nunc eu massa ex. Mauris porttitor faucibus leo sit amet scelerisque. Donec vel ante ac lectus gravida efficitur. Aliquam erat volutpat. Mauris sed leo ullamcorper, lobortis elit tincidunt, aliquam elit. Nullam feugiat aliquet ex sit amet aliquet. Morbi turpis dolor, ornare vitae luctus sit amet, placerat at ex. Quisque aliquam tristique malesuada. Nunc sit amet odio cursus, rhoncus felis quis, dapibus leo. Curabitur at dictum metus. Mauris varius dui lectus, non porttitor risus condimentum quis. Vestibulum ac lectus eget dui consectetur auctor ultrices ac mi.</p>",
+        "text": "<p>Buyers have the legal right to withdraw from a sales agreement within a specific cooling-off period without penalty. To cancel the contract, the consumer must formally notify the seller before the deadline and return any received goods in their original condition. Once the items are returned, the seller is legally obligated to issue a full refund, including standard delivery costs.</p>",
         "btntext": "Read more",
         "btnlink": ""
       }
@@ -35,7 +35,10 @@
       "block_order": [
         "umbra_ceramics_withdrawal_module_YwQ8J8"
       ],
-      "settings": {}
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": true
+      }
     }
   },
   "order": [

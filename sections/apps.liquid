@@ -1,0 +1,41 @@
+<div class="div--container-small {% if section.settings.add_space_bottom %} space-bottom {% endif %} {% if section.settings.add_space_top %} space-top-less {% endif %}">
+  {%- for block in section.blocks -%}
+    {% render block %}
+  {%- endfor -%}
+</div>
+
+{% schema %}
+{
+  "name": "Apps",
+  "tag": "section",
+  "class": "section-wrapper-apps",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "add_space_top",
+      "label": "Add padding top",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "add_space_bottom",
+      "label": "Add padding bottom",
+      "default": false
+    },
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Apps"
+    }
+  ]
+}
+{% endschema %}
