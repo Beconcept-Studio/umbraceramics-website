@@ -14,7 +14,7 @@
       "name": "Indent text with numbers",
       "settings": {
         "add_space_top": true,
-        "add_space_bottom": true,
+        "add_space_bottom": false,
         "show_number": false,
         "indent_content": false,
         "title": "Withdraw from the sales contract",
