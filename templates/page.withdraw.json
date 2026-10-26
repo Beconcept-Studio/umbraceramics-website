@@ -9,6 +9,21 @@
  */
 {
   "sections": {
+    "beconcept_numbered_text_6MKk98": {
+      "type": "beconcept-numbered-text",
+      "name": "Indent text with numbers",
+      "settings": {
+        "add_space_top": true,
+        "add_space_bottom": true,
+        "show_number": false,
+        "indent_content": false,
+        "title": "Withdraw from the sales contract",
+        "subtitle": "",
+        "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec finibus elit. Ut in varius elit. Phasellus tempor interdum maximus. Nunc eu massa ex. Mauris porttitor faucibus leo sit amet scelerisque. Donec vel ante ac lectus gravida efficitur. Aliquam erat volutpat. Mauris sed leo ullamcorper, lobortis elit tincidunt, aliquam elit. Nullam feugiat aliquet ex sit amet aliquet. Morbi turpis dolor, ornare vitae luctus sit amet, placerat at ex. Quisque aliquam tristique malesuada. Nunc sit amet odio cursus, rhoncus felis quis, dapibus leo. Curabitur at dictum metus. Mauris varius dui lectus, non porttitor risus condimentum quis. Vestibulum ac lectus eget dui consectetur auctor ultrices ac mi.</p>",
+        "btntext": "Read more",
+        "btnlink": ""
+      }
+    },
     "179251353004d41e7f": {
       "type": "apps",
       "blocks": {
@@ -24,6 +39,7 @@
     }
   },
   "order": [
+    "beconcept_numbered_text_6MKk98",
     "179251353004d41e7f"
   ]
 }
